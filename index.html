@@ -206,14 +206,60 @@ body{font-family:var(--sans);background:var(--ink);color:#fff;-webkit-font-smoot
 /* ── MOBILE ── */
 @media(max-width:768px){
   body{overflow:auto}
-  html,body{height:auto}
-  .wrap{grid-template-columns:1fr;height:auto}
-  .left{padding:36px 28px 40px;min-height:auto}
-  .bg-letter{font-size:240px;right:-20px}
-  .headline{font-size:28px}
-  .features{display:none}
-  .right{padding:36px 28px 48px;min-height:100vh}
+  html,body{height:auto;min-height:100vh}
+
+  /* Stack: right (login) first, then left (brand) below */
+  .wrap{
+    grid-template-columns:1fr;
+    grid-template-rows:auto auto;
+    height:auto;
+    min-height:100vh;
+  }
+
+  /* Login panel comes first on mobile */
+  .right{
+    order:-1;
+    padding:48px 24px 36px;
+    min-height:auto;
+    border-bottom:1px solid var(--bdr);
+  }
+  .right::before{display:none}
   .right-inner{max-width:100%}
+  .right-title{font-size:22px}
+  .right-sub{font-size:13px;margin-bottom:24px}
+
+  /* Who cards: side by side, full width */
+  .who-select{gap:10px;margin-bottom:22px}
+  .who-card{padding:16px 12px}
+  .who-name{font-size:13.5px}
+  .who-desc{font-size:12px}
+
+  /* Bigger tap target on enter button */
+  .enter-btn{padding:15px;font-size:14.5px}
+
+  /* Brand panel: compact strip at bottom */
+  .left{
+    order:1;
+    padding:32px 24px 36px;
+    min-height:auto;
+  }
+  .bg-letter{font-size:200px;right:-10px;opacity:.02}
+  .left-center{padding:20px 0}
+  .eyebrow{margin-bottom:14px}
+  .headline{font-size:26px;margin-bottom:14px}
+  .subline{font-size:13.5px;max-width:100%}
+  .features{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-top:24px;
+  }
+  .feat-icon{width:24px;height:24px;font-size:12px}
+  .feat-title{font-size:12px}
+  .feat-sub{font-size:11px}
+  .left-bottom{margin-top:28px}
+  .quote{font-size:12.5px}
+  .version{position:static;margin-top:20px;justify-content:center}
 }
 
 /* ── ENTRANCE ANIMATION ── */
