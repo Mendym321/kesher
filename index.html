@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kesher · קשר</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#1c1917;
+  --ink2:#44403c;
+  --ink3:#78716c;
+  --ink4:#a8a29e;
+  --bg:#fafaf9;
+  --s1:#f5f4f2;
+  --s2:#edecea;
+  --bdr:#e7e5e4;
+  --amber:#b45309;
+  --amber-l:#fffbeb;
+  --serif:'Lora',Georgia,serif;
+  --sans:'DM Sans',-apple-system,sans-serif;
+}
+html,body{height:100%;overflow:hidden}
+body{font-family:var(--sans);background:var(--ink);color:#fff;-webkit-font-smoothing:antialiased}
+
+/* ── LAYOUT ── */
+.wrap{display:grid;grid-template-columns:1fr 1fr;height:100vh}
+
+/* ── LEFT PANEL ── */
+.left{
+  background:var(--ink);
+  padding:52px 56px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  position:relative;
+  overflow:hidden;
+}
+
+/* Background Hebrew letter - large, geometric, quiet */
+.bg-letter{
+  position:absolute;
+  right:-40px;
+  top:50%;
+  transform:translateY(-50%);
+  font-family:var(--serif);
+  font-size:520px;
+  line-height:1;
+  color:rgba(255,255,255,.025);
+  user-select:none;
+  pointer-events:none;
+  letter-spacing:-20px;
+}
+
+/* Top: logo */
+.left-logo{display:flex;align-items:center;gap:10px;position:relative;z-index:1}
+.logo-mark{
+  width:32px;height:32px;border-radius:7px;
+  background:linear-gradient(135deg,#c9a96e,#a07840);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:16px;color:#fff;font-style:italic;
+  flex-shrink:0;
+}
+.logo-name{font-family:var(--serif);font-size:18px;color:#fff;font-weight:500;letter-spacing:-.3px}
+.logo-heb{font-size:11px;color:rgba(255,255,255,.3);letter-spacing:.05em;margin-top:0}
+
+/* Center: headline */
+.left-center{flex:1;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1;padding:40px 0}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(255,255,255,.4);
+  margin-bottom:24px;
+}
+.eyebrow::before{content:'';width:20px;height:1px;background:rgba(255,255,255,.25)}
+.headline{
+  font-family:var(--serif);
+  font-size:clamp(32px,3.5vw,46px);
+  font-weight:400;
+  line-height:1.2;
+  color:#fff;
+  letter-spacing:-.5px;
+  margin-bottom:22px;
+}
+.headline em{font-style:italic;color:#c9a96e}
+.subline{
+  font-size:15px;
+  color:rgba(255,255,255,.5);
+  line-height:1.7;
+  max-width:380px;
+}
+
+/* Features list */
+.features{margin-top:40px;display:flex;flex-direction:column;gap:14px}
+.feat{display:flex;align-items:flex-start;gap:12px}
+.feat-icon{
+  width:28px;height:28px;border-radius:6px;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.08);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;font-size:13px;
+}
+.feat-text{padding-top:3px}
+.feat-title{font-size:13px;font-weight:500;color:rgba(255,255,255,.85);margin-bottom:2px}
+.feat-sub{font-size:12px;color:rgba(255,255,255,.35);line-height:1.5}
+
+/* Bottom: quote */
+.left-bottom{position:relative;z-index:1}
+.quote{
+  font-family:var(--serif);
+  font-size:13.5px;
+  font-style:italic;
+  color:rgba(255,255,255,.3);
+  line-height:1.7;
+  border-left:1px solid rgba(255,255,255,.12);
+  padding-left:16px;
+}
+.quote-attr{font-size:11px;color:rgba(255,255,255,.2);margin-top:8px;font-style:normal;font-family:var(--sans)}
+
+/* ── RIGHT PANEL ── */
+.right{
+  background:#fff;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:52px 56px;
+  position:relative;
+}
+
+/* Subtle top bar */
+.right::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:3px;
+  background:linear-gradient(90deg,#c9a96e,#a07840,#c9a96e);
+  opacity:.6;
+}
+
+.right-inner{width:100%;max-width:360px}
+
+.right-title{
+  font-family:var(--serif);
+  font-size:26px;
+  font-style:italic;
+  color:var(--ink);
+  letter-spacing:-.3px;
+  margin-bottom:6px;
+}
+.right-sub{font-size:13px;color:var(--ink3);margin-bottom:36px;line-height:1.6}
+
+/* Who selector */
+.who-select{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:8px;margin-bottom:28px;
+}
+.who-card{
+  padding:18px 14px;
+  border:1.5px solid var(--bdr);
+  border-radius:10px;
+  cursor:pointer;
+  transition:all .18s;
+  background:#fff;
+}
+.who-card:hover{border-color:#c9a96e;background:var(--amber-l)}
+.who-card.on{border-color:#a07840;background:var(--amber-l);box-shadow:0 0 0 3px rgba(180,83,9,.08)}
+.who-name{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:2px}
+.who-desc{font-size:11.5px;color:var(--ink3)}
+
+/* Divider */
+.or-line{display:flex;align-items:center;gap:10px;margin-bottom:24px}
+.or-line::before,.or-line::after{content:'';flex:1;height:1px;background:var(--bdr)}
+.or-line span{font-size:11.5px;color:var(--ink4);white-space:nowrap}
+
+/* Enter btn */
+.enter-btn{
+  width:100%;padding:13px;
+  background:var(--ink);color:#fff;
+  border:none;border-radius:9px;
+  font-family:var(--sans);font-size:14px;font-weight:500;
+  cursor:pointer;
+  transition:all .18s;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  letter-spacing:-.1px;
+}
+.enter-btn:hover{background:#44403c;transform:translateY(-1px);box-shadow:0 4px 16px rgba(28,25,23,.2)}
+.enter-btn:active{transform:translateY(0)}
+.enter-btn svg{width:14px;height:14px;transition:transform .18s}
+.enter-btn:hover svg{transform:translateX(3px)}
+
+/* Privacy note */
+.privacy{margin-top:20px;font-size:11.5px;color:var(--ink4);text-align:center;line-height:1.6}
+.privacy a{color:var(--ink3);text-decoration:none}
+
+/* Version badge */
+.version{
+  position:absolute;bottom:20px;right:24px;
+  font-size:10.5px;color:var(--ink4);
+  display:flex;align-items:center;gap:4px;
+}
+.version-dot{width:6px;height:6px;border-radius:50%;background:#22c55e;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  body{overflow:auto}
+  html,body{height:auto}
+  .wrap{grid-template-columns:1fr;height:auto}
+  .left{padding:36px 28px 40px;min-height:auto}
+  .bg-letter{font-size:240px;right:-20px}
+  .headline{font-size:28px}
+  .features{display:none}
+  .right{padding:36px 28px 48px;min-height:100vh}
+  .right-inner{max-width:100%}
+}
+
+/* ── ENTRANCE ANIMATION ── */
+.left-logo{animation:fadeUp .5s ease both;animation-delay:.1s;opacity:0}
+.eyebrow{animation:fadeUp .5s ease both;animation-delay:.2s;opacity:0}
+.headline{animation:fadeUp .6s ease both;animation-delay:.25s;opacity:0}
+.subline{animation:fadeUp .6s ease both;animation-delay:.32s;opacity:0}
+.features{animation:fadeUp .6s ease both;animation-delay:.42s;opacity:0}
+.left-bottom{animation:fadeUp .5s ease both;animation-delay:.55s;opacity:0}
+.right-title{animation:fadeUp .5s ease both;animation-delay:.3s;opacity:0}
+.right-sub{animation:fadeUp .5s ease both;animation-delay:.38s;opacity:0}
+.who-select{animation:fadeUp .5s ease both;animation-delay:.45s;opacity:0}
+.or-line{animation:fadeUp .4s ease both;animation-delay:.52s;opacity:0}
+.enter-btn{animation:fadeUp .4s ease both;animation-delay:.58s;opacity:0}
+.privacy{animation:fadeUp .4s ease both;animation-delay:.64s;opacity:0}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- LEFT: Brand -->
+  <div class="left">
+    <div class="bg-letter">קשר</div>
+
+    <div class="left-logo">
+      <div class="logo-mark">K</div>
+      <div>
+        <div class="logo-name">Kesher</div>
+        <div class="logo-heb">קֶשֶׁר</div>
+      </div>
+    </div>
+
+    <div class="left-center">
+      <div class="eyebrow">Community relationship tool</div>
+      <h1 class="headline">
+        Every person<br>
+        in your community<br>
+        <em>remembered.</em>
+      </h1>
+      <p class="subline">
+        Kesher helps rabbis and rebbetzins track relationships,
+        never miss a birthday or life event, and reach out
+        at exactly the right moment.
+      </p>
+      <div class="features">
+        <div class="feat">
+          <div class="feat-icon">📋</div>
+          <div class="feat-text">
+            <div class="feat-title">Smart Paste</div>
+            <div class="feat-sub">Paste any email or WhatsApp thread — AI logs it automatically</div>
+          </div>
+        </div>
+        <div class="feat">
+          <div class="feat-icon">🔔</div>
+          <div class="feat-text">
+            <div class="feat-title">Daily Brief</div>
+            <div class="feat-sub">Every morning: who needs your attention today</div>
+          </div>
+        </div>
+        <div class="feat">
+          <div class="feat-icon">✍️</div>
+          <div class="feat-text">
+            <div class="feat-title">AI Compose</div>
+            <div class="feat-sub">Personal WhatsApp and email messages in one click</div>
+          </div>
+        </div>
+        <div class="feat">
+          <div class="feat-icon">✡️</div>
+          <div class="feat-text">
+            <div class="feat-title">Jewish calendar aware</div>
+            <div class="feat-sub">Birthdays, yahrzeits, Yom Tov — all surfaced automatically</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="left-bottom">
+      <div class="quote">
+        "The world was created for my sake" — each person carries an entire world.
+        Kesher helps you treat them that way.
+      </div>
+      <div class="quote-attr">Sanhedrin 4:5</div>
+    </div>
+  </div>
+
+  <!-- RIGHT: Enter -->
+  <div class="right">
+    <div class="right-inner">
+
+      <div class="right-title">Welcome back.</div>
+      <div class="right-sub">Who's logging in today?</div>
+
+      <div class="who-select">
+        <div class="who-card on" id="wc-rabbi" onclick="setWho('rabbi')">
+          <div class="who-name">Rabbi Levi</div>
+          <div class="who-desc">Goldstein</div>
+        </div>
+        <div class="who-card" id="wc-rebbet" onclick="setWho('rebbet')">
+          <div class="who-name">Rebbetzin</div>
+          <div class="who-desc">Sarah Goldstein</div>
+        </div>
+      </div>
+
+      <div class="or-line"><span>your community awaits</span></div>
+
+      <button class="enter-btn" onclick="enterApp()">
+        Enter Kesher
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+
+      <div class="privacy">
+        All data is stored locally on this device.<br>
+        Nothing is sent to any server.
+      </div>
+    </div>
+
+    <div class="version">
+      <div class="version-dot"></div>
+      v1.0 · Chabad of Riverside
+    </div>
+  </div>
+
+</div>
+
+<script>
+let selectedWho = 'rabbi';
+
+function setWho(who) {
+  selectedWho = who;
+  document.getElementById('wc-rabbi').classList.toggle('on', who === 'rabbi');
+  document.getElementById('wc-rebbet').classList.toggle('on', who === 'rebbet');
+}
+
+function enterApp() {
+  // Store who is logging in
+  localStorage.setItem('k_who', selectedWho);
+
+  // Animate out
+  const btn = document.querySelector('.enter-btn');
+  btn.textContent = 'Opening…';
+  btn.style.opacity = '.7';
+  btn.style.pointerEvents = 'none';
+
+  // In a real setup, this would redirect to kesher.html
+  // For now, fade out and show a message
+  setTimeout(() => {
+    document.body.style.transition = 'opacity .4s';
+    document.body.style.opacity = '0';
+    setTimeout(() => {
+      window.location.href = 'kesher.html';
+    }, 420);
+  }, 300);
+}
+
+// Keyboard shortcut: Enter to proceed
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter') enterApp();
+  if (e.key === 'Tab') {
+    e.preventDefault();
+    setWho(selectedWho === 'rabbi' ? 'rebbet' : 'rabbi');
+  }
+});
+</script>
+</body>
+</html>
