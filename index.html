@@ -4,34 +4,39 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kesher · קשר</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --ink:#1c1917;
-  --ink2:#44403c;
-  --ink3:#78716c;
-  --ink4:#a8a29e;
-  --bg:#fafaf9;
-  --s1:#f5f4f2;
-  --s2:#edecea;
-  --bdr:#e7e5e4;
-  --amber:#b45309;
-  --amber-l:#fffbeb;
+  --ink:#1c1917;--ink2:#44403c;--ink3:#78716c;--ink4:#a8a29e;
+  --bg:#fafaf9;--s1:#f5f4f2;--bdr:#e7e5e4;
+  --amber:#b45309;--al:#fffbeb;--am:#fde68a;
   --serif:'Lora',Georgia,serif;
   --sans:'DM Sans',-apple-system,sans-serif;
 }
-html,body{height:100%;overflow:hidden}
-body{font-family:var(--sans);background:var(--ink);color:#fff;-webkit-font-smoothing:antialiased}
 
-/* ── LAYOUT ── */
-.wrap{display:grid;grid-template-columns:1fr 1fr;height:100vh}
+/* ━━━━━━━━━━━━━━━━━━━━━━━━
+   DESKTOP  (side by side)
+━━━━━━━━━━━━━━━━━━━━━━━━ */
+html, body { height:100%; overflow:hidden; }
 
-/* ── LEFT PANEL ── */
-.left{
+body {
+  font-family:var(--sans);
+  -webkit-font-smoothing:antialiased;
   background:var(--ink);
-  padding:52px 56px;
+  color:#fff;
+}
+
+.wrap {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  height:100vh;
+}
+
+/* LEFT */
+.left {
+  background:var(--ink);
+  padding:52px 52px;
   display:flex;
   flex-direction:column;
   justify-content:space-between;
@@ -39,254 +44,192 @@ body{font-family:var(--sans);background:var(--ink);color:#fff;-webkit-font-smoot
   overflow:hidden;
 }
 
-/* Background Hebrew letter - large, geometric, quiet */
-.bg-letter{
+.bg-k {
   position:absolute;
-  right:-40px;
-  top:50%;
+  right:-30px; top:50%;
   transform:translateY(-50%);
   font-family:var(--serif);
-  font-size:520px;
+  font-size:500px;
   line-height:1;
-  color:rgba(255,255,255,.025);
+  color:rgba(255,255,255,.03);
   user-select:none;
   pointer-events:none;
-  letter-spacing:-20px;
 }
 
-/* Top: logo */
-.left-logo{display:flex;align-items:center;gap:10px;position:relative;z-index:1}
-.logo-mark{
-  width:32px;height:32px;border-radius:7px;
+.logo { display:flex; align-items:center; gap:10px; }
+.logo-mark {
+  width:32px; height:32px; border-radius:7px;
   background:linear-gradient(135deg,#c9a96e,#a07840);
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--serif);font-size:16px;color:#fff;font-style:italic;
-  flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--serif); font-size:16px; color:#fff; font-style:italic;
 }
-.logo-name{font-family:var(--serif);font-size:18px;color:#fff;font-weight:500;letter-spacing:-.3px}
-.logo-heb{font-size:11px;color:rgba(255,255,255,.3);letter-spacing:.05em;margin-top:0}
+.logo-name { font-family:var(--serif); font-size:18px; color:#fff; font-weight:500; letter-spacing:-.3px; }
+.logo-heb  { font-size:11px; color:rgba(255,255,255,.3); letter-spacing:.05em; }
 
-/* Center: headline */
-.left-center{flex:1;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1;padding:40px 0}
-.eyebrow{
-  display:inline-flex;align-items:center;gap:6px;
-  font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
-  color:rgba(255,255,255,.4);
-  margin-bottom:24px;
+.left-body { flex:1; display:flex; flex-direction:column; justify-content:center; padding:32px 0; }
+
+.eyebrow {
+  display:inline-flex; align-items:center; gap:7px;
+  font-size:11px; font-weight:500; letter-spacing:.1em; text-transform:uppercase;
+  color:rgba(255,255,255,.35); margin-bottom:20px;
 }
-.eyebrow::before{content:'';width:20px;height:1px;background:rgba(255,255,255,.25)}
-.headline{
+.eyebrow::before { content:''; width:18px; height:1px; background:rgba(255,255,255,.22); }
+
+.headline {
   font-family:var(--serif);
-  font-size:clamp(32px,3.5vw,46px);
-  font-weight:400;
-  line-height:1.2;
-  color:#fff;
-  letter-spacing:-.5px;
-  margin-bottom:22px;
+  font-size:clamp(30px,3.2vw,44px);
+  font-weight:400; line-height:1.22;
+  color:#fff; letter-spacing:-.5px;
+  margin-bottom:18px;
 }
-.headline em{font-style:italic;color:#c9a96e}
-.subline{
-  font-size:15px;
-  color:rgba(255,255,255,.5);
-  line-height:1.7;
-  max-width:380px;
+.headline em { font-style:italic; color:#c9a96e; }
+
+.subline {
+  font-size:14.5px;
+  color:rgba(255,255,255,.45);
+  line-height:1.7; max-width:370px;
 }
 
-/* Features list */
-.features{margin-top:40px;display:flex;flex-direction:column;gap:14px}
-.feat{display:flex;align-items:flex-start;gap:12px}
-.feat-icon{
-  width:28px;height:28px;border-radius:6px;
-  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.08);
-  display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;font-size:13px;
+.feats { margin-top:36px; display:flex; flex-direction:column; gap:13px; }
+.feat  { display:flex; align-items:flex-start; gap:11px; }
+.feat-ic {
+  width:26px; height:26px; border-radius:6px; flex-shrink:0;
+  background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.08);
+  display:flex; align-items:center; justify-content:center; font-size:12px;
 }
-.feat-text{padding-top:3px}
-.feat-title{font-size:13px;font-weight:500;color:rgba(255,255,255,.85);margin-bottom:2px}
-.feat-sub{font-size:12px;color:rgba(255,255,255,.35);line-height:1.5}
+.feat-t  { font-size:13px; font-weight:500; color:rgba(255,255,255,.8); margin-bottom:1px; }
+.feat-s  { font-size:11.5px; color:rgba(255,255,255,.32); line-height:1.45; }
 
-/* Bottom: quote */
-.left-bottom{position:relative;z-index:1}
-.quote{
-  font-family:var(--serif);
-  font-size:13.5px;
-  font-style:italic;
-  color:rgba(255,255,255,.3);
-  line-height:1.7;
-  border-left:1px solid rgba(255,255,255,.12);
-  padding-left:16px;
+.quote {
+  font-family:var(--serif); font-size:13px; font-style:italic;
+  color:rgba(255,255,255,.28); line-height:1.7;
+  border-left:1px solid rgba(255,255,255,.1); padding-left:14px;
 }
-.quote-attr{font-size:11px;color:rgba(255,255,255,.2);margin-top:8px;font-style:normal;font-family:var(--sans)}
+.quote-attr { font-size:11px; color:rgba(255,255,255,.18); margin-top:7px; font-family:var(--sans); }
 
-/* ── RIGHT PANEL ── */
-.right{
+/* RIGHT */
+.right {
   background:#fff;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  padding:52px 56px;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  padding:52px 52px;
   position:relative;
 }
-
-/* Subtle top bar */
-.right::before{
-  content:'';
-  position:absolute;
-  top:0;left:0;right:0;
-  height:3px;
-  background:linear-gradient(90deg,#c9a96e,#a07840,#c9a96e);
-  opacity:.6;
+.right::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  background:linear-gradient(90deg,#c9a96e,#a07840,#c9a96e); opacity:.55;
 }
 
-.right-inner{width:100%;max-width:360px}
+.form-wrap { width:100%; max-width:340px; }
 
-.right-title{
-  font-family:var(--serif);
-  font-size:26px;
-  font-style:italic;
-  color:var(--ink);
-  letter-spacing:-.3px;
-  margin-bottom:6px;
+.form-title {
+  font-family:var(--serif); font-size:25px; font-style:italic;
+  color:var(--ink); letter-spacing:-.3px; margin-bottom:5px;
 }
-.right-sub{font-size:13px;color:var(--ink3);margin-bottom:36px;line-height:1.6}
+.form-sub { font-size:13px; color:var(--ink3); margin-bottom:30px; line-height:1.6; }
 
-/* Who selector */
-.who-select{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:8px;margin-bottom:28px;
+.who-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:24px; }
+.who-card {
+  padding:16px 14px;
+  border:1.5px solid var(--bdr); border-radius:10px;
+  cursor:pointer; transition:all .16s; background:#fff;
 }
-.who-card{
-  padding:18px 14px;
-  border:1.5px solid var(--bdr);
-  border-radius:10px;
-  cursor:pointer;
-  transition:all .18s;
-  background:#fff;
+.who-card:hover { border-color:#c9a96e; background:var(--al); }
+.who-card.on { border-color:#a07840; background:var(--al); box-shadow:0 0 0 3px rgba(180,83,9,.08); }
+.who-n { font-size:13.5px; font-weight:500; color:var(--ink); margin-bottom:2px; }
+.who-d { font-size:12px; color:var(--ink3); }
+
+.divider { display:flex; align-items:center; gap:10px; margin-bottom:20px; }
+.divider::before,.divider::after { content:''; flex:1; height:1px; background:var(--bdr); }
+.divider span { font-size:11.5px; color:var(--ink4); white-space:nowrap; }
+
+.enter {
+  width:100%; padding:13px;
+  background:var(--ink); color:#fff;
+  border:none; border-radius:9px;
+  font-family:var(--sans); font-size:14px; font-weight:500;
+  cursor:pointer; transition:all .16s;
+  display:flex; align-items:center; justify-content:center; gap:8px;
 }
-.who-card:hover{border-color:#c9a96e;background:var(--amber-l)}
-.who-card.on{border-color:#a07840;background:var(--amber-l);box-shadow:0 0 0 3px rgba(180,83,9,.08)}
-.who-name{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:2px}
-.who-desc{font-size:11.5px;color:var(--ink3)}
+.enter:hover { background:#44403c; transform:translateY(-1px); box-shadow:0 4px 16px rgba(28,25,23,.18); }
+.enter svg { width:14px; height:14px; transition:transform .16s; }
+.enter:hover svg { transform:translateX(3px); }
 
-/* Divider */
-.or-line{display:flex;align-items:center;gap:10px;margin-bottom:24px}
-.or-line::before,.or-line::after{content:'';flex:1;height:1px;background:var(--bdr)}
-.or-line span{font-size:11.5px;color:var(--ink4);white-space:nowrap}
+.note { margin-top:18px; font-size:11.5px; color:var(--ink4); text-align:center; line-height:1.6; }
 
-/* Enter btn */
-.enter-btn{
-  width:100%;padding:13px;
-  background:var(--ink);color:#fff;
-  border:none;border-radius:9px;
-  font-family:var(--sans);font-size:14px;font-weight:500;
-  cursor:pointer;
-  transition:all .18s;
-  display:flex;align-items:center;justify-content:center;gap:8px;
-  letter-spacing:-.1px;
+.ver {
+  position:absolute; bottom:18px; right:22px;
+  font-size:10.5px; color:var(--ink4);
+  display:flex; align-items:center; gap:5px;
 }
-.enter-btn:hover{background:#44403c;transform:translateY(-1px);box-shadow:0 4px 16px rgba(28,25,23,.2)}
-.enter-btn:active{transform:translateY(0)}
-.enter-btn svg{width:14px;height:14px;transition:transform .18s}
-.enter-btn:hover svg{transform:translateX(3px)}
+.ver-dot { width:6px; height:6px; border-radius:50%; background:#22c55e; animation:pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
 
-/* Privacy note */
-.privacy{margin-top:20px;font-size:11.5px;color:var(--ink4);text-align:center;line-height:1.6}
-.privacy a{color:var(--ink3);text-decoration:none}
+/* ━━━━━━━━━━━━━━━━━━━━━━━━
+   MOBILE  (single column)
+━━━━━━━━━━━━━━━━━━━━━━━━ */
+@media (max-width:700px) {
+  html, body { height:auto; overflow:auto; }
 
-/* Version badge */
-.version{
-  position:absolute;bottom:20px;right:24px;
-  font-size:10.5px;color:var(--ink4);
-  display:flex;align-items:center;gap:4px;
-}
-.version-dot{width:6px;height:6px;border-radius:50%;background:#22c55e;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-
-/* ── MOBILE ── */
-@media(max-width:768px){
-  body{overflow:auto}
-  html,body{height:auto;min-height:100vh}
-
-  /* Stack: right (login) first, then left (brand) below */
-  .wrap{
-    grid-template-columns:1fr;
-    grid-template-rows:auto auto;
+  .wrap {
+    display:block;
     height:auto;
-    min-height:100vh;
   }
 
-  /* Login panel comes first on mobile */
-  .right{
-    order:-1;
-    padding:48px 24px 36px;
-    min-height:auto;
-    border-bottom:1px solid var(--bdr);
+  /* Brand strip */
+  .left {
+    padding:36px 24px 32px;
+    overflow:visible;
   }
-  .right::before{display:none}
-  .right-inner{max-width:100%}
-  .right-title{font-size:22px}
-  .right-sub{font-size:13px;margin-bottom:24px}
+  .bg-k        { display:none; }
+  .left-body   { padding:20px 0 0; flex:none; }
+  .eyebrow     { font-size:10px; margin-bottom:12px; }
+  .headline    { font-size:26px; margin-bottom:12px; }
+  .subline     { font-size:13.5px; max-width:100%; }
+  .feats       { display:none; }
+  .quote       { display:none; }
 
-  /* Who cards: side by side, full width */
-  .who-select{gap:10px;margin-bottom:22px}
-  .who-card{padding:16px 12px}
-  .who-name{font-size:13.5px}
-  .who-desc{font-size:12px}
-
-  /* Bigger tap target on enter button */
-  .enter-btn{padding:15px;font-size:14.5px}
-
-  /* Brand panel: compact strip at bottom */
-  .left{
-    order:1;
-    padding:32px 24px 36px;
-    min-height:auto;
+  /* Login form */
+  .right {
+    padding:32px 24px 44px;
+    align-items:stretch;
+    justify-content:flex-start;
   }
-  .bg-letter{font-size:200px;right:-10px;opacity:.02}
-  .left-center{padding:20px 0}
-  .eyebrow{margin-bottom:14px}
-  .headline{font-size:26px;margin-bottom:14px}
-  .subline{font-size:13.5px;max-width:100%}
-  .features{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-    margin-top:24px;
-  }
-  .feat-icon{width:24px;height:24px;font-size:12px}
-  .feat-title{font-size:12px}
-  .feat-sub{font-size:11px}
-  .left-bottom{margin-top:28px}
-  .quote{font-size:12.5px}
-  .version{position:static;margin-top:20px;justify-content:center}
+  .right::before { display:none; }
+  .form-wrap   { max-width:100%; }
+  .form-title  { font-size:21px; }
+  .form-sub    { font-size:13px; margin-bottom:22px; }
+  .who-grid    { gap:10px; margin-bottom:20px; }
+  .who-card    { padding:15px 12px; }
+  .who-n       { font-size:14px; }
+  .enter       { padding:15px; font-size:15px; }
+  .note        { font-size:11.5px; }
+  .ver         { position:static; margin-top:20px; justify-content:center; }
 }
 
-/* ── ENTRANCE ANIMATION ── */
-.left-logo{animation:fadeUp .5s ease both;animation-delay:.1s;opacity:0}
-.eyebrow{animation:fadeUp .5s ease both;animation-delay:.2s;opacity:0}
-.headline{animation:fadeUp .6s ease both;animation-delay:.25s;opacity:0}
-.subline{animation:fadeUp .6s ease both;animation-delay:.32s;opacity:0}
-.features{animation:fadeUp .6s ease both;animation-delay:.42s;opacity:0}
-.left-bottom{animation:fadeUp .5s ease both;animation-delay:.55s;opacity:0}
-.right-title{animation:fadeUp .5s ease both;animation-delay:.3s;opacity:0}
-.right-sub{animation:fadeUp .5s ease both;animation-delay:.38s;opacity:0}
-.who-select{animation:fadeUp .5s ease both;animation-delay:.45s;opacity:0}
-.or-line{animation:fadeUp .4s ease both;animation-delay:.52s;opacity:0}
-.enter-btn{animation:fadeUp .4s ease both;animation-delay:.58s;opacity:0}
-.privacy{animation:fadeUp .4s ease both;animation-delay:.64s;opacity:0}
-@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+/* Fade-in */
+.left  > * { animation:up .5s ease both; }
+.right > * { animation:up .5s ease both; }
+.logo        { animation-delay:.08s; opacity:0; }
+.left-body   { animation-delay:.18s; opacity:0; }
+.quote       { animation-delay:.32s; opacity:0; }
+.form-title  { animation-delay:.15s; opacity:0; }
+.form-sub    { animation-delay:.22s; opacity:0; }
+.who-grid    { animation-delay:.28s; opacity:0; }
+.divider     { animation-delay:.34s; opacity:0; }
+.enter       { animation-delay:.38s; opacity:0; }
+.note        { animation-delay:.44s; opacity:0; }
+@keyframes up { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
 </style>
 </head>
 <body>
-
 <div class="wrap">
 
-  <!-- LEFT: Brand -->
+  <!-- LEFT -->
   <div class="left">
-    <div class="bg-letter">קשר</div>
+    <div class="bg-k">קשר</div>
 
-    <div class="left-logo">
+    <div class="logo">
       <div class="logo-mark">K</div>
       <div>
         <div class="logo-name">Kesher</div>
@@ -294,135 +237,72 @@ body{font-family:var(--sans);background:var(--ink);color:#fff;-webkit-font-smoot
       </div>
     </div>
 
-    <div class="left-center">
+    <div class="left-body">
       <div class="eyebrow">Community relationship tool</div>
-      <h1 class="headline">
-        Every person<br>
-        in your community<br>
-        <em>remembered.</em>
-      </h1>
-      <p class="subline">
-        Kesher helps rabbis and rebbetzins track relationships,
-        never miss a birthday or life event, and reach out
-        at exactly the right moment.
-      </p>
-      <div class="features">
-        <div class="feat">
-          <div class="feat-icon">📋</div>
-          <div class="feat-text">
-            <div class="feat-title">Smart Paste</div>
-            <div class="feat-sub">Paste any email or WhatsApp thread — AI logs it automatically</div>
-          </div>
-        </div>
-        <div class="feat">
-          <div class="feat-icon">🔔</div>
-          <div class="feat-text">
-            <div class="feat-title">Daily Brief</div>
-            <div class="feat-sub">Every morning: who needs your attention today</div>
-          </div>
-        </div>
-        <div class="feat">
-          <div class="feat-icon">✍️</div>
-          <div class="feat-text">
-            <div class="feat-title">AI Compose</div>
-            <div class="feat-sub">Personal WhatsApp and email messages in one click</div>
-          </div>
-        </div>
-        <div class="feat">
-          <div class="feat-icon">✡️</div>
-          <div class="feat-text">
-            <div class="feat-title">Jewish calendar aware</div>
-            <div class="feat-sub">Birthdays, yahrzeits, Yom Tov — all surfaced automatically</div>
-          </div>
-        </div>
+      <h1 class="headline">Every person<br>in your community<br><em>remembered.</em></h1>
+      <p class="subline">Kesher helps rabbis and rebbetzins track relationships, never miss a birthday or life event, and reach out at exactly the right moment.</p>
+      <div class="feats">
+        <div class="feat"><div class="feat-ic">📋</div><div><div class="feat-t">Smart Paste</div><div class="feat-s">Paste any email or WhatsApp — AI logs it</div></div></div>
+        <div class="feat"><div class="feat-ic">🔔</div><div><div class="feat-t">Daily Brief</div><div class="feat-s">Who needs your attention today</div></div></div>
+        <div class="feat"><div class="feat-ic">✍️</div><div><div class="feat-t">AI Compose</div><div class="feat-s">Personal messages in one click</div></div></div>
+        <div class="feat"><div class="feat-ic">✡️</div><div><div class="feat-t">Jewish calendar</div><div class="feat-s">Birthdays, yahrzeits, Yom Tov surfaced automatically</div></div></div>
       </div>
     </div>
 
-    <div class="left-bottom">
-      <div class="quote">
-        "The world was created for my sake" — each person carries an entire world.
-        Kesher helps you treat them that way.
-      </div>
+    <div class="quote">
+      "The world was created for my sake" — each person carries an entire world.
       <div class="quote-attr">Sanhedrin 4:5</div>
     </div>
   </div>
 
-  <!-- RIGHT: Enter -->
+  <!-- RIGHT -->
   <div class="right">
-    <div class="right-inner">
+    <div class="form-wrap">
+      <div class="form-title">Welcome back.</div>
+      <div class="form-sub">Who's logging in today?</div>
 
-      <div class="right-title">Welcome back.</div>
-      <div class="right-sub">Who's logging in today?</div>
-
-      <div class="who-select">
-        <div class="who-card on" id="wc-rabbi" onclick="setWho('rabbi')">
-          <div class="who-name">Rabbi Levi</div>
-          <div class="who-desc">Goldstein</div>
+      <div class="who-grid">
+        <div class="who-card on" id="wc-r" onclick="setWho('rabbi')">
+          <div class="who-n">Rabbi Levi</div>
+          <div class="who-d">Goldstein</div>
         </div>
-        <div class="who-card" id="wc-rebbet" onclick="setWho('rebbet')">
-          <div class="who-name">Rebbetzin</div>
-          <div class="who-desc">Sarah Goldstein</div>
+        <div class="who-card" id="wc-rb" onclick="setWho('rebbet')">
+          <div class="who-n">Rebbetzin</div>
+          <div class="who-d">Sarah Goldstein</div>
         </div>
       </div>
 
-      <div class="or-line"><span>your community awaits</span></div>
+      <div class="divider"><span>your community awaits</span></div>
 
-      <button class="enter-btn" onclick="enterApp()">
+      <button class="enter" onclick="go()">
         Enter Kesher
         <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </button>
 
-      <div class="privacy">
-        All data is stored locally on this device.<br>
-        Nothing is sent to any server.
-      </div>
-    </div>
-
-    <div class="version">
-      <div class="version-dot"></div>
-      v1.0 · Chabad of Riverside
+      <div class="note">All data is stored locally on this device.<br>Nothing is sent to any server.</div>
+      <div class="ver"><div class="ver-dot"></div>v1.0 · Chabad of Riverside</div>
     </div>
   </div>
 
 </div>
-
 <script>
-let selectedWho = 'rabbi';
-
-function setWho(who) {
-  selectedWho = who;
-  document.getElementById('wc-rabbi').classList.toggle('on', who === 'rabbi');
-  document.getElementById('wc-rebbet').classList.toggle('on', who === 'rebbet');
+let who = 'rabbi';
+function setWho(w) {
+  who = w;
+  document.getElementById('wc-r').classList.toggle('on', w === 'rabbi');
+  document.getElementById('wc-rb').classList.toggle('on', w === 'rebbet');
 }
-
-function enterApp() {
-  // Store who is logging in
-  localStorage.setItem('k_who', selectedWho);
-
-  // Animate out
-  const btn = document.querySelector('.enter-btn');
+function go() {
+  localStorage.setItem('k_who', who);
+  const btn = document.querySelector('.enter');
   btn.textContent = 'Opening…';
-  btn.style.opacity = '.7';
+  btn.style.opacity = '.6';
   btn.style.pointerEvents = 'none';
-
-  // In a real setup, this would redirect to kesher.html
-  // For now, fade out and show a message
-  setTimeout(() => {
-    document.body.style.transition = 'opacity .4s';
-    document.body.style.opacity = '0';
-    setTimeout(() => {
-      window.location.href = 'kesher.html';
-    }, 420);
-  }, 300);
+  setTimeout(() => { window.location.href = 'kesher.html'; }, 300);
 }
-
-// Keyboard shortcut: Enter to proceed
 document.addEventListener('keydown', e => {
-  if (e.key === 'Enter') enterApp();
-  if (e.key === 'Tab') {
-    e.preventDefault();
-    setWho(selectedWho === 'rabbi' ? 'rebbet' : 'rabbi');
-  }
+  if (e.key === 'Enter') go();
+  if (e.key === 'Tab') { e.preventDefault(); setWho(who === 'rabbi' ? 'rebbet' : 'rabbi'); }
 });
 </script>
 </body>
