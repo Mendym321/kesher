@@ -24,8 +24,9 @@ body {
   font-family:var(--sans);
   -webkit-font-smoothing:antialiased;
   background:var(--ink);
-  color:#fff;
+  color:var(--ink);
 }
+.left { color:#fff; }
 
 .wrap {
   display:grid;
@@ -194,6 +195,8 @@ body {
     padding:32px 24px 44px;
     align-items:stretch;
     justify-content:flex-start;
+    background:var(--bg);
+    border-top:1px solid var(--bdr);
   }
   .right::before { display:none; }
   .form-wrap   { max-width:100%; }
