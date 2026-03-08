@@ -242,6 +242,69 @@ select.fi{font-size:14px;}textarea.fi{resize:none;line-height:1.6;}
 /* ── BOTTOM NAV (mobile) ── */
 #bnav{display:none;}
 
+/* ── FLOATING MIC ── */
+#mic-fab{
+  position:fixed;
+  bottom:80px;right:20px;
+  width:56px;height:56px;
+  border-radius:50%;
+  background:var(--blue);
+  border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(59,130,246,.45);
+  z-index:400;
+  transition:all .18s;
+}
+#mic-fab:hover{transform:scale(1.07);box-shadow:0 6px 28px rgba(59,130,246,.55);}
+#mic-fab:active{transform:scale(.95);}
+#mic-fab svg{width:24px;height:24px;color:#fff;}
+#mic-fab.listening{background:#ef4444;box-shadow:0 4px 20px rgba(239,68,68,.5);animation:pulse-mic 1.2s ease infinite;}
+@keyframes pulse-mic{0%,100%{box-shadow:0 4px 20px rgba(239,68,68,.5)}50%{box-shadow:0 4px 32px rgba(239,68,68,.8),0 0 0 10px rgba(239,68,68,.12)}}
+
+/* ── VOICE MODAL ── */
+#voice-mo{position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:600;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .18s;}
+#voice-mo.on{opacity:1;pointer-events:all;}
+#voice-card{background:#fff;border-radius:24px 24px 0 0;width:100%;max-width:540px;padding:0 0 env(safe-area-inset-bottom);transform:translateY(20px);transition:transform .2s;}
+#voice-mo.on #voice-card{transform:translateY(0);}
+
+.vc-handle{width:36px;height:4px;background:#e5e7eb;border-radius:2px;margin:12px auto 0;}
+.vc-top{padding:16px 20px 0;display:flex;align-items:center;justify-content:space-between;}
+.vc-title{font-size:17px;font-weight:700;color:#111827;}
+.vc-x{width:26px;height:26px;border-radius:50%;background:#f3f4f6;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#6b7280;}
+.vc-x svg{width:11px;height:11px;}
+
+.vc-mic-area{padding:28px 20px 20px;display:flex;flex-direction:column;align-items:center;gap:16px;}
+.vc-ring{width:80px;height:80px;border-radius:50%;background:var(--blue-l);border:2px solid var(--blue-m);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .18s;position:relative;}
+.vc-ring.listening{background:#fef2f2;border-color:#fecaca;animation:pulse-ring 1.2s ease infinite;}
+@keyframes pulse-ring{0%,100%{box-shadow:none}50%{box-shadow:0 0 0 10px rgba(239,68,68,.1)}}
+.vc-ring svg{width:32px;height:32px;color:var(--blue);transition:color .18s;}
+.vc-ring.listening svg{color:#ef4444;}
+.vc-status{font-size:14px;font-weight:600;color:#6b7280;min-height:20px;text-align:center;}
+.vc-status.hot{color:#ef4444;}
+
+.vc-transcript{
+  margin:0 20px;padding:14px;
+  background:#f9fafb;border:1.5px solid #e5e7eb;border-radius:14px;
+  font-size:14px;color:#374151;line-height:1.6;min-height:60px;
+  display:none;
+}
+.vc-transcript.on{display:block;}
+
+.vc-result{margin:0 20px 4px;display:none;}
+.vc-result.on{display:block;}
+.vc-res-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#9ca3af;margin-bottom:8px;}
+.vc-action{background:#f9fafb;border:1.5px solid #e5e7eb;border-radius:12px;padding:12px 14px;margin-bottom:7px;}
+.vc-action-title{font-size:13.5px;font-weight:700;color:#111827;margin-bottom:2px;}
+.vc-action-sub{font-size:12.5px;color:#6b7280;}
+
+.vc-footer{padding:14px 20px 20px;display:flex;gap:8px;}
+.vc-footer .btn{flex:1;padding:12px;}
+
+/* hint chips */
+.vc-hints{display:flex;gap:6px;flex-wrap:wrap;padding:0 20px 16px;justify-content:center;}
+.hint{font-size:12px;color:#6b7280;background:#f3f4f6;border-radius:20px;padding:5px 11px;cursor:pointer;transition:all .12s;border:1px solid transparent;}
+.hint:hover{background:var(--blue-l);color:var(--blue);border-color:var(--blue-m);}
+
 /* ── TOAST ── */
 .toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(8px);background:var(--gray-900);color:#fff;font-size:13px;font-weight:600;padding:9px 18px;border-radius:24px;z-index:9999;opacity:0;transition:all .2s;pointer-events:none;white-space:nowrap;}
 .toast.on{opacity:1;transform:translateX(-50%) translateY(0);}
@@ -277,6 +340,7 @@ select.fi{font-size:14px;}textarea.fi{resize:none;line-height:1.6;}
   .dp{width:100vw;border-left:none;}
   .ig{grid-template-columns:1fr;padding:14px;}
   .toast{bottom:calc(60px + 10px);}
+  #mic-fab{bottom:calc(60px + 16px);}
   .fr2{grid-template-columns:1fr;}
   .fi{font-size:16px;}select.fi{font-size:16px;}textarea.fi{font-size:16px;}
 }
@@ -497,6 +561,48 @@ select.fi{font-size:14px;}textarea.fi{resize:none;line-height:1.6;}
 </div></div>
 
 <div class="toast" id="toast"></div>
+
+<!-- FLOATING MIC -->
+<button id="mic-fab" onclick="openVoice()" title="Speak to log">
+  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2M12 19v4M8 23h8"/></svg>
+</button>
+
+<!-- VOICE MODAL -->
+<div id="voice-mo" onclick="mayCloseVoice(event)">
+  <div id="voice-card">
+    <div class="vc-handle"></div>
+    <div class="vc-top">
+      <div class="vc-title">What happened?</div>
+      <button class="vc-x" onclick="closeVoice()"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+
+    <div class="vc-mic-area">
+      <div class="vc-ring" id="vc-ring" onclick="toggleListen()">
+        <svg id="vc-mic-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2M12 19v4M8 23h8"/></svg>
+      </div>
+      <div class="vc-status" id="vc-status">Tap to speak</div>
+    </div>
+
+    <div class="vc-hints" id="vc-hints">
+      <span class="hint" onclick="useHint(this)">Called Moshe today</span>
+      <span class="hint" onclick="useHint(this)">Leah donated $500</span>
+      <span class="hint" onclick="useHint(this)">New person: Daniel Roth</span>
+      <span class="hint" onclick="useHint(this)">Visited Rachel, she's doing well</span>
+    </div>
+
+    <div class="vc-transcript" id="vc-transcript"></div>
+
+    <div class="vc-result" id="vc-result">
+      <div class="vc-res-label">I understood this</div>
+      <div id="vc-actions"></div>
+    </div>
+
+    <div class="vc-footer" id="vc-footer" style="display:none">
+      <button class="btn btn-ghost" onclick="resetVoice()">Try again</button>
+      <button class="btn btn-blue" onclick="confirmVoice()">Save it</button>
+    </div>
+  </div>
+</div>
 <script>
 const COLORS=['#3b82f6','#10b981','#f59e0b','#ef4444','#8b5cf6','#ec4899','#06b6d4','#84cc16'];
 const MO=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -833,7 +939,204 @@ function openM(id){const m=document.getElementById(id);if(!m)return;m.classList.
 function closeM(id){document.getElementById(id)?.classList.remove('on');}
 document.querySelectorAll('.mo').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('on');}));
 
-// ── TOAST ──
+// ── VOICE ──
+let recognition=null,isListening=false,voiceTranscript='',voiceParsed=null;
+
+function openVoice(){
+  document.getElementById('voice-mo').classList.add('on');
+  resetVoice();
+}
+function closeVoice(){
+  stopListening();
+  document.getElementById('voice-mo').classList.remove('on');
+}
+function mayCloseVoice(e){if(e.target.id==='voice-mo')closeVoice();}
+
+function toggleListen(){
+  if(isListening)stopListening();
+  else startListening();
+}
+
+function startListening(){
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR){
+    // fallback: show text input
+    const t=document.getElementById('vc-transcript');
+    t.innerHTML='<textarea style="width:100%;background:none;border:none;outline:none;font-size:14px;line-height:1.6;color:#374151;resize:none;min-height:60px;font-family:var(--font)" placeholder="Type what happened, e.g. \'Called Moshe, he said he\'s coming Friday…\'" id="vc-text-in"></textarea>';
+    t.classList.add('on');
+    document.getElementById('vc-hints').style.display='none';
+    document.getElementById('vc-status').textContent='Speech not supported — type below';
+    document.getElementById('vc-footer').style.display='none';
+    // show analyze button
+    document.getElementById('vc-footer').innerHTML='<button class="btn btn-ghost" onclick="resetVoice()">Clear</button><button class="btn btn-blue" onclick="analyzeText(document.getElementById(\'vc-text-in\').value)">Understand it</button>';
+    document.getElementById('vc-footer').style.display='flex';
+    return;
+  }
+  recognition=new SR();
+  recognition.continuous=false;
+  recognition.interimResults=true;
+  recognition.lang='en-US';
+  recognition.onstart=()=>{
+    isListening=true;
+    document.getElementById('vc-ring').classList.add('listening');
+    document.getElementById('mic-fab').classList.add('listening');
+    document.getElementById('vc-status').textContent='Listening…';
+    document.getElementById('vc-status').classList.add('hot');
+    document.getElementById('vc-transcript').classList.add('on');
+    document.getElementById('vc-hints').style.display='none';
+  };
+  recognition.onresult=e=>{
+    const interim=Array.from(e.results).map(r=>r[0].transcript).join('');
+    document.getElementById('vc-transcript').textContent=interim;
+    if(e.results[e.results.length-1].isFinal){
+      voiceTranscript=interim;
+    }
+  };
+  recognition.onend=()=>{
+    isListening=false;
+    document.getElementById('vc-ring').classList.remove('listening');
+    document.getElementById('mic-fab').classList.remove('listening');
+    document.getElementById('vc-status').textContent='Got it — understanding…';
+    document.getElementById('vc-status').classList.remove('hot');
+    if(voiceTranscript)analyzeText(voiceTranscript);
+    else{document.getElementById('vc-status').textContent='Didn\'t catch that — try again';}
+  };
+  recognition.onerror=e=>{
+    isListening=false;
+    document.getElementById('vc-ring').classList.remove('listening');
+    document.getElementById('mic-fab').classList.remove('listening');
+    document.getElementById('vc-status').textContent=e.error==='not-allowed'?'Microphone permission needed':'Try again';
+    document.getElementById('vc-status').classList.remove('hot');
+  };
+  recognition.start();
+}
+
+function stopListening(){
+  if(recognition&&isListening){recognition.stop();}
+  isListening=false;
+  document.getElementById('vc-ring').classList.remove('listening');
+  document.getElementById('mic-fab').classList.remove('listening');
+}
+
+function useHint(el){
+  voiceTranscript=el.textContent;
+  document.getElementById('vc-transcript').textContent=voiceTranscript;
+  document.getElementById('vc-transcript').classList.add('on');
+  document.getElementById('vc-hints').style.display='none';
+  document.getElementById('vc-status').textContent='Understanding…';
+  analyzeText(voiceTranscript);
+}
+
+async function analyzeText(text){
+  if(!text.trim())return;
+  voiceTranscript=text;
+  document.getElementById('vc-status').textContent='Understanding…';
+  document.getElementById('vc-result').classList.remove('on');
+  document.getElementById('vc-footer').style.display='none';
+
+  const names=P.map(p=>p.fn+' '+p.ln).join(', ');
+  const prompt=`You are helping a rabbi log community interactions. Parse this spoken note into structured actions.
+Known members: ${names}
+Spoken note: "${text}"
+Today's date: ${tod()}
+
+Respond ONLY with valid JSON (no markdown):
+{
+  "actions": [
+    {
+      "type": "log_interaction|add_person|log_donation",
+      "person_name": "",
+      "matched_id": null,
+      "interaction_type": "call|visit|whatsapp|email|event|pastoral",
+      "note": "",
+      "donation_amount": null,
+      "donation_note": "",
+      "new_person": {"first_name":"","last_name":"","phone":"","notes":""}
+    }
+  ],
+  "summary": "One sentence of what you understood"
+}`;
+
+  try{
+    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:500,messages:[{role:'user',content:prompt}]})});
+    const d=await r.json();
+    const raw=d.content?.map(c=>c.text||'').join('')||'{}';
+    let parsed;try{parsed=JSON.parse(raw.replace(/```json|```/g,'').trim());}catch{parsed={actions:[],summary:'Could not understand — try again'};}
+    voiceParsed=parsed;
+    showVoiceResult(parsed);
+  }catch{
+    document.getElementById('vc-status').textContent='Connection error — check internet';
+  }
+}
+
+function showVoiceResult(parsed){
+  document.getElementById('vc-status').textContent=parsed.summary||'Here\'s what I understood:';
+  const actEl=document.getElementById('vc-actions');
+  actEl.innerHTML=(parsed.actions||[]).map(a=>{
+    if(a.type==='log_interaction'){
+      const p=a.matched_id?P.find(x=>x.id===a.matched_id):P.find(x=>(x.fn+' '+x.ln).toLowerCase()===a.person_name?.toLowerCase());
+      return`<div class="vc-action">
+        <div class="vc-action-title">📝 Log for ${a.person_name}</div>
+        <div class="vc-action-sub">${a.interaction_type} · ${a.note}</div>
+        ${!p?'<div style="font-size:11.5px;color:var(--amber);margin-top:3px">⚠️ Person not found — will skip</div>':''}
+      </div>`;
+    } else if(a.type==='log_donation'){
+      return`<div class="vc-action">
+        <div class="vc-action-title">💛 Donation — ${a.person_name}</div>
+        <div class="vc-action-sub">$${a.donation_amount} · ${a.donation_note||'no note'}</div>
+      </div>`;
+    } else if(a.type==='add_person'){
+      return`<div class="vc-action">
+        <div class="vc-action-title">👤 New person: ${a.new_person?.first_name} ${a.new_person?.last_name}</div>
+        <div class="vc-action-sub">${a.new_person?.phone||''} ${a.new_person?.notes||''}</div>
+      </div>`;
+    }
+    return'';
+  }).join('')||'<div style="font-size:13px;color:#9ca3af;padding:8px 0">Nothing specific to log. Try speaking again.</div>';
+  document.getElementById('vc-result').classList.add('on');
+  document.getElementById('vc-footer').style.display='flex';
+}
+
+function confirmVoice(){
+  if(!voiceParsed?.actions?.length){closeVoice();return;}
+  let saved=0;
+  voiceParsed.actions.forEach(a=>{
+    if(a.type==='log_interaction'){
+      const p=P.find(x=>(x.fn+' '+x.ln).toLowerCase()===a.person_name?.toLowerCase());
+      if(!p)return;
+      if(!p.ints)p.ints=[];
+      p.ints.unshift({d:tod(),n:a.note,t:a.interaction_type||'call',by:who});
+      p.lc=tod();if(p.st==='lapsed')p.st='warm';
+      saved++;
+    } else if(a.type==='log_donation'){
+      const p=P.find(x=>(x.fn+' '+x.ln).toLowerCase()===a.person_name?.toLowerCase());
+      if(!p||!a.donation_amount)return;
+      if(!p.don)p.don=[];
+      p.don.push({amt:parseFloat(a.donation_amount),dt:tod(),note:a.donation_note||''});
+      saved++;
+    } else if(a.type==='add_person'){
+      const nc=a.new_person;if(!nc?.first_name)return;
+      P.push({id:Date.now()+saved,fn:nc.first_name,ln:nc.last_name||'—',ph:nc.phone||'',em:'',st:'new',cat:'',imp:3,bd:'',origin:'Added by voice',notes:nc.notes||'',ints:[],fam:[],don:[],lc:null});
+      saved++;
+    }
+  });
+  sv();upBadges();renderHome();
+  closeVoice();
+  toast(`Saved ${saved} item${saved!==1?'s':''}`);
+}
+
+function resetVoice(){
+  stopListening();
+  voiceTranscript='';voiceParsed=null;
+  document.getElementById('vc-ring').classList.remove('listening');
+  document.getElementById('vc-transcript').textContent='';
+  document.getElementById('vc-transcript').classList.remove('on');
+  document.getElementById('vc-result').classList.remove('on');
+  document.getElementById('vc-footer').style.display='none';
+  document.getElementById('vc-hints').style.display='flex';
+  document.getElementById('vc-status').textContent='Tap to speak';
+  document.getElementById('vc-status').classList.remove('hot');
+}
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('on');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('on'),2400);}
 
 // ── INIT ──
