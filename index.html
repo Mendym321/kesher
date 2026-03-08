@@ -3,82 +3,191 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kesher</title>
+<title>Kesher · קשר</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--blue:#3b82f6;--blue-d:#2563eb;--blue-l:#eff6ff;--font:'Nunito',-apple-system,sans-serif;}
-body{font-family:var(--font);background:#f9fafb;color:#111827;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;}
+:root{
+  --blue:#3b82f6;--blue-d:#2563eb;--blue-l:#eff6ff;--blue-m:#bfdbfe;
+  --font:'Nunito',-apple-system,sans-serif;
+}
+html,body{height:100%;font-family:var(--font);-webkit-font-smoothing:antialiased;color:#111827;}
 
-.card{background:#fff;border-radius:24px;border:1px solid #e5e7eb;box-shadow:0 4px 24px rgba(0,0,0,.06);width:100%;max-width:400px;padding:36px 32px 32px;animation:up .4s ease both;}
-@keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+/* ── DESKTOP: two panels ── */
+body{display:flex;background:#f9fafb;}
 
-.logo{display:flex;align-items:center;gap:9px;margin-bottom:28px;}
-.mark{width:34px;height:34px;border-radius:10px;background:var(--blue);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;color:#fff;}
-.logo-name{font-size:18px;font-weight:800;color:#111827;}
-.logo-heb{font-size:11px;color:#9ca3af;font-weight:500;}
+.left{
+  flex:1;
+  background:linear-gradient(145deg,#1e3a5f 0%,#1d4ed8 60%,#2563eb 100%);
+  display:flex;flex-direction:column;justify-content:space-between;
+  padding:48px 52px;
+  position:relative;overflow:hidden;
+}
+/* subtle pattern */
+.left::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 30% 70%,rgba(255,255,255,.06) 0%,transparent 60%),
+             radial-gradient(ellipse at 80% 20%,rgba(255,255,255,.04) 0%,transparent 50%);
+  pointer-events:none;
+}
+/* big K watermark */
+.left::after{
+  content:'K';position:absolute;right:-40px;bottom:-60px;
+  font-size:380px;font-weight:800;color:rgba(255,255,255,.05);
+  line-height:1;pointer-events:none;user-select:none;
+}
 
-h1{font-size:22px;font-weight:800;color:#111827;margin-bottom:6px;}
-.sub{font-size:14px;color:#6b7280;margin-bottom:28px;line-height:1.55;}
+.l-brand{position:relative;z-index:1;display:flex;align-items:center;gap:10px;}
+.l-mark{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:17px;color:#fff;}
+.l-name{font-size:18px;font-weight:800;color:#fff;}
+.l-heb{font-size:11px;color:rgba(255,255,255,.45);font-weight:600;}
 
-.who-label{font-size:12px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px;}
-.who-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:24px;}
-.wc{padding:16px 14px;border:2px solid #e5e7eb;border-radius:14px;cursor:pointer;transition:all .16s;background:#fff;text-align:left;}
-.wc:hover{border-color:#bfdbfe;background:#eff6ff;}
-.wc.on{border-color:var(--blue);background:#eff6ff;box-shadow:0 0 0 3px rgba(59,130,246,.1);}
-.wc-av{width:32px;height:32px;border-radius:50%;background:#e5e7eb;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:#6b7280;margin-bottom:8px;}
+.l-body{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;justify-content:center;padding:40px 0;}
+.l-tag{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.45);margin-bottom:16px;}
+.l-head{font-size:clamp(32px,3vw,46px);font-weight:800;color:#fff;line-height:1.18;margin-bottom:16px;}
+.l-head em{font-style:normal;color:#93c5fd;}
+.l-sub{font-size:15px;color:rgba(255,255,255,.55);line-height:1.7;max-width:360px;font-weight:500;}
+
+.features{margin-top:36px;display:flex;flex-direction:column;gap:14px;}
+.feat{display:flex;align-items:flex-start;gap:12px;}
+.feat-ic{width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+.feat-title{font-size:13.5px;font-weight:700;color:rgba(255,255,255,.9);margin-bottom:2px;}
+.feat-sub{font-size:12px;color:rgba(255,255,255,.4);line-height:1.45;}
+
+.l-foot{position:relative;z-index:1;}
+.quote{font-size:13px;color:rgba(255,255,255,.3);line-height:1.65;font-style:italic;border-left:2px solid rgba(255,255,255,.12);padding-left:14px;}
+.quote-attr{font-size:11px;color:rgba(255,255,255,.2);margin-top:6px;font-style:normal;font-weight:600;}
+
+/* ── RIGHT PANEL ── */
+.right{
+  width:420px;min-width:380px;
+  background:#fff;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:48px 44px;
+  border-left:1px solid #e5e7eb;
+}
+.r-inner{width:100%;}
+.r-title{font-size:24px;font-weight:800;color:#111827;margin-bottom:6px;}
+.r-sub{font-size:14px;color:#6b7280;margin-bottom:30px;line-height:1.55;font-weight:500;}
+
+.who-label{font-size:11.5px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;}
+.who-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:26px;}
+.wc{padding:18px 14px;border:2px solid #e5e7eb;border-radius:16px;cursor:pointer;transition:all .16s;background:#fff;}
+.wc:hover{border-color:var(--blue-m);background:var(--blue-l);}
+.wc.on{border-color:var(--blue);background:var(--blue-l);box-shadow:0 0 0 3px rgba(59,130,246,.1);}
+.wc-av{width:36px;height:36px;border-radius:50%;background:#f3f4f6;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;color:#9ca3af;margin-bottom:10px;transition:all .16s;}
 .wc.on .wc-av{background:var(--blue);color:#fff;}
-.wc-name{font-size:13.5px;font-weight:700;color:#111827;}
-.wc-role{font-size:12px;color:#9ca3af;}
+.wc-name{font-size:14px;font-weight:700;color:#111827;}
+.wc-role{font-size:12px;color:#9ca3af;font-weight:500;}
 
-.enter{width:100%;padding:14px;background:var(--blue);color:#fff;border:none;border-radius:14px;font-family:var(--font);font-size:15px;font-weight:700;cursor:pointer;transition:all .16s;display:flex;align-items:center;justify-content:center;gap:8px;}
-.enter:hover{background:var(--blue-d);}
+.enter{width:100%;padding:15px;background:var(--blue);color:#fff;border:none;border-radius:14px;font-family:var(--font);font-size:15px;font-weight:700;cursor:pointer;transition:all .16s;display:flex;align-items:center;justify-content:center;gap:8px;}
+.enter:hover{background:var(--blue-d);transform:translateY(-1px);box-shadow:0 4px 16px rgba(59,130,246,.3);}
 .enter:active{transform:scale(.98);}
 .enter svg{width:15px;height:15px;transition:transform .16s;}
 .enter:hover svg{transform:translateX(3px);}
 
-.note{margin-top:16px;font-size:11.5px;color:#9ca3af;text-align:center;line-height:1.6;}
-.ver{margin-top:16px;display:flex;align-items:center;justify-content:center;gap:5px;font-size:11px;color:#d1d5db;}
+.r-note{margin-top:18px;font-size:12px;color:#d1d5db;text-align:center;line-height:1.6;font-weight:500;}
+.r-ver{margin-top:14px;display:flex;align-items:center;justify-content:center;gap:5px;font-size:11px;color:#e5e7eb;}
 .vdot{width:5px;height:5px;border-radius:50%;background:#4ade80;animation:p 2s infinite;}
 @keyframes p{0%,100%{opacity:1}50%{opacity:.3}}
 
-@media(max-width:480px){
-  body{padding:0;align-items:flex-end;background:transparent;}
-  .card{border-radius:24px 24px 0 0;border-bottom:none;max-width:100%;padding:32px 22px 40px;}
+/* animations */
+.l-brand{animation:up .4s ease both .05s;opacity:0;}
+.l-body{animation:up .5s ease both .12s;opacity:0;}
+.l-foot{animation:up .4s ease both .28s;opacity:0;}
+.r-title{animation:up .4s ease both .15s;opacity:0;}
+.r-sub{animation:up .4s ease both .22s;opacity:0;}
+.who-grid{animation:up .4s ease both .28s;opacity:0;}
+.enter{animation:up .3s ease both .35s;opacity:0;}
+.r-note,.r-ver{animation:up .3s ease both .42s;opacity:0;}
+@keyframes up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── MOBILE ── */
+@media(max-width:720px){
+  html,body{height:auto;}
+  body{flex-direction:column;}
+
+  .left{
+    padding:36px 24px 32px;
+    flex:none;
+  }
+  .left::after{font-size:200px;right:-20px;bottom:-20px;}
+  .l-body{padding:24px 0 0;flex:none;}
+  .l-head{font-size:28px;}
+  .l-sub{max-width:100%;}
+  .features{display:none;}
+  .l-foot{display:none;}
+
+  .right{
+    width:100%;min-width:0;
+    padding:28px 22px 40px;
+    border-left:none;
+    border-top:none;
+  }
+  .r-title{font-size:20px;}
+  .wc{padding:14px 12px;}
+  .enter{padding:14px;}
 }
 </style>
 </head>
 <body>
-<div class="card">
-  <div class="logo">
-    <div class="mark">K</div>
-    <div><div class="logo-name">Kesher</div><div class="logo-heb">קֶשֶׁר · Connection</div></div>
+
+<!-- LEFT -->
+<div class="left">
+  <div class="l-brand">
+    <div class="l-mark">K</div>
+    <div><div class="l-name">Kesher</div><div class="l-heb">קֶשֶׁר · Connection</div></div>
   </div>
 
-  <h1>Welcome back.</h1>
-  <p class="sub">Your community relationship tool.<br>Who's logging in today?</p>
-
-  <div class="who-label">Log in as</div>
-  <div class="who-grid">
-    <div class="wc on" id="wc-r" onclick="setWho('rabbi')">
-      <div class="wc-av" id="av-r">ל</div>
-      <div class="wc-name">Rabbi Levi</div>
-      <div class="wc-role">Goldstein</div>
-    </div>
-    <div class="wc" id="wc-rb" onclick="setWho('rebbet')">
-      <div class="wc-av" id="av-rb">ש</div>
-      <div class="wc-name">Rebbetzin</div>
-      <div class="wc-role">Sarah Goldstein</div>
+  <div class="l-body">
+    <div class="l-tag">Community Relationship Tool</div>
+    <h1 class="l-head">Every person<br>in your community<br><em>remembered.</em></h1>
+    <p class="l-sub">Built for rabbis — not sales teams. Simple, warm, and always with you on your phone.</p>
+    <div class="features">
+      <div class="feat"><div class="feat-ic">🎙️</div><div><div class="feat-title">Just speak to log</div><div class="feat-sub">Say "Called Moshe" and it logs it — no forms</div></div></div>
+      <div class="feat"><div class="feat-ic">🔔</div><div><div class="feat-title">Daily reminders</div><div class="feat-sub">Who needs your attention today, ranked by urgency</div></div></div>
+      <div class="feat"><div class="feat-ic">👨‍👩‍👧</div><div><div class="feat-title">Full family profiles</div><div class="feat-sub">Birthdays, donations, history — all in one place</div></div></div>
+      <div class="feat"><div class="feat-ic">📅</div><div><div class="feat-title">Jewish calendar aware</div><div class="feat-sub">Yom Tov, birthdays, and yahrzeits surfaced automatically</div></div></div>
     </div>
   </div>
 
-  <button class="enter" onclick="go()">
-    Open Kesher
-    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-  </button>
+  <div class="l-foot">
+    <div class="quote">
+      "The world was created for my sake" — each person carries an entire world.
+      <div class="quote-attr">Sanhedrin 4:5</div>
+    </div>
+  </div>
+</div>
 
-  <div class="note">All data stays on your device.<br>No account needed.</div>
-  <div class="ver"><div class="vdot"></div>v1.0 · Chabad of Riverside</div>
+<!-- RIGHT -->
+<div class="right">
+  <div class="r-inner">
+    <div class="r-title">Good to see you.</div>
+    <div class="r-sub">Who's logging in today?</div>
+
+    <div class="who-label">Log in as</div>
+    <div class="who-grid">
+      <div class="wc on" id="wc-r" onclick="setWho('rabbi')">
+        <div class="wc-av">ל</div>
+        <div class="wc-name">Rabbi Levi</div>
+        <div class="wc-role">Goldstein</div>
+      </div>
+      <div class="wc" id="wc-rb" onclick="setWho('rebbet')">
+        <div class="wc-av">ש</div>
+        <div class="wc-name">Rebbetzin</div>
+        <div class="wc-role">Sarah Goldstein</div>
+      </div>
+    </div>
+
+    <button class="enter" onclick="go()">
+      Open Kesher
+      <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+
+    <div class="r-note">All data stays on your device.<br>No account, no server, no tracking.</div>
+    <div class="r-ver"><div class="vdot"></div>v1.0 · Chabad of Riverside</div>
+  </div>
 </div>
 
 <script>
@@ -91,7 +200,8 @@ function setWho(w){
 function go(){
   localStorage.setItem('k_who',who);
   const btn=document.querySelector('.enter');
-  btn.textContent='Opening…';btn.style.opacity='.7';btn.style.pointerEvents='none';
+  btn.innerHTML='Opening… <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+  btn.style.opacity='.75';btn.style.pointerEvents='none';
   setTimeout(()=>window.location.href='kesher.html',280);
 }
 document.addEventListener('keydown',e=>{
