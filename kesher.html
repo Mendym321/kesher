@@ -3,1579 +3,841 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>Kesher · קשר</title>
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<title>Kesher</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --ink:#1c1917;--ink2:#44403c;--ink3:#78716c;--ink4:#a8a29e;--ink5:#d6d3d1;
-  --bg:#fafaf9;--s1:#f5f4f2;--s2:#edecea;--s3:#e4e2de;
-  --bdr:#e7e5e4;--bdr2:#d0cdc9;
-  --amber:#b45309;--al:#fffbeb;--am:#fde68a;
-  --red:#b91c1c;--rl:#fef2f2;--rm:#fecaca;
-  --green:#15803d;--gl:#f0fdf4;--gm:#bbf7d0;
-  --blue:#1d4ed8;--bl:#eff6ff;--bm:#bfdbfe;
-  --rose:#9f1239;--rosel:#fff1f2;
-  --serif:'Lora',Georgia,serif;
-  --sans:'DM Sans',-apple-system,sans-serif;
-  --r:8px;--rl2:13px;
-  --sh:0 1px 3px rgba(28,25,23,.07),0 1px 2px rgba(28,25,23,.04);
-  --sh2:0 4px 20px rgba(28,25,23,.09),0 1px 4px rgba(28,25,23,.05);
-  --sh3:0 20px 60px rgba(28,25,23,.14),0 4px 8px rgba(28,25,23,.06);
-  --sw:222px}
-html,body{height:100%;overflow:hidden}
-body{font-family:var(--sans);background:var(--bg);color:var(--ink);font-size:13.5px;line-height:1.5;-webkit-font-smoothing:antialiased;display:flex}
+  --blue:#3b82f6;
+  --blue-d:#2563eb;
+  --blue-l:#eff6ff;
+  --blue-m:#bfdbfe;
+  --red:#ef4444;--red-l:#fef2f2;
+  --green:#22c55e;--green-l:#f0fdf4;
+  --amber:#f59e0b;--amber-l:#fffbeb;
+  --gray-50:#f9fafb;
+  --gray-100:#f3f4f6;
+  --gray-200:#e5e7eb;
+  --gray-300:#d1d5db;
+  --gray-400:#9ca3af;
+  --gray-500:#6b7280;
+  --gray-600:#4b5563;
+  --gray-700:#374151;
+  --gray-900:#111827;
+  --white:#ffffff;
+  --font:'Nunito',-apple-system,sans-serif;
+  --r:12px;
+  --nav:60px;
+}
+html,body{height:100%;background:var(--gray-50);color:var(--gray-900);font-family:var(--font);-webkit-font-smoothing:antialiased;}
+body{overflow:hidden;}
 
-/* ── SIDEBAR ── */
-#sb{width:var(--sw);min-width:var(--sw);background:var(--ink);display:flex;flex-direction:column;height:100vh;flex-shrink:0;transition:transform .25s cubic-bezier(.4,0,.2,1);z-index:100}
-.sb-top{padding:20px 15px 14px;border-bottom:1px solid rgba(255,255,255,.07)}
-.logo{display:flex;align-items:center;gap:9px;margin-bottom:14px}
-.lmark{width:28px;height:28px;border-radius:6px;background:linear-gradient(135deg,#c9a96e,#a07840);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:14px;color:#fff;font-style:italic;flex-shrink:0}
-.lname{font-family:var(--serif);font-size:17px;color:#fff;font-weight:500;letter-spacing:-.3px}
-.lheb{font-size:10px;color:rgba(255,255,255,.3);letter-spacing:.05em}
-.sb-srch{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:var(--r);padding:7px 10px;transition:all .15s}
-.sb-srch:focus-within{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2)}
-.sb-srch svg{flex-shrink:0;opacity:.35}
-.sb-srch input{border:none;outline:none;background:none;font-family:var(--sans);font-size:12.5px;color:#fff;width:100%}
-.sb-srch input::placeholder{color:rgba(255,255,255,.3)}
-.sb-nav{padding:11px 8px 0;flex:1;overflow-y:auto}
-.sb-nav::-webkit-scrollbar{width:0}
-.nl{font-size:9.5px;font-weight:500;color:rgba(255,255,255,.22);letter-spacing:.1em;text-transform:uppercase;padding:10px 7px 3px}
-.ni{display:flex;align-items:center;gap:8px;padding:7px 8px;border-radius:6px;cursor:pointer;font-size:13px;color:rgba(255,255,255,.5);transition:all .12s;user-select:none}
-.ni:hover{background:rgba(255,255,255,.07);color:rgba(255,255,255,.8)}
-.ni.on{background:rgba(255,255,255,.11);color:#fff;font-weight:500}
-.ni-ic{width:15px;height:15px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.nbadge{margin-left:auto;font-size:10px;background:var(--red);color:#fff;border-radius:8px;padding:1px 5px;font-weight:600;min-width:16px;text-align:center}
-.nbadge.soft{background:rgba(255,255,255,.14);color:rgba(255,255,255,.65)}
-.sb-foot{padding:12px 14px;border-top:1px solid rgba(255,255,255,.07)}
-.who-row{display:flex;gap:5px;margin-bottom:9px}
-.who-btn{flex:1;padding:5px;border-radius:6px;border:1px solid rgba(255,255,255,.12);background:transparent;font-family:var(--sans);font-size:11.5px;font-weight:500;color:rgba(255,255,255,.4);cursor:pointer;transition:all .15s;text-align:center}
-.who-btn.on.r{background:rgba(29,78,216,.3);border-color:rgba(29,78,216,.5);color:#93c5fd}
-.who-btn.on.rb{background:rgba(159,18,57,.3);border-color:rgba(159,18,57,.5);color:#fda4af}
-.sb-user{display:flex;align-items:center;gap:8px}
-.sb-av{width:27px;height:27px;border-radius:50%;background:linear-gradient(135deg,#c9a96e,#a07840);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-style:italic;font-size:12px;color:#fff;flex-shrink:0}
-.sb-av.rb{background:linear-gradient(135deg,#fda4af,#e11d48)}
-.sb-uname{font-size:12.5px;font-weight:500;color:rgba(255,255,255,.8)}
-.sb-uorg{font-size:11px;color:rgba(255,255,255,.3)}
+/* ── SHELL ── */
+#app{display:flex;height:100vh;}
+#sidebar{width:200px;min-width:200px;background:var(--white);border-right:1px solid var(--gray-200);display:flex;flex-direction:column;height:100vh;}
+.sb-top{padding:18px 16px 12px;border-bottom:1px solid var(--gray-100);}
+.sb-logo{display:flex;align-items:center;gap:8px;}
+.sb-mark{width:28px;height:28px;border-radius:8px;background:var(--blue);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:14px;}
+.sb-name{font-size:16px;font-weight:700;color:var(--gray-900);}
+.sb-nav{flex:1;padding:8px 8px;}
+.sni{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:var(--r);cursor:pointer;font-size:14px;font-weight:500;color:var(--gray-500);transition:all .12s;margin-bottom:2px;user-select:none;}
+.sni:hover{background:var(--gray-50);color:var(--gray-700);}
+.sni.on{background:var(--blue-l);color:var(--blue);font-weight:600;}
+.sni svg{width:16px;height:16px;flex-shrink:0;}
+.sni .badge{margin-left:auto;background:var(--red);color:#fff;font-size:10px;font-weight:700;padding:1px 5px;border-radius:10px;min-width:16px;text-align:center;}
+.sni .cnt{margin-left:auto;font-size:11px;color:var(--gray-400);}
+.sb-foot{padding:12px 14px;border-top:1px solid var(--gray-100);}
+.who-btns{display:grid;grid-template-columns:1fr 1fr;gap:4px;}
+.wb{padding:6px 4px;border-radius:8px;border:1px solid var(--gray-200);background:none;font-family:var(--font);font-size:11.5px;font-weight:500;color:var(--gray-400);cursor:pointer;transition:all .14s;text-align:center;}
+.wb.on{background:var(--blue-l);border-color:var(--blue-m);color:var(--blue);}
 
-/* ── MAIN + TOPBAR ── */
-#main{flex:1;display:flex;flex-direction:column;height:100vh;overflow:hidden;min-width:0}
-#tb{display:flex;align-items:center;gap:9px;padding:0 22px;height:52px;border-bottom:1px solid var(--bdr);flex-shrink:0;background:#fff}
-.tb-ham{display:none;width:32px;height:32px;border:none;background:none;cursor:pointer;align-items:center;justify-content:center;border-radius:6px;color:var(--ink3)}
-.tb-ham:hover{background:var(--s1)}
-.ptitle{font-family:var(--serif);font-size:19px;color:var(--ink);font-style:italic;flex:1;letter-spacing:-.2px}
-.btn{display:inline-flex;align-items:center;gap:5px;padding:7px 13px;border-radius:var(--r);border:none;cursor:pointer;font-family:var(--sans);font-size:12.5px;font-weight:500;transition:all .15s;white-space:nowrap}
-.btn-p{background:var(--ink);color:#fff}.btn-p:hover{background:var(--ink2)}
-.btn-s{background:var(--s1);color:var(--ink2);border:1px solid var(--bdr)}.btn-s:hover{background:var(--s2);border-color:var(--bdr2)}
-.btn-a{background:var(--amber);color:#fff}.btn-a:hover{opacity:.9}
-.btn svg{width:12px;height:12px}
+/* ── MAIN ── */
+#main{flex:1;display:flex;flex-direction:column;min-width:0;}
+#topbar{height:52px;background:var(--white);border-bottom:1px solid var(--gray-200);padding:0 18px;display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.tb-title{font-size:17px;font-weight:700;flex:1;color:var(--gray-900);}
+.tb-ham{display:none;width:32px;height:32px;border:none;background:none;border-radius:8px;cursor:pointer;align-items:center;justify-content:center;color:var(--gray-500);}
+.tb-ham:hover{background:var(--gray-100);}
+#content{flex:1;overflow-y:auto;overflow-x:hidden;}
+#content::-webkit-scrollbar{width:4px;}
+#content::-webkit-scrollbar-thumb{background:var(--gray-200);border-radius:2px;}
+.panel{display:none;}.panel.on{display:block;}
 
-/* ── CONTENT / PANELS ── */
-#ct{flex:1;overflow-y:auto;overflow-x:hidden}
-#ct::-webkit-scrollbar{width:4px}
-#ct::-webkit-scrollbar-thumb{background:var(--bdr);border-radius:2px}
-.panel{display:none}.panel.on{display:block}
+/* ── COMMON ── */
+.page{padding:18px;}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 16px;border-radius:var(--r);border:none;cursor:pointer;font-family:var(--font);font-size:13.5px;font-weight:600;transition:all .14s;white-space:nowrap;}
+.btn-blue{background:var(--blue);color:#fff;}.btn-blue:hover{background:var(--blue-d);}
+.btn-blue:active{transform:scale(.97);}
+.btn-ghost{background:var(--gray-100);color:var(--gray-700);border:1px solid var(--gray-200);}.btn-ghost:hover{background:var(--gray-200);}
+.btn svg{width:13px;height:13px;}
+.card{background:var(--white);border-radius:16px;border:1px solid var(--gray-200);}
+.tag{font-size:11px;font-weight:600;padding:2px 8px;border-radius:20px;display:inline-block;}
+.tag-blue{background:var(--blue-l);color:var(--blue);}
+.tag-red{background:var(--red-l);color:var(--red);}
+.tag-green{background:var(--green-l);color:var(--green);}
+.tag-amber{background:var(--amber-l);color:var(--amber);}
+.tag-gray{background:var(--gray-100);color:var(--gray-500);}
+.av{border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;flex-shrink:0;}
+.fi{width:100%;padding:10px 12px;border:1.5px solid var(--gray-200);border-radius:var(--r);font-family:var(--font);font-size:14px;color:var(--gray-900);outline:none;background:#fff;transition:border .14s;}
+.fi:focus{border-color:var(--blue);}
+select.fi{font-size:14px;}textarea.fi{resize:none;line-height:1.6;}
+.fi::placeholder{color:var(--gray-400);}
+.fg{display:flex;flex-direction:column;gap:5px;margin-bottom:12px;}
+.fl{font-size:12px;font-weight:600;color:var(--gray-500);}
+.spin{width:16px;height:16px;border:2.5px solid var(--gray-200);border-top-color:var(--blue);border-radius:50%;animation:sp .7s linear infinite;display:inline-block;}
+@keyframes sp{to{transform:rotate(360deg)}}
+.empty{padding:40px 20px;text-align:center;color:var(--gray-400);font-size:14px;line-height:1.7;}
+.empty span{font-size:28px;display:block;margin-bottom:10px;}
+.divider{height:1px;background:var(--gray-100);margin:0;}
 
-/* ── BRIEF ── */
-.brief-wrap{display:grid;grid-template-columns:1fr 304px;min-height:calc(100vh - 52px)}
-.brief-main{padding:24px 26px 40px;border-right:1px solid var(--bdr);overflow-y:auto}
-.brief-main::-webkit-scrollbar{width:3px}
-.brief-main::-webkit-scrollbar-thumb{background:var(--bdr)}
-.brief-side{background:var(--s1);overflow-y:auto}
-.brief-side::-webkit-scrollbar{width:3px}
-.brief-side::-webkit-scrollbar-thumb{background:var(--bdr)}
-.greet-date{font-size:11px;font-weight:500;color:var(--ink4);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
-.greet-head{font-family:var(--serif);font-size:24px;color:var(--ink);line-height:1.25}
-.greet-head em{font-style:italic;color:var(--amber)}
-.greet-sub{font-size:13px;color:var(--ink3);margin-top:5px;line-height:1.6}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin:18px 0 22px}
-.sc{padding:13px 15px;background:#fff;border:1px solid var(--bdr);border-radius:var(--rl2)}
-.sc-v{font-family:var(--serif);font-size:26px;color:var(--ink);line-height:1;margin-bottom:2px;letter-spacing:-.5px}
-.sc-v.warn{color:var(--amber)}.sc-v.crit{color:var(--red)}
-.sc-l{font-size:11px;color:var(--ink4)}
-.sec-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-.sec-lbl{font-size:10.5px;font-weight:500;color:var(--ink4);text-transform:uppercase;letter-spacing:.08em}
-.sec-a{font-size:12px;color:var(--ink4);cursor:pointer;transition:color .12s}.sec-a:hover{color:var(--amber)}
+/* ── HOME ── */
+.home-header{padding:20px 18px 0;}
+.home-greet{font-size:22px;font-weight:700;color:var(--gray-900);margin-bottom:3px;}
+.home-sub{font-size:14px;color:var(--gray-500);}
 
-/* action cards */
-.acard-list{display:flex;flex-direction:column;gap:7px;margin-bottom:24px}
-.acard{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;background:#fff;border:1px solid var(--bdr);border-left:3px solid transparent;border-radius:var(--rl2);cursor:pointer;transition:all .15s}
-.acard:hover{box-shadow:var(--sh);border-color:var(--bdr2)}
-.acard.p-r{border-left-color:var(--red)}.acard.p-a{border-left-color:var(--amber)}
-.acard.p-g{border-left-color:var(--green)}.acard.p-b{border-left-color:var(--blue)}
-.acard.done{opacity:.35;pointer-events:none}
-.acard-av{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-style:italic;font-size:13px;color:#fff;flex-shrink:0}
-.acard-body{flex:1;min-width:0}
-.acard-title{font-size:13.5px;font-weight:500;color:var(--ink);line-height:1.35;margin-bottom:2px}
-.acard-sub{font-size:12px;color:var(--ink3);line-height:1.5}
-.acard-right{display:flex;flex-direction:column;align-items:flex-end;gap:7px;flex-shrink:0}
-.pill{font-size:10.5px;font-weight:500;padding:2px 7px;border-radius:8px;white-space:nowrap}
-.pill.r{background:var(--rl);color:var(--red)}.pill.a{background:var(--al);color:var(--amber)}
-.pill.g{background:var(--gl);color:var(--green)}.pill.b{background:var(--bl);color:var(--blue)}
-.ck{width:20px;height:20px;border:1.5px solid var(--bdr2);border-radius:50%;background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0}
-.ck:hover{border-color:var(--green);background:var(--gl)}.ck.done{background:var(--green);border-color:var(--green)}
-.ck svg{width:10px;height:10px;color:#fff}
+/* stat strip */
+.stats-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:16px 18px;}
+.stat-card{background:var(--white);border:1px solid var(--gray-200);border-radius:14px;padding:14px 12px;text-align:center;}
+.stat-n{font-size:26px;font-weight:700;line-height:1;color:var(--gray-900);}
+.stat-n.warn{color:var(--amber);}
+.stat-n.bad{color:var(--red);}
+.stat-l{font-size:11.5px;color:var(--gray-400);margin-top:4px;font-weight:500;}
 
-/* digest */
-.digest{background:#fff;border:1px solid var(--bdr);border-radius:var(--rl2);padding:15px;margin-bottom:18px}
-.digest-title{font-family:var(--serif);font-size:14px;font-style:italic;color:var(--ink);margin-bottom:12px}
-.drow{display:flex;align-items:center;gap:9px;padding:7px 0;border-bottom:1px solid var(--s2)}
-.drow:last-child{border-bottom:none}
-.drow-av{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-style:italic;font-size:11px;color:#fff;flex-shrink:0}
-.drow-info{flex:1;min-width:0}
-.drow-name{font-size:13px;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.drow-why{font-size:11.5px;color:var(--ink3);margin-top:1px}
-.drow-acts{display:flex;gap:3px;flex-shrink:0}
-.ib{width:25px;height:25px;border:1px solid var(--bdr);border-radius:5px;background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink3);transition:all .12s}
-.ib:hover{background:var(--s2);color:var(--ink)}
-.ib svg{width:11px;height:11px}
+/* nav buttons */
+.nav-buttons{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 18px 16px;}
+.nav-btn{background:var(--white);border:1px solid var(--gray-200);border-radius:14px;padding:16px;cursor:pointer;transition:all .14s;text-align:left;display:flex;align-items:center;gap:12px;}
+.nav-btn:hover{border-color:var(--blue-m);background:var(--blue-l);}
+.nav-btn:active{transform:scale(.97);}
+.nav-btn-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.nav-btn-title{font-size:14px;font-weight:700;color:var(--gray-900);margin-bottom:2px;}
+.nav-btn-sub{font-size:12px;color:var(--gray-400);}
 
-/* brief side */
-.bside-sec{padding:17px 17px 0}
-.heb-box{background:var(--al);border:1px solid var(--am);border-radius:var(--r);padding:10px 12px;margin-bottom:10px;font-size:12.5px;color:var(--amber);line-height:1.6}
-.heb-box .hb-title{font-weight:500;margin-bottom:2px}
-.ev-mini{display:flex;align-items:center;gap:9px;padding:8px 0;border-bottom:1px solid var(--s2)}
-.ev-mini:last-child{border-bottom:none}
-.ev-cal{width:32px;height:32px;border:1px solid var(--bdr);border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#fff;flex-shrink:0}
-.ev-cal .em{font-size:8px;text-transform:uppercase;color:var(--ink4);font-weight:500;letter-spacing:.04em}
-.ev-cal .ed{font-family:var(--serif);font-size:14px;color:var(--ink);line-height:1}
-.ev-nm{font-size:12.5px;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.ev-wh{font-size:11px;color:var(--ink4)}
-.ev-soon{font-size:11px;color:var(--ink4);flex-shrink:0}
-.ev-soon.hot{color:var(--amber);font-weight:500}
+/* highlights */
+.section-head{padding:4px 18px 10px;font-size:12px;font-weight:700;color:var(--gray-400);text-transform:uppercase;letter-spacing:.06em;}
+.hi-item{display:flex;align-items:center;gap:12px;padding:12px 18px;background:var(--white);border-bottom:1px solid var(--gray-100);cursor:pointer;transition:background .1s;}
+.hi-item:first-child{border-top:1px solid var(--gray-200);}
+.hi-item:last-child{border-bottom:1px solid var(--gray-200);}
+.hi-item:hover{background:var(--gray-50);}
+.hi-info{flex:1;min-width:0;}
+.hi-name{font-size:14px;font-weight:600;color:var(--gray-900);}
+.hi-why{font-size:12.5px;color:var(--gray-500);margin-top:1px;}
+.hi-tag{flex-shrink:0;}
 
-/* quick log */
-.ql-wrap{padding:14px 17px 17px}
-.fi{width:100%;padding:7px 10px;background:var(--s1);border:1px solid var(--bdr);border-radius:var(--r);font-family:var(--sans);font-size:13px;color:var(--ink);outline:none;transition:border .15s,background .15s}
-.fi:focus{border-color:var(--bdr2);background:#fff}
-.fi option{background:#fff}
-textarea.fi{resize:none;line-height:1.6}
-
-/* ── PEOPLE TABLE ── */
-.pf{display:flex;align-items:center;gap:6px;padding:11px 22px;border-bottom:1px solid var(--bdr);background:#fff;position:sticky;top:0;z-index:20;flex-wrap:wrap}
-.fb{padding:4px 11px;border-radius:20px;border:1px solid var(--bdr);background:#fff;font-family:var(--sans);font-size:12px;color:var(--ink3);cursor:pointer;transition:all .12s}
-.fb:hover{color:var(--ink);border-color:var(--bdr2)}.fb.on{background:var(--ink);color:#fff;border-color:var(--ink);font-weight:500}
-.pf-sp{flex:1}.pf-ct{font-size:12px;color:var(--ink4)}
-.th-row{display:grid;grid-template-columns:2fr 1fr .85fr .65fr .6fr 72px;padding:7px 22px;border-bottom:1px solid var(--bdr);background:#fff;position:sticky;top:44px;z-index:19}
-.th{font-size:10.5px;font-weight:500;color:var(--ink4);text-transform:uppercase;letter-spacing:.05em}
-.trow{display:grid;grid-template-columns:2fr 1fr .85fr .65fr .6fr 72px;padding:9px 22px;align-items:center;border-bottom:1px solid var(--bdr);cursor:pointer;transition:background .1s}
-.trow:hover{background:var(--s1)}.trow:hover .tact{opacity:1}
-.tnm{display:flex;align-items:center;gap:10px;min-width:0}
-.tnm-t{font-size:13px;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.tnm-s{font-size:11px;color:var(--ink4)}
-.td{font-size:12.5px;color:var(--ink3)}
-.td.warn{color:var(--amber);font-weight:500}.td.crit{color:var(--red);font-weight:500}
-.hbar{width:50px;height:3px;background:var(--s2);border-radius:2px;overflow:hidden}
-.hfill{height:100%;border-radius:2px}
-.hfill.g{background:var(--green)}.hfill.a{background:var(--amber)}.hfill.r{background:var(--red)}
-.tact{display:flex;gap:3px;justify-content:flex-end;opacity:0;transition:opacity .1s}
-.badge{font-size:10.5px;font-weight:500;padding:2px 7px;border-radius:8px}
-.badge.g{background:var(--gl);color:var(--green)}.badge.a{background:var(--al);color:var(--amber)}
-.badge.r{background:var(--rl);color:var(--red)}.badge.b{background:var(--bl);color:var(--blue)}
-.badge.n{background:var(--s2);color:var(--ink3)}
-.pav{border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-style:italic;color:#fff;flex-shrink:0}
+/* ── PEOPLE ── */
+.pf-bar{padding:10px 14px;background:var(--white);border-bottom:1px solid var(--gray-200);display:flex;align-items:center;gap:6px;flex-wrap:wrap;position:sticky;top:0;z-index:5;}
+.fb{padding:5px 12px;border-radius:20px;border:1px solid var(--gray-200);background:var(--white);font-family:var(--font);font-size:12.5px;font-weight:600;color:var(--gray-500);cursor:pointer;transition:all .12s;}
+.fb:hover{color:var(--gray-700);}
+.fb.on{background:var(--blue);color:#fff;border-color:var(--blue);}
+.pct{font-size:12px;color:var(--gray-400);margin-left:auto;}
+.prow{display:flex;align-items:center;gap:12px;padding:13px 16px;background:var(--white);border-bottom:1px solid var(--gray-100);cursor:pointer;transition:background .1s;}
+.prow:hover{background:var(--gray-50);}
+.prow-info{flex:1;min-width:0;}
+.prow-name{font-size:14.5px;font-weight:600;color:var(--gray-900);}
+.prow-meta{font-size:12px;color:var(--gray-500);margin-top:2px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.ib{width:30px;height:30px;border-radius:8px;background:var(--gray-100);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--gray-500);transition:all .1s;flex-shrink:0;}
+.ib:hover{background:var(--blue-l);color:var(--blue);}
+.ib svg{width:13px;height:13px;}
+.hbar{width:36px;height:3px;background:var(--gray-200);border-radius:2px;overflow:hidden;}
+.hfill{height:100%;border-radius:2px;}
+.hf-g{background:var(--green);}
+.hf-a{background:var(--amber);}
+.hf-r{background:var(--red);}
 
 /* ── DETAIL PANEL ── */
-.ov{position:fixed;inset:0;background:rgba(28,25,23,.22);z-index:300;opacity:0;pointer-events:none;transition:opacity .22s}
-.ov.on{opacity:1;pointer-events:all}
-.dp{position:absolute;right:0;top:0;bottom:0;width:500px;max-width:96vw;background:#fff;border-left:1px solid var(--bdr);display:flex;flex-direction:column;transform:translateX(100%);transition:transform .26s cubic-bezier(.32,.72,0,1);box-shadow:var(--sh3)}
-.ov.on .dp{transform:translateX(0)}
-.dp-head{padding:18px 18px 0;border-bottom:1px solid var(--bdr);flex-shrink:0}
-.dp-top{display:flex;align-items:flex-start;gap:12px;margin-bottom:14px}
-.dp-av{width:44px;height:44px;font-size:16px}
-.dp-name{font-family:var(--serif);font-size:20px;font-style:italic;color:var(--ink);letter-spacing:-.2px}
-.dp-role{font-size:12px;color:var(--ink4);margin-top:2px}
-.dp-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
-.dp-x{width:27px;height:27px;border-radius:6px;border:1px solid var(--bdr);background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink3);transition:all .12s;flex-shrink:0}
-.dp-x:hover{background:var(--s1);color:var(--ink)}.dp-x svg{width:11px;height:11px}
-.dp-tabs{display:flex;margin:0 -18px;overflow-x:auto}.dp-tabs::-webkit-scrollbar{height:0}
-.dt{padding:9px 14px;font-size:12.5px;color:var(--ink3);cursor:pointer;border-bottom:2px solid transparent;transition:all .12s;white-space:nowrap;flex-shrink:0}
-.dt.on{color:var(--ink);border-bottom-color:var(--ink);font-weight:500}.dt:hover:not(.on){color:var(--ink2)}
-.dp-body{flex:1;overflow-y:auto;padding:18px}.dp-body::-webkit-scrollbar{width:3px}
-.dp-body::-webkit-scrollbar-thumb{background:var(--bdr)}
-.dp-foot{padding:13px 18px;border-top:1px solid var(--bdr);display:flex;gap:6px;flex-wrap:wrap;flex-shrink:0}
-.ds{margin-bottom:20px}
-.ds-t{font-size:10.5px;font-weight:500;text-transform:uppercase;letter-spacing:.07em;color:var(--ink4);margin-bottom:9px}
-.ir{display:flex;align-items:baseline;gap:8px;margin-bottom:5px}
-.irl{font-size:12px;color:var(--ink4);min-width:88px;flex-shrink:0}
-.irv{font-size:13px;color:var(--ink)}
-.nf{width:100%;background:var(--s1);border:1px solid var(--bdr);border-radius:var(--r);padding:9px 11px;font-family:var(--sans);font-size:13px;color:var(--ink);resize:none;outline:none;transition:border .15s,background .15s;min-height:76px;line-height:1.6}
-.nf:focus{border-color:var(--bdr2);background:#fff}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.2);z-index:300;opacity:0;pointer-events:none;transition:opacity .2s;}
+.ov.on{opacity:1;pointer-events:all;}
+.dp{position:absolute;right:0;top:0;bottom:0;width:440px;max-width:100vw;background:#fff;border-left:1px solid var(--gray-200);display:flex;flex-direction:column;transform:translateX(110%);transition:transform .25s cubic-bezier(.32,.72,0,1);}
+.ov.on .dp{transform:translateX(0);}
+.dp-head{padding:16px 16px 0;border-bottom:1px solid var(--gray-100);flex-shrink:0;}
+.dp-top{display:flex;align-items:flex-start;gap:11px;margin-bottom:12px;}
+.dp-name{font-size:19px;font-weight:700;color:var(--gray-900);}
+.dp-sub{font-size:12.5px;color:var(--gray-500);margin-top:2px;}
+.dp-x{width:26px;height:26px;border-radius:7px;border:1px solid var(--gray-200);background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--gray-400);}
+.dp-x:hover{background:var(--gray-100);}
+.dp-x svg{width:11px;height:11px;}
+.dp-tabs{display:flex;overflow-x:auto;margin:0 -16px;}.dp-tabs::-webkit-scrollbar{height:0;}
+.dpt{padding:9px 14px;font-size:13px;font-weight:600;color:var(--gray-400);cursor:pointer;border-bottom:2px solid transparent;transition:all .12s;white-space:nowrap;flex-shrink:0;}
+.dpt.on{color:var(--blue);border-bottom-color:var(--blue);}
+.dp-body{flex:1;overflow-y:auto;padding:16px;}
+.dp-body::-webkit-scrollbar{width:3px;}
+.dp-foot{padding:12px 16px;border-top:1px solid var(--gray-100);display:flex;gap:6px;flex-wrap:wrap;flex-shrink:0;}
+.dp-foot .btn{flex:1;}
+.ds{margin-bottom:18px;}
+.ds-t{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--gray-400);margin-bottom:8px;}
+.ir{display:flex;gap:8px;margin-bottom:6px;}
+.irl{font-size:13px;color:var(--gray-400);min-width:90px;flex-shrink:0;}
+.irv{font-size:13px;color:var(--gray-700);}
+.nf{width:100%;background:var(--gray-50);border:1.5px solid var(--gray-200);border-radius:10px;padding:10px 12px;font-family:var(--font);font-size:13.5px;color:var(--gray-900);resize:none;outline:none;min-height:80px;line-height:1.6;}
+.nf:focus{border-color:var(--blue);background:#fff;}
+.tli{display:flex;gap:10px;padding-bottom:14px;position:relative;}
+.tli:not(:last-child)::before{content:'';position:absolute;left:4px;top:10px;bottom:0;width:1px;background:var(--gray-200);}
+.tld{width:9px;height:9px;border-radius:50%;background:var(--gray-300);flex-shrink:0;margin-top:3px;}
+.tld.rabbi{background:var(--blue);}
+.tld.rebbet{background:#ec4899;}
+.tl-meta{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:3px;}
+.tl-tag{font-size:10px;font-weight:600;padding:1px 6px;border-radius:4px;background:var(--gray-100);color:var(--gray-500);}
+.tl-who{font-size:10px;font-weight:600;padding:1px 6px;border-radius:4px;}
+.tl-who.rabbi{background:var(--blue-l);color:var(--blue);}
+.tl-who.rebbet{background:#fdf2f8;color:#be185d;}
+.tl-dt{font-size:11px;color:var(--gray-400);}
+.tl-tx{font-size:13px;color:var(--gray-700);line-height:1.55;}
+.don-total{padding:12px 14px;background:var(--amber-l);border:1px solid #fde68a;border-radius:12px;margin-bottom:12px;}
+.don-v{font-size:26px;font-weight:700;color:var(--amber);}
+.don-l{font-size:11px;color:var(--amber);font-weight:600;}
+.don-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--gray-100);}
+.don-row:last-child{border-bottom:none;}
+.don-amt{font-size:14px;font-weight:700;color:var(--gray-700);min-width:70px;}
+.don-dt{font-size:11.5px;color:var(--gray-400);}
+.don-note{font-size:12.5px;color:var(--gray-500);flex:1;}
+.fam-row{display:flex;align-items:center;gap:10px;padding:9px 11px;background:var(--gray-50);border-radius:10px;margin-bottom:6px;}
+.fam-name{font-size:13.5px;font-weight:600;flex:1;}
+.fam-meta{font-size:12px;color:var(--gray-400);}
 
-/* timeline */
-.tl{display:flex;flex-direction:column}
-.tli{display:flex;gap:10px;padding-bottom:13px;position:relative}
-.tli:not(:last-child)::before{content:'';position:absolute;left:4px;top:11px;bottom:0;width:1px;background:var(--s2)}
-.tld{width:9px;height:9px;border-radius:50%;border:1.5px solid var(--bdr2);background:#fff;flex-shrink:0;margin-top:3px}
-.tld.rabbi{background:var(--blue);border-color:var(--blue)}
-.tld.rebbet{background:var(--rose);border-color:var(--rose)}
-.tl-meta{display:flex;align-items:center;gap:5px;margin-bottom:2px;flex-wrap:wrap}
-.tl-ty{font-size:9.5px;background:var(--s1);color:var(--ink4);padding:1px 5px;border-radius:3px;text-transform:capitalize}
-.tl-by.rabbi{font-size:9.5px;padding:1px 5px;border-radius:3px;background:var(--bl);color:var(--blue)}
-.tl-by.rebbet{font-size:9.5px;padding:1px 5px;border-radius:3px;background:var(--rosel);color:var(--rose)}
-.tl-dt{font-size:11px;color:var(--ink4)}
-.tl-tx{font-size:12.5px;color:var(--ink2);line-height:1.5}
+/* ── CALENDAR ── */
+.ev-item{display:flex;align-items:center;gap:12px;padding:13px 16px;background:var(--white);border-bottom:1px solid var(--gray-100);cursor:pointer;transition:background .1s;}
+.ev-item:hover{background:var(--gray-50);}
+.ev-cal{width:40px;height:40px;border:1.5px solid var(--gray-200);border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;background:var(--white);}
+.ev-em{font-size:8px;text-transform:uppercase;color:var(--gray-400);font-weight:700;letter-spacing:.04em;}
+.ev-ed{font-size:17px;font-weight:700;color:var(--gray-900);line-height:1;}
+.ev-info{flex:1;min-width:0;}
+.ev-nm{font-size:14px;font-weight:600;}
+.ev-meta{font-size:12px;color:var(--gray-500);margin-top:1px;}
+.ev-days{font-size:12px;font-weight:600;flex-shrink:0;color:var(--gray-400);}
+.ev-days.hot{color:var(--blue);}
 
-/* family */
-.fam-item{display:flex;align-items:center;gap:10px;padding:9px 11px;background:var(--s1);border-radius:var(--r);margin-bottom:6px}
-.fam-name{font-size:13px;font-weight:500;flex:1}
-.fam-meta{font-size:11.5px;color:var(--ink4)}
-
-/* giving */
-.don-total{padding:12px;background:var(--al);border:1px solid var(--am);border-radius:var(--r);margin-bottom:12px}
-.don-total-v{font-family:var(--serif);font-size:26px;color:var(--amber)}
-.don-total-l{font-size:11px;color:var(--amber);opacity:.7}
-.don-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--bdr)}
-.don-item:last-child{border-bottom:none}
-.don-amt{font-family:var(--serif);font-size:15px;color:var(--amber);min-width:70px}
-.don-dt{font-size:11.5px;color:var(--ink4)}
-.don-note{font-size:12px;color:var(--ink3);flex:1}
-
-/* outreach prompts */
-.pg{display:grid;grid-template-columns:1fr 1fr;gap:6px}
-.pc{padding:10px 12px;background:var(--s1);border:1px solid var(--bdr);border-radius:var(--r);cursor:pointer;transition:all .15s}
-.pc:hover{background:#fff;border-color:var(--bdr2);box-shadow:var(--sh)}
-.pc-t{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:1px}.pc-s{font-size:11.5px;color:var(--ink3)}
-.cb{background:var(--s1);border:1px solid var(--bdr);border-radius:var(--r);padding:13px;margin-top:11px;font-size:13px;color:var(--ink2);line-height:1.75;white-space:pre-wrap;display:none}
-.cacts{display:flex;gap:6px;margin-top:9px;flex-wrap:wrap;display:none}
-
-/* ── SMART PASTE ── */
-.paste-page{max-width:720px;padding:26px}
-.paste-card{background:#fff;border:1px solid var(--bdr);border-radius:var(--rl2);padding:22px;margin-bottom:16px}
-.paste-intro{font-size:13px;color:var(--ink3);line-height:1.7;margin-bottom:14px}
-.paste-intro strong{color:var(--ink);font-weight:500}
-.paste-ta{width:100%;background:var(--s1);border:1.5px dashed var(--bdr2);border-radius:var(--r);padding:13px 15px;font-family:var(--sans);font-size:13px;color:var(--ink);resize:none;outline:none;min-height:120px;line-height:1.65;transition:border .15s}
-.paste-ta:focus{border-color:var(--amber);background:#fff}
-.paste-ta::placeholder{color:var(--ink4)}
-.paste-result{background:var(--s1);border:1px solid var(--bdr);border-radius:var(--r);padding:15px;margin-top:13px;display:none}
-.pr-title{font-size:11px;font-weight:500;color:var(--ink4);text-transform:uppercase;letter-spacing:.06em;margin-bottom:11px}
-.pr-item{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid var(--bdr)}
-.pr-item:last-child{border-bottom:none}
-.pr-icon{width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px}
-.pr-body{flex:1}.pr-label{font-size:12px;font-weight:500;color:var(--ink)}.pr-val{font-size:12px;color:var(--ink3);margin-top:1px;line-height:1.5}
-.pr-confirm{display:flex;gap:7px;margin-top:13px;flex-wrap:wrap}
-.paste-tips{background:var(--s1);border:1px solid var(--bdr);border-radius:var(--rl2);padding:16px}
-.paste-tips-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
-.tip-item{display:flex;gap:7px;align-items:flex-start;font-size:12.5px;color:var(--ink3)}
-
-/* ── CSV IMPORT ── */
-.import-page{max-width:640px;padding:26px}
-.drop-zone{border:2px dashed var(--bdr2);border-radius:var(--rl2);padding:30px 24px;text-align:center;background:#fff;cursor:pointer;transition:all .15s;margin-bottom:14px}
-.drop-zone:hover,.drop-zone.drag{border-color:var(--amber);background:var(--al)}
-.drop-icon{font-size:28px;margin-bottom:9px;opacity:.45}
-.drop-title{font-size:14px;font-weight:500;color:var(--ink);margin-bottom:3px}
-.drop-sub{font-size:12.5px;color:var(--ink3);line-height:1.6}
-.imp-prev{background:#fff;border:1px solid var(--bdr);border-radius:var(--rl2);overflow:hidden;display:none}
-.imp-prev-head{padding:11px 16px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between}
-.imp-row{display:flex;align-items:center;gap:10px;padding:8px 16px;border-bottom:1px solid var(--bdr)}
-.imp-row:last-child{border-bottom:none}
-.imp-cell{font-size:12.5px;color:var(--ink2)}.imp-cell.nm{font-weight:500;min-width:130px}.imp-cell.mt{color:var(--ink4);min-width:90px}
-
-/* ── COMPOSE ── */
-.comp-page{max-width:660px;padding:24px}
-.comp-card{background:#fff;border:1px solid var(--bdr);border-radius:var(--rl2);padding:20px}
-.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:11px}
-.fg{display:flex;flex-direction:column;gap:4px;margin-bottom:11px}.fg:last-child{margin-bottom:0}
-.fl{font-size:11.5px;font-weight:500;color:var(--ink3)}
-.comp-result{background:var(--s1);border:1px solid var(--bdr);border-radius:var(--r);padding:14px;margin-top:12px;font-size:13px;color:var(--ink2);line-height:1.78;white-space:pre-wrap;display:none}
-.comp-acts{display:flex;gap:7px;margin-top:10px;flex-wrap:wrap;display:none}
+/* ── REMINDERS ── */
+.rem-sec{margin-bottom:6px;}
+.rem-hd{padding:12px 16px 6px;font-size:11.5px;font-weight:700;color:var(--gray-400);text-transform:uppercase;letter-spacing:.05em;}
+.rem-hd.red{color:var(--red);}
+.rem-hd.amber{color:var(--amber);}
 
 /* ── INSIGHTS ── */
-.ins-page{max-width:780px;padding:22px}
-.ig{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.ic{background:#fff;border:1px solid var(--bdr);border-radius:var(--rl2);padding:16px}
-.ic-t{font-size:10.5px;font-weight:500;text-transform:uppercase;letter-spacing:.07em;color:var(--ink4);margin-bottom:12px}
-.br{display:flex;align-items:center;gap:9px;margin-bottom:8px}
-.bl{font-size:12px;color:var(--ink2);min-width:95px}
-.bt{flex:1;height:3px;background:var(--s2);border-radius:2px;overflow:hidden}
-.bf{height:100%;border-radius:2px;background:var(--ink2);transition:width .9s}
-.bv{font-size:11px;color:var(--ink4);min-width:20px;text-align:right}
-.big-n{font-family:var(--serif);font-size:27px;color:var(--ink);line-height:1;margin-bottom:2px}
-.big-l{font-size:11.5px;color:var(--ink3)}
-
-/* ── STD PAGE ── */
-.std-page{padding:20px}
-.ev-full{display:flex;align-items:center;gap:13px;padding:11px 0;border-bottom:1px solid var(--bdr);cursor:pointer;transition:opacity .12s}
-.ev-full:hover{opacity:.75}.ev-full:last-child{border-bottom:none}
-.rem-grp{margin-bottom:22px}
-.rem-gt{font-size:11.5px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:var(--ink4);margin-bottom:9px;padding-bottom:7px;border-bottom:1px solid var(--bdr)}
-.rem-gt.r{color:var(--red)}.rem-gt.a{color:var(--amber)}
+.ig{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:18px;}
+.ic{background:var(--white);border:1px solid var(--gray-200);border-radius:16px;padding:16px;}
+.ic-t{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--gray-400);margin-bottom:12px;}
+.br{display:flex;align-items:center;gap:8px;margin-bottom:7px;}
+.bl{font-size:12.5px;color:var(--gray-600);min-width:90px;}
+.bt{flex:1;height:4px;background:var(--gray-100);border-radius:2px;overflow:hidden;}
+.bf{height:100%;border-radius:2px;background:var(--blue);}
+.bv{font-size:11.5px;color:var(--gray-400);min-width:16px;text-align:right;}
+.big-n{font-size:28px;font-weight:700;color:var(--gray-900);line-height:1;margin-bottom:2px;}
+.big-l{font-size:12px;color:var(--gray-400);font-weight:500;}
+.top-row{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--gray-100);cursor:pointer;}
+.top-row:last-child{border-bottom:none;}
+.top-row:hover{background:var(--gray-50);}
 
 /* ── MODALS ── */
-.mo{position:fixed;inset:0;background:rgba(28,25,23,.28);z-index:500;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .18s}
-.mo.on{opacity:1;pointer-events:all}
-.md{background:#fff;border:1px solid var(--bdr);border-radius:var(--rl2);width:520px;max-width:96vw;max-height:90vh;overflow-y:auto;transform:scale(.97) translateY(5px);transition:transform .18s;box-shadow:var(--sh3)}
-.mo.on .md{transform:scale(1) translateY(0)}
-.md-h{padding:18px 18px 14px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between}
-.md-t{font-family:var(--serif);font-size:17px;font-style:italic;color:var(--ink)}
-.md-b{padding:18px}
-.fr{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:11px}
-.fa{display:flex;justify-content:flex-end;gap:7px;margin-top:16px;padding-top:13px;border-top:1px solid var(--bdr)}
-.sr{display:flex;gap:2px}
-.sb2{width:21px;height:21px;background:none;border:none;cursor:pointer;font-size:15px;color:var(--bdr2);transition:color .1s;padding:0;line-height:1}
-.sb2.on{color:var(--amber)}
+.mo{position:fixed;inset:0;background:rgba(0,0,0,.25);z-index:500;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .16s;}
+.mo.on{opacity:1;pointer-events:all;}
+.md{background:#fff;border-radius:20px 20px 0 0;width:100%;max-width:540px;max-height:88vh;overflow-y:auto;transform:translateY(16px);transition:transform .18s;padding-bottom:env(safe-area-inset-bottom);}
+.mo.on .md{transform:translateY(0);}
+.md-h{padding:16px 18px 12px;border-bottom:1px solid var(--gray-100);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#fff;z-index:1;}
+.md-t{font-size:17px;font-weight:700;color:var(--gray-900);}
+.md-b{padding:16px 18px 18px;}
+.fr2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
+.fa{display:flex;justify-content:flex-end;gap:7px;padding-top:12px;border-top:1px solid var(--gray-100);margin-top:4px;}
+.star-row{display:flex;gap:3px;}
+.star{font-size:22px;cursor:pointer;color:var(--gray-200);line-height:1;transition:color .1s;}
+.star.on{color:var(--amber);}
 
-/* ── MISC ── */
-.spin{width:15px;height:15px;border:1.5px solid var(--s2);border-top-color:var(--ink3);border-radius:50%;animation:rot .7s linear infinite;display:inline-block}
-@keyframes rot{to{transform:rotate(360deg)}}
-.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(16px);background:var(--ink);color:#fff;font-size:12.5px;font-weight:500;padding:8px 16px;border-radius:20px;z-index:9999;opacity:0;transition:all .22s;pointer-events:none;white-space:nowrap;box-shadow:var(--sh2)}
-.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
-.empty{padding:44px 22px;text-align:center;color:var(--ink4);font-size:13px}
-.divider{height:1px;background:var(--bdr);margin:14px 0}
+/* ── BOTTOM NAV (mobile) ── */
+#bnav{display:none;}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(8px);background:var(--gray-900);color:#fff;font-size:13px;font-weight:600;padding:9px 18px;border-radius:24px;z-index:9999;opacity:0;transition:all .2s;pointer-events:none;white-space:nowrap;}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0);}
 
 /* ── MOBILE ── */
-@media(max-width:768px){
-  /* ── CORE LAYOUT ── */
-  #sb{position:fixed;left:0;top:0;bottom:0;transform:translateX(-100%)}
-  #sb.mob{transform:translateX(0)}
-  .mob-bg{position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:99;display:none}
-  .mob-bg.on{display:block}
-  .tb-ham{display:flex}
-  #tb{padding:0 14px;gap:7px}
-  #tb .btn-s{display:none} /* hide Paste & Log from topbar on mobile — accessible via sidebar */
-  #tb .btn-p{padding:7px 11px;font-size:12px}
-
-  /* ── BRIEF ── */
-  .brief-wrap{grid-template-columns:1fr}
-  .brief-side{display:none}
-  .brief-main{padding:16px 16px 32px}
-  .stats{grid-template-columns:1fr 1fr;gap:8px}
-  .sc{padding:11px 13px}
-  .sc-v{font-size:22px}
-  .acard{padding:11px 12px;gap:10px}
-  .acard-av{width:30px;height:30px;font-size:12px}
-  .acard-title{font-size:13px}
-  .acard-sub{font-size:11.5px}
-  .digest{padding:13px}
-  .greet-head{font-size:20px}
-
-  /* ── PEOPLE TABLE → CARD LIST on mobile ── */
-  .th-row{display:none}
-  .pf{padding:10px 14px;gap:5px}
-  .fb{padding:4px 10px;font-size:11.5px}
-  .trow{
-    grid-template-columns:1fr auto;
-    padding:12px 16px;
-    gap:0;
+@media(max-width:760px){
+  body{overflow:auto;}
+  html,body{height:auto;}
+  #app{flex-direction:column;height:auto;min-height:100vh;}
+  #sidebar{display:none;}
+  #sidebar.open{display:flex;position:fixed;left:0;top:0;bottom:0;z-index:200;width:220px;box-shadow:4px 0 20px rgba(0,0,0,.1);}
+  .mob-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.25);z-index:199;}
+  .mob-bg.on{display:block;}
+  #main{flex:1;height:auto;min-height:calc(100vh - 60px);}
+  #topbar{position:sticky;top:0;z-index:100;}
+  .tb-ham{display:flex;}
+  #content{padding-bottom:70px;overflow:visible;height:auto;}
+  .panel{display:none;}.panel.on{display:block;}
+  #bnav{
+    display:flex;position:fixed;bottom:0;left:0;right:0;
+    background:#fff;border-top:1px solid var(--gray-200);
+    padding-bottom:env(safe-area-inset-bottom);
+    z-index:150;
   }
-  /* Hide all columns except name and actions */
-  .trow>*:nth-child(n+2){display:none}
-  .trow>*:nth-child(6){display:flex} /* keep actions */
-  .tact{opacity:1} /* always show on mobile */
-  .tnm-t{font-size:14px}
-  .tnm-s{font-size:11.5px}
-  .tnm{gap:9px}
-
-  /* ── DETAIL PANEL ── */
-  .dp{width:100vw;border-left:none}
-  .dp-head{padding:16px 16px 0}
-  .dp-body{padding:16px}
-  .dp-foot{padding:12px 16px;gap:5px}
-  .dp-foot .btn{font-size:12px;padding:7px 10px;flex:1;justify-content:center}
-  .dp-tabs{margin:0 -16px}
-  .dt{padding:9px 12px;font-size:12px}
-  .dp-name{font-size:18px}
-
-  /* ── INSIGHTS ── */
-  .ig{grid-template-columns:1fr}
-  .ins-page{padding:16px}
-
-  /* ── COMPOSE ── */
-  .cgrid{grid-template-columns:1fr}
-  .comp-page{padding:16px}
-
-  /* ── MODALS ── */
-  .fr{grid-template-columns:1fr}
-  .mo{align-items:flex-end} /* slide up from bottom */
-  .md{
-    border-radius:16px 16px 0 0;
-    width:100%;
-    max-width:100%;
-    max-height:88vh;
-    margin:0;
-  }
-
-  /* ── STD PAGES ── */
-  .std-page{padding:14px}
-  .paste-page,.import-page,.comp-page{padding:14px}
-  .paste-card{padding:16px}
-  .paste-tips-grid{grid-template-columns:1fr}
-  .paste-ta{min-height:100px;font-size:14px} /* bigger for thumbs */
-
-  /* ── EVENTS ── */
-  .ev-full{gap:10px}
-
-  /* ── REMINDERS ── */
-  .rem-grp .drow{padding:9px 0}
-
-  /* ── IMPORT ── */
-  .imp-prev-head{flex-direction:column;gap:9px;align-items:flex-start}
-
-  /* ── TOUCH TARGETS ── */
-  .ib{width:32px;height:32px} /* bigger tap targets */
-  .ck{width:24px;height:24px}
-  .btn{min-height:38px}
-  .fi{font-size:16px} /* prevents iOS zoom on input focus */
-  .fi:focus{font-size:16px}
-  select.fi{font-size:16px}
-  textarea.fi{font-size:16px}
+  .bni{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:8px 4px;border:none;background:none;cursor:pointer;color:var(--gray-400);font-family:var(--font);}
+  .bni.on{color:var(--blue);}
+  .bni svg{width:21px;height:21px;}
+  .bni-l{font-size:10.5px;font-weight:600;}
+  .bni-bdg{position:absolute;top:5px;right:calc(50% - 20px);background:var(--red);color:#fff;font-size:9px;font-weight:700;padding:1px 4px;border-radius:8px;}
+  .stats-strip{grid-template-columns:1fr 1fr;gap:8px;padding:12px 14px;}
+  .nav-buttons{grid-template-columns:1fr 1fr;padding:0 14px 14px;gap:8px;}
+  .home-header{padding:16px 14px 0;}
+  .dp{width:100vw;border-left:none;}
+  .ig{grid-template-columns:1fr;padding:14px;}
+  .toast{bottom:calc(60px + 10px);}
+  .fr2{grid-template-columns:1fr;}
+  .fi{font-size:16px;}select.fi{font-size:16px;}textarea.fi{font-size:16px;}
 }
 </style>
 </head>
 <body>
-
 <div class="mob-bg" id="mob-bg" onclick="closeSB()"></div>
 
-<!-- SIDEBAR -->
-<nav id="sb">
+<div id="app">
+<nav id="sidebar">
   <div class="sb-top">
-    <div class="logo">
-      <div class="lmark">K</div>
-      <div><div class="lname">Kesher</div><div class="lheb">קֶשֶׁר · Connection</div></div>
-    </div>
-    <div class="sb-srch">
-      <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <input type="text" id="si" placeholder="Search community…" oninput="doSearch()" autocomplete="off">
-    </div>
+    <div class="sb-logo"><div class="sb-mark">K</div><span class="sb-name">Kesher</span></div>
   </div>
   <div class="sb-nav">
-    <div class="ni on" onclick="go('brief',this)">
-      <span class="ni-ic"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
-      Daily Brief<span class="nbadge" id="nb-brief" style="display:none">0</span>
+    <div class="sni on" onclick="go('home',this)">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Home
     </div>
-    <div class="ni" onclick="go('people',this)">
-      <span class="ni-ic"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
-      People<span class="nbadge soft" id="nb-ppl">0</span>
+    <div class="sni" onclick="go('people',this)">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+      People
+      <span class="cnt" id="ppl-cnt"></span>
     </div>
-    <div class="ni" onclick="go('events',this)">
-      <span class="ni-ic"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
-      Calendar<span class="nbadge soft" id="nb-ev">0</span>
+    <div class="sni" onclick="go('calendar',this)">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Calendar
     </div>
-    <div class="nl">Outreach</div>
-    <div class="ni" onclick="go('remind',this)">
-      <span class="ni-ic"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></span>
-      Reminders<span class="nbadge" id="nb-rem">0</span>
+    <div class="sni" onclick="go('reminders',this)">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+      Reminders
+      <span class="badge" id="rem-badge" style="display:none"></span>
     </div>
-    <div class="ni" onclick="go('compose',this)">
-      <span class="ni-ic"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>
-      AI Compose
-    </div>
-    <div class="nl">Data In</div>
-    <div class="ni" onclick="go('paste',this)">
-      <span class="ni-ic"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg></span>
-      Smart Paste
-    </div>
-    <div class="ni" onclick="go('import',this)">
-      <span class="ni-ic"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span>
-      CSV Import
-    </div>
-    <div class="ni" onclick="go('insights',this)">
-      <span class="ni-ic"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+    <div class="sni" onclick="go('insights',this)">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
       Insights
     </div>
   </div>
   <div class="sb-foot">
-    <div class="who-row">
-      <button class="who-btn on r" id="who-r" onclick="setWho('rabbi')">Rabbi Levi</button>
-      <button class="who-btn rb" id="who-rb" onclick="setWho('rebbet')">Rebbetzin</button>
-    </div>
-    <div class="sb-user">
-      <div class="sb-av" id="sb-av">ר׳</div>
-      <div><div class="sb-uname" id="sb-nm">Rabbi Levi Goldstein</div><div class="sb-uorg">Chabad of Riverside</div></div>
+    <div style="font-size:11px;color:var(--gray-400);font-weight:600;margin-bottom:6px;">Logged in as</div>
+    <div class="who-btns">
+      <button class="wb on" id="wb-r" onclick="setWho('rabbi')">Rabbi</button>
+      <button class="wb" id="wb-rb" onclick="setWho('rebbet')">Rebbetzin</button>
     </div>
   </div>
 </nav>
 
-<!-- MAIN -->
 <div id="main">
-  <div id="tb">
-    <button class="tb-ham" onclick="toggleSB()"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
-    <span class="ptitle" id="pttl">Daily Brief</span>
-    <div style="flex:1"></div>
-    <button class="btn btn-s" style="font-size:12px" onclick="go('paste',null)">
-      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>
-      Paste &amp; Log
+  <div id="topbar">
+    <button class="tb-ham" onclick="toggleSB()">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
     </button>
-    <button class="btn btn-p" onclick="openM('am')">
-      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    <span class="tb-title" id="page-title">Home</span>
+    <button class="btn btn-blue" id="add-btn" onclick="openM('addm')" style="font-size:12.5px;padding:7px 12px">
+      <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
       Add person
     </button>
   </div>
-  <div id="ct">
 
-<!-- DAILY BRIEF -->
-<div class="panel on" id="p-brief">
-<div class="brief-wrap">
-  <div class="brief-main">
-    <div style="margin-bottom:22px">
-      <div class="greet-date" id="g-date"></div>
-      <div class="greet-head" id="g-head"></div>
-      <div class="greet-sub" id="g-sub"></div>
-    </div>
-    <div class="stats" id="stats"></div>
-    <div class="sec-row"><span class="sec-lbl">Today's priorities</span><span class="sec-a" onclick="go('remind',null)">All reminders →</span></div>
-    <div class="acard-list" id="acards"></div>
-    <div class="sec-row" style="margin-top:22px"><span class="sec-lbl">Weekly digest — who to reach this week</span><span class="sec-a" onclick="renderBrief()">↺ Refresh</span></div>
-    <div class="digest" id="digest"></div>
+  <div id="content">
+
+<!-- HOME -->
+<div class="panel on" id="p-home">
+  <div class="home-header">
+    <div class="home-greet" id="h-greet"></div>
+    <div class="home-sub" id="h-sub"></div>
   </div>
-  <div class="brief-side">
-    <div class="bside-sec">
-      <div class="sec-lbl" style="margin-bottom:10px">Jewish Calendar</div>
-      <div id="heb-info"><div style="font-size:12px;color:var(--ink4)">Loading…</div></div>
-    </div>
-    <div class="divider" style="margin:0 17px"></div>
-    <div class="bside-sec">
-      <div class="sec-lbl" style="margin-bottom:10px">Upcoming events</div>
-      <div id="aside-evs"></div>
-    </div>
-    <div class="divider" style="margin:0 17px"></div>
-    <div class="ql-wrap">
-      <div class="sec-lbl" style="margin-bottom:10px">Quick log</div>
-      <div style="display:flex;flex-direction:column;gap:7px">
-        <select class="fi" id="ql-pid" style="font-size:12.5px"></select>
-        <textarea class="fi" id="ql-note" placeholder="What happened? e.g. Called Moshe, he mentioned his son's bar mitzvah is in May…" style="min-height:60px;font-size:12.5px"></textarea>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
-          <select class="fi" id="ql-type" style="font-size:12px">
-            <option value="call">📞 Phone call</option>
-            <option value="visit">🏠 Visit</option>
-            <option value="whatsapp">💬 WhatsApp</option>
-            <option value="text">📱 SMS / Text</option>
-            <option value="email">📧 Email</option>
-            <option value="event">📅 Event / Shabbat</option>
-            <option value="pastoral">❤️ Pastoral</option>
-            <option value="donation">💛 Donation</option>
-          </select>
-          <button class="btn btn-p" onclick="quickLog()" style="justify-content:center;font-size:12.5px">Log it</button>
-        </div>
-      </div>
-    </div>
+  <div class="stats-strip" id="h-stats"></div>
+  <div style="padding:0 18px 16px">
+    <div class="nav-buttons" id="h-navbtns"></div>
   </div>
-</div>
+  <div class="section-head" id="h-hi-title" style="display:none">Needs attention</div>
+  <div id="h-highlights"></div>
 </div>
 
 <!-- PEOPLE -->
 <div class="panel" id="p-people">
-  <div class="pf">
-    <button class="fb on" onclick="sf('all',this)">All</button>
-    <button class="fb" onclick="sf('hot',this)">Active</button>
-    <button class="fb" onclick="sf('cold',this)">Lapsed</button>
-    <button class="fb" onclick="sf('donor',this)">Donors</button>
-    <button class="fb" onclick="sf('new',this)">New</button>
-    <button class="fb" onclick="sf('seeker',this)">Seekers</button>
-    <div class="pf-sp"></div>
-    <span class="pf-ct" id="pf-ct"></span>
+  <div class="pf-bar">
+    <button class="fb on" onclick="pFilt('all',this)">All</button>
+    <button class="fb" onclick="pFilt('active',this)">Active</button>
+    <button class="fb" onclick="pFilt('lapsed',this)">Lapsed</button>
+    <button class="fb" onclick="pFilt('new',this)">New</button>
+    <button class="fb" onclick="pFilt('donor',this)">Donors</button>
+    <span class="pct" id="p-ct"></span>
   </div>
-  <div class="th-row">
-    <div class="th">Name</div><div class="th">Last contact</div><div class="th">Status</div><div class="th">Health</div><div class="th">Stars</div><div class="th"></div>
-  </div>
-  <div id="ptable"></div>
+  <div id="plist"></div>
 </div>
 
 <!-- CALENDAR -->
-<div class="panel" id="p-events">
-  <div style="padding:13px 22px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;gap:10px">
-    <span class="sec-lbl" style="flex:1">Events &amp; milestones</span>
-    <button class="btn btn-p" onclick="openM('evm')"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="12" height="12"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add event</button>
+<div class="panel" id="p-calendar">
+  <div style="padding:12px 16px;background:#fff;border-bottom:1px solid var(--gray-200);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:5;">
+    <span style="font-size:12px;font-weight:700;color:var(--gray-400);text-transform:uppercase;letter-spacing:.05em">Upcoming</span>
+    <button class="btn btn-blue" style="font-size:12px;padding:6px 12px" onclick="openM('evm')">+ Add event</button>
   </div>
-  <div class="std-page" id="evlist"></div>
+  <div id="evlist"></div>
 </div>
 
 <!-- REMINDERS -->
-<div class="panel" id="p-remind">
-  <div style="padding:14px 22px 0"><div class="sec-lbl">Reminders — ranked by urgency</div></div>
-  <div class="std-page" id="rembody" style="padding-top:12px"></div>
-</div>
-
-<!-- COMPOSE -->
-<div class="panel" id="p-compose">
-<div class="comp-page">
-  <div class="sec-lbl" style="margin-bottom:14px">AI Message Composer</div>
-  <div class="comp-card">
-    <div class="cgrid">
-      <div class="fg" style="margin:0"><div class="fl">Person</div><select class="fi" id="cp-p"><option value="">Select person…</option></select></div>
-      <div class="fg" style="margin:0"><div class="fl">Channel</div>
-        <select class="fi" id="cp-ch"><option value="whatsapp">💬 WhatsApp</option><option value="email">📧 Email</option><option value="sms">📱 SMS</option><option value="call">📞 Call script</option><option value="shabbat">🕯️ Shabbat invitation</option></select>
-      </div>
-    </div>
-    <div class="cgrid">
-      <div class="fg" style="margin:0"><div class="fl">Purpose</div>
-        <select class="fi" id="cp-pu"><option value="reconnect">Reconnect</option><option value="birthday">Birthday</option><option value="yomtov">Yom Tov</option><option value="lifecycle">Lifecycle event</option><option value="pastoral">Pastoral care</option><option value="thankyou">Thank you</option><option value="invite">Invite to event</option><option value="donation">Donation ask</option><option value="followup">Follow up</option></select>
-      </div>
-      <div class="fg" style="margin:0"><div class="fl">Tone</div>
-        <select class="fi" id="cp-to"><option value="warm">Warm &amp; personal</option><option value="formal">Formal</option><option value="casual">Casual</option><option value="pastoral">Pastoral &amp; caring</option></select>
-      </div>
-    </div>
-    <div class="fg"><div class="fl">Additional context</div><textarea class="fi" id="cp-cx" placeholder="Recent conversation, specific occasion, personal details…"></textarea></div>
-    <button class="btn btn-p" id="cp-btn" onclick="doCompose()" style="width:100%;justify-content:center;padding:9px">Generate message</button>
-    <div id="cp-load" style="display:none;padding:18px;text-align:center"><div class="spin"></div></div>
-    <div class="comp-result" id="cp-res"></div>
-    <div class="comp-acts" id="cp-acts">
-      <button class="btn btn-p" onclick="cpCopy()">Copy</button>
-      <button class="btn btn-s" onclick="cpWA()">Open in WhatsApp</button>
-      <button class="btn btn-s" onclick="cpEmail()">Open in Email</button>
-      <button class="btn btn-s" onclick="doCompose()">Regenerate</button>
-    </div>
-  </div>
-</div>
-</div>
-
-<!-- SMART PASTE -->
-<div class="panel" id="p-paste">
-<div class="paste-page">
-  <div class="sec-lbl" style="margin-bottom:14px">Smart Paste — AI-powered log</div>
-  <div class="paste-card">
-    <div class="paste-intro"><strong>Paste anything.</strong> An email, a WhatsApp conversation, a text thread, or quick notes after a call. The AI reads it, figures out who it's about, what happened, any life events, and logs it — in one click.</div>
-    <textarea class="paste-ta" id="paste-in" placeholder="Examples:&#10;• Paste a forwarded email from Moshe about his daughter's engagement&#10;• Paste a WhatsApp thread from Rachel about Shabbat dinner&#10;• Type: Called David, he mentioned his son is struggling in school and wants to talk this week&#10;• Paste your notes from a Shabbat: Met 3 new people — Tamar Shapiro (interested in converting), her husband Eli, and their friend Sara…"></textarea>
-    <div style="display:flex;gap:8px;margin-top:12px">
-      <button class="btn btn-p" id="paste-btn" onclick="doPaste()" style="flex:1;justify-content:center;padding:9px">
-        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="13" height="13"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        Extract &amp; log with AI
-      </button>
-      <button class="btn btn-s" onclick="document.getElementById('paste-in').value='';document.getElementById('paste-result').style.display='none'">Clear</button>
-    </div>
-    <div id="paste-load" style="display:none;padding:20px;text-align:center"><div class="spin" style="margin:0 auto 8px"></div><div style="font-size:12px;color:var(--ink4)">Reading your message…</div></div>
-    <div class="paste-result" id="paste-result">
-      <div class="pr-title">Extracted — confirm to save</div>
-      <div id="paste-items"></div>
-      <div class="pr-confirm" id="paste-confirm"></div>
-    </div>
-  </div>
-  <div class="paste-tips">
-    <div class="sec-lbl">What Smart Paste extracts</div>
-    <div class="paste-tips-grid">
-      <div class="tip-item"><span>👤</span><span>Who it's about (matched to your community)</span></div>
-      <div class="tip-item"><span>📅</span><span>Life events — engagement, birth, illness, loss</span></div>
-      <div class="tip-item"><span>📝</span><span>Key notes and context to remember</span></div>
-      <div class="tip-item"><span>🎂</span><span>Birthdays or dates mentioned</span></div>
-      <div class="tip-item"><span>💛</span><span>Donation intent or giving mentioned</span></div>
-      <div class="tip-item"><span>⚠️</span><span>Follow-up flags and action items</span></div>
-    </div>
-  </div>
-</div>
-</div>
-
-<!-- CSV IMPORT -->
-<div class="panel" id="p-import">
-<div class="import-page">
-  <div class="sec-lbl" style="margin-bottom:14px">Import contacts</div>
-  <div class="drop-zone" id="drop-zone" onclick="document.getElementById('csv-file').click()" ondragover="event.preventDefault();this.classList.add('drag')" ondragleave="this.classList.remove('drag')" ondrop="handleDrop(event)">
-    <input type="file" id="csv-file" accept=".csv,.txt" style="display:none" onchange="handleFile(this.files[0])">
-    <div class="drop-icon">📂</div>
-    <div class="drop-title">Drop your CSV file here, or click to browse</div>
-    <div class="drop-sub">Works with iPhone Contacts export, Google Contacts CSV, or any spreadsheet.<br>Needs: Name (or First + Last), Email, Phone columns.</div>
-  </div>
-  <div style="background:#fff;border:1px solid var(--bdr);border-radius:var(--rl2);padding:16px;margin-bottom:14px">
-    <div class="sec-lbl" style="margin-bottom:9px">Or paste a list</div>
-    <textarea class="fi" id="paste-csv" placeholder="One per line: First Last, email@example.com, phone&#10;&#10;Moshe Cohen, moshe@example.com, 555-0101&#10;Rachel Levy, rachel@example.com&#10;David Berkowitz" style="min-height:88px;font-size:12.5px"></textarea>
-    <button class="btn btn-p" onclick="parsePastedList()" style="margin-top:9px;font-size:12.5px">Parse list</button>
-  </div>
-  <div class="imp-prev" id="imp-prev">
-    <div class="imp-prev-head">
-      <span style="font-size:13px;font-weight:500;color:var(--ink)" id="imp-count"></span>
-      <div style="display:flex;gap:7px">
-        <button class="btn btn-s" style="font-size:12px" onclick="selAllImp()">Select all</button>
-        <button class="btn btn-p" style="font-size:12px" onclick="confirmImp()">Import selected</button>
-      </div>
-    </div>
-    <div id="imp-rows"></div>
-  </div>
-</div>
+<div class="panel" id="p-reminders">
+  <div id="rem-body"></div>
 </div>
 
 <!-- INSIGHTS -->
 <div class="panel" id="p-insights">
-  <div style="padding:14px 22px 0"><div class="sec-lbl">Community insights</div></div>
-  <div class="ins-page" id="insbody" style="padding-top:16px"></div>
+  <div class="ig" id="ins-body"></div>
 </div>
 
-  </div><!-- /ct -->
+  </div><!-- /content -->
 </div><!-- /main -->
+</div><!-- /app -->
 
-<!-- DETAIL OVERLAY -->
-<div class="ov" id="ov" onclick="mayCloseD(event)">
+<!-- BOTTOM NAV (mobile) -->
+<nav id="bnav">
+  <button class="bni on" id="bn-home" onclick="go('home',null);setBN('home')">
+    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span class="bni-l">Home</span>
+  </button>
+  <button class="bni" id="bn-people" onclick="go('people',null);setBN('people')">
+    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+    <span class="bni-l">People</span>
+  </button>
+  <button class="bni" id="bn-calendar" onclick="go('calendar',null);setBN('calendar')">
+    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+    <span class="bni-l">Calendar</span>
+  </button>
+  <button class="bni" id="bn-reminders" onclick="go('reminders',null);setBN('reminders')">
+    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+    <span class="bni-l">Remind</span>
+    <span class="bni-bdg" id="bn-rem-b" style="display:none"></span>
+  </button>
+  <button class="bni" id="bn-insights" onclick="go('insights',null);setBN('insights')">
+    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+    <span class="bni-l">Insights</span>
+  </button>
+</nav>
+
+<!-- DETAIL PANEL -->
+<div class="ov" id="ov" onclick="mayCloseDP(event)">
   <div class="dp">
     <div class="dp-head">
       <div class="dp-top">
-        <div class="pav dp-av" id="d-av" style="width:44px;height:44px;font-size:16px"></div>
-        <div style="flex:1">
-          <div class="dp-name" id="d-name"></div>
-          <div class="dp-role" id="d-role"></div>
-          <div class="dp-tags" id="d-tags"></div>
-        </div>
-        <button class="dp-x" onclick="closeD()"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+        <div class="av" id="d-av" style="width:42px;height:42px;font-size:15px;"></div>
+        <div style="flex:1"><div class="dp-name" id="d-name"></div><div class="dp-sub" id="d-sub"></div></div>
+        <button class="dp-x" onclick="closeDP()"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
       </div>
       <div class="dp-tabs">
-        <div class="dt on" onclick="dtab('ov',this)">Overview</div>
-        <div class="dt" onclick="dtab('fam',this)">Family</div>
-        <div class="dt" onclick="dtab('hist',this)">History</div>
-        <div class="dt" onclick="dtab('give',this)">Giving</div>
-        <div class="dt" onclick="dtab('out',this)">Outreach</div>
+        <div class="dpt on" onclick="dTab('info',this)">Info</div>
+        <div class="dpt" onclick="dTab('history',this)">History</div>
+        <div class="dpt" onclick="dTab('family',this)">Family</div>
+        <div class="dpt" onclick="dTab('giving',this)">Giving</div>
       </div>
     </div>
     <div class="dp-body" id="d-body"></div>
-    <div class="dp-foot" id="d-foot"></div>
+    <div class="dp-foot">
+      <button class="btn btn-ghost" id="df-log" onclick="">Log</button>
+      <button class="btn btn-ghost" id="df-don" onclick="">Donation</button>
+      <button class="btn btn-ghost" id="df-fam" onclick="">Family</button>
+      <button class="btn btn-blue" id="df-del" onclick="" style="background:var(--red-l);color:var(--red);border:1px solid #fecaca">Delete</button>
+    </div>
   </div>
 </div>
 
-<!-- MODALS -->
-<div class="mo" id="am"><div class="md">
-  <div class="md-h"><div class="md-t">Add person</div><button class="dp-x" onclick="closeM('am')"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
+<!-- LOG MODAL -->
+<div class="mo" id="logm"><div class="md">
+  <div class="md-h"><div class="md-t">Log interaction</div><button class="dp-x" onclick="closeM('logm')"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
   <div class="md-b">
-    <div class="fr"><div class="fg"><div class="fl">First name *</div><input class="fi" id="a-fn" placeholder="Moshe"></div><div class="fg"><div class="fl">Last name *</div><input class="fi" id="a-ln" placeholder="Cohen"></div></div>
-    <div class="fr"><div class="fg"><div class="fl">Phone / WhatsApp</div><input class="fi" id="a-ph" placeholder="+1 555 0100"></div><div class="fg"><div class="fl">Email</div><input class="fi" id="a-em" type="email" placeholder="moshe@example.com"></div></div>
-    <div class="fr"><div class="fg"><div class="fl">Birthday</div><input class="fi" id="a-bd" placeholder="Nov 15  or  15 Cheshvan"></div><div class="fg"><div class="fl">Anniversary</div><input class="fi" id="a-an" placeholder="Jun 8"></div></div>
-    <div class="fr">
-      <div class="fg"><div class="fl">Status</div><select class="fi" id="a-st"><option value="new">New contact</option><option value="warm">Warm</option><option value="hot">Active / Close</option><option value="cold">Lapsed</option></select></div>
-      <div class="fg"><div class="fl">Category</div><select class="fi" id="a-cat"><option value="">Member</option><option value="donor">Donor</option><option value="student">Student</option><option value="board">Board member</option><option value="seeker">Seeker</option><option value="family">Family</option><option value="elderly">Elderly</option></select></div>
+    <div class="fg"><div class="fl">What happened?</div><textarea class="fi" id="l-note" placeholder="e.g. Called to wish happy birthday, spoke for 20 min about his son's upcoming bar mitzvah…" style="min-height:90px;"></textarea></div>
+    <div class="fr2">
+      <div class="fg" style="margin:0"><div class="fl">Type</div><select class="fi" id="l-type"><option value="call">📞 Phone call</option><option value="visit">🏠 Visit</option><option value="whatsapp">💬 WhatsApp</option><option value="text">📱 SMS</option><option value="email">📧 Email</option><option value="event">📅 Event</option><option value="pastoral">❤️ Pastoral</option></select></div>
+      <div class="fg" style="margin:0"><div class="fl">Date</div><input class="fi" id="l-date" type="date"></div>
     </div>
-    <div class="fg"><div class="fl">How we connected</div><input class="fi" id="a-ori" placeholder="e.g. Shabbat dinner, referred by Rachel, High Holidays…"></div>
-    <div class="fg"><div class="fl">Importance</div><div class="sr" id="a-str"><button class="sb2 on" data-v="1" onclick="setSt(1)">★</button><button class="sb2 on" data-v="2" onclick="setSt(2)">★</button><button class="sb2 on" data-v="3" onclick="setSt(3)">★</button><button class="sb2" data-v="4" onclick="setSt(4)">★</button><button class="sb2" data-v="5" onclick="setSt(5)">★</button></div></div>
-    <div class="fg"><div class="fl">Notes</div><textarea class="fi" id="a-no" placeholder="Personal details, family, interests, sensitivities…"></textarea></div>
-    <div class="fa"><button class="btn btn-s" onclick="closeM('am')">Cancel</button><button class="btn btn-p" onclick="addPerson()">Add to community</button></div>
+    <div class="fa"><button class="btn btn-ghost" onclick="closeM('logm')">Cancel</button><button class="btn btn-blue" onclick="saveLog()">Save</button></div>
   </div>
 </div></div>
 
+<!-- ADD PERSON MODAL -->
+<div class="mo" id="addm"><div class="md">
+  <div class="md-h"><div class="md-t">Add person</div><button class="dp-x" onclick="closeM('addm')"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
+  <div class="md-b">
+    <div class="fr2"><div class="fg"><div class="fl">First name *</div><input class="fi" id="a-fn" placeholder="Moshe"></div><div class="fg"><div class="fl">Last name *</div><input class="fi" id="a-ln" placeholder="Cohen"></div></div>
+    <div class="fr2"><div class="fg"><div class="fl">Phone</div><input class="fi" id="a-ph" type="tel" placeholder="+1 555 0100"></div><div class="fg"><div class="fl">Email</div><input class="fi" id="a-em" type="email" placeholder="moshe@example.com"></div></div>
+    <div class="fr2"><div class="fg"><div class="fl">Birthday</div><input class="fi" id="a-bd" placeholder="Nov 15"></div><div class="fg"><div class="fl">Status</div><select class="fi" id="a-st"><option value="new">New</option><option value="warm">Warm</option><option value="active">Active</option><option value="lapsed">Lapsed</option></select></div></div>
+    <div class="fg"><div class="fl">How we met</div><input class="fi" id="a-ori" placeholder="Shabbat dinner, High Holidays…"></div>
+    <div class="fg"><div class="fl">Importance</div><div class="star-row" id="a-stars"><span class="star on" data-v="1" onclick="setStar(1)">★</span><span class="star on" data-v="2" onclick="setStar(2)">★</span><span class="star on" data-v="3" onclick="setStar(3)">★</span><span class="star" data-v="4" onclick="setStar(4)">★</span><span class="star" data-v="5" onclick="setStar(5)">★</span></div></div>
+    <div class="fg"><div class="fl">Notes</div><textarea class="fi" id="a-no" placeholder="Personal details, family info, interests…" style="min-height:60px;"></textarea></div>
+    <div class="fa"><button class="btn btn-ghost" onclick="closeM('addm')">Cancel</button><button class="btn btn-blue" onclick="addPerson()">Add to community</button></div>
+  </div>
+</div></div>
+
+<!-- EVENT MODAL -->
 <div class="mo" id="evm"><div class="md">
   <div class="md-h"><div class="md-t">Add event</div><button class="dp-x" onclick="closeM('evm')"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
   <div class="md-b">
-    <div class="fr"><div class="fg"><div class="fl">Event name *</div><input class="fi" id="ev-nm" placeholder="Birthday, bar mitzvah, anniversary…"></div><div class="fg"><div class="fl">Person</div><select class="fi" id="ev-pid"></select></div></div>
-    <div class="fr"><div class="fg"><div class="fl">Date *</div><input class="fi" id="ev-dt" type="date"></div><div class="fg"><div class="fl">Type</div><select class="fi" id="ev-ty"><option value="birthday">Birthday</option><option value="anniversary">Anniversary</option><option value="yahrzeit">Yahrzeit</option><option value="holiday">Yom Tov</option><option value="lifecycle">Lifecycle event</option><option value="other">Other</option></select></div></div>
-    <div class="fg"><div class="fl">Notes</div><textarea class="fi" id="ev-no" placeholder="Any details…" style="min-height:52px"></textarea></div>
-    <div class="fa"><button class="btn btn-s" onclick="closeM('evm')">Cancel</button><button class="btn btn-p" onclick="addEvent()">Save event</button></div>
+    <div class="fr2"><div class="fg"><div class="fl">Event name *</div><input class="fi" id="ev-nm" placeholder="Birthday, bar mitzvah…"></div><div class="fg"><div class="fl">Date *</div><input class="fi" id="ev-dt" type="date"></div></div>
+    <div class="fr2"><div class="fg"><div class="fl">Person</div><select class="fi" id="ev-pid"></select></div><div class="fg"><div class="fl">Type</div><select class="fi" id="ev-ty"><option value="birthday">Birthday</option><option value="anniversary">Anniversary</option><option value="yahrzeit">Yahrzeit</option><option value="holiday">Holiday</option><option value="other">Other</option></select></div></div>
+    <div class="fg"><div class="fl">Notes</div><input class="fi" id="ev-no" placeholder="Any details…"></div>
+    <div class="fa"><button class="btn btn-ghost" onclick="closeM('evm')">Cancel</button><button class="btn btn-blue" onclick="addEvent()">Save</button></div>
   </div>
 </div></div>
 
-<div class="mo" id="fmm"><div class="md" style="width:420px">
-  <div class="md-h"><div class="md-t">Add family member</div><button class="dp-x" onclick="closeM('fmm')"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
-  <div class="md-b">
-    <div class="fr"><div class="fg"><div class="fl">Name *</div><input class="fi" id="fm-nm" placeholder="Chana"></div><div class="fg"><div class="fl">Relation</div><select class="fi" id="fm-rl"><option value="spouse">Spouse</option><option value="child">Child</option><option value="parent">Parent</option><option value="sibling">Sibling</option></select></div></div>
-    <div class="fr"><div class="fg"><div class="fl">Birthday</div><input class="fi" id="fm-bd" placeholder="Mar 22"></div><div class="fg"><div class="fl">Note</div><input class="fi" id="fm-ag" placeholder="age 8, 3rd grade"></div></div>
-    <div class="fa"><button class="btn btn-s" onclick="closeM('fmm')">Cancel</button><button class="btn btn-p" onclick="addFam()">Add</button></div>
-  </div>
-</div></div>
-
-<div class="mo" id="donm"><div class="md" style="width:400px">
+<!-- DONATION MODAL -->
+<div class="mo" id="donm"><div class="md">
   <div class="md-h"><div class="md-t">Log donation</div><button class="dp-x" onclick="closeM('donm')"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
   <div class="md-b">
-    <div class="fr"><div class="fg"><div class="fl">Amount ($) *</div><input class="fi" id="don-amt" type="number" placeholder="500"></div><div class="fg"><div class="fl">Date</div><input class="fi" id="don-dt" type="date"></div></div>
-    <div class="fg"><div class="fl">Campaign / occasion</div><input class="fi" id="don-note" placeholder="Annual campaign, Purim, building fund…"></div>
-    <div class="fa"><button class="btn btn-s" onclick="closeM('donm')">Cancel</button><button class="btn btn-p" onclick="addDon()">Log donation</button></div>
+    <div class="fr2"><div class="fg"><div class="fl">Amount ($) *</div><input class="fi" id="d-amt" type="number" placeholder="500"></div><div class="fg"><div class="fl">Date</div><input class="fi" id="d-dt" type="date"></div></div>
+    <div class="fg"><div class="fl">Campaign / note</div><input class="fi" id="d-note" placeholder="Annual campaign, Purim…"></div>
+    <div class="fa"><button class="btn btn-ghost" onclick="closeM('donm')">Cancel</button><button class="btn btn-blue" onclick="saveDon()">Log</button></div>
+  </div>
+</div></div>
+
+<!-- FAM MODAL -->
+<div class="mo" id="famm"><div class="md">
+  <div class="md-h"><div class="md-t">Add family member</div><button class="dp-x" onclick="closeM('famm')"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
+  <div class="md-b">
+    <div class="fr2"><div class="fg"><div class="fl">Name *</div><input class="fi" id="f-nm" placeholder="Chana"></div><div class="fg"><div class="fl">Relation</div><select class="fi" id="f-rl"><option value="spouse">Spouse</option><option value="child">Child</option><option value="parent">Parent</option><option value="sibling">Sibling</option></select></div></div>
+    <div class="fr2"><div class="fg"><div class="fl">Birthday</div><input class="fi" id="f-bd" placeholder="Mar 22"></div><div class="fg"><div class="fl">Note</div><input class="fi" id="f-ag" placeholder="age 8, 3rd grade"></div></div>
+    <div class="fa"><button class="btn btn-ghost" onclick="closeM('famm')">Cancel</button><button class="btn btn-blue" onclick="saveFam()">Add</button></div>
   </div>
 </div></div>
 
 <div class="toast" id="toast"></div>
 <script>
-// ══════════════════════════════════════
-// DATA & CONSTANTS
-// ══════════════════════════════════════
-const PAL=['#44403c','#0f766e','#0369a1','#7c3aed','#b45309','#be123c','#15803d','#6b7280','#0e7490','#92400e'];
-const MOS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-
-const SEED_P=[
-  {id:1,fn:'Moshe',ln:'Cohen',em:'moshe@example.com',ph:'555-0101',st:'cold',cat:'donor',imp:5,bd:'Nov 15',an:'',origin:'Long-time member since founding',notes:'Major donor. Was very active, drifted away 2 years ago. Loves Torah study. Best time: Sunday mornings.',ints:[{d:'2024-02-10',n:'Called for Purim. Short but warm conversation.',t:'call',by:'rabbi'},{d:'2023-09-25',n:"Attended Yom Kippur. Said he'd come more often.",t:'event',by:'rabbi'},{d:'2022-12-01',n:'Annual donation logged.',t:'donation',by:'rabbi'}],fam:[{nm:'Chana',rl:'spouse',bd:'Mar 3'},{nm:'Yitzchak',rl:'child',bd:'Jul 22',ag:'age 12'},{nm:'Rivka',rl:'child',bd:'Oct 5',ag:'age 9'}],donations:[{amt:5000,dt:'2023-12-01',note:'Annual campaign'},{amt:1800,dt:'2022-12-01',note:'Annual campaign'}],lc:'2024-02-10'},
-  {id:2,fn:'Rachel',ln:'Levy',em:'rachel@example.com',ph:'555-0102',st:'hot',cat:'',imp:4,bd:'Mar 22',an:'Jun 8',origin:'Met at Shabbat dinner 3 years ago',notes:'Very engaged. Attends weekly Torah class. Husband David less engaged. Two young kids.',ints:[{d:'2025-01-18',n:'Attended Shabbat dinner. Brought new friend Tamar.',t:'event',by:'rabbi'},{d:'2025-01-05',n:'Called to check in — husband having a hard time at work.',t:'call',by:'rebbet'},{d:'2024-12-20',n:'Chanukah party. Helped set up.',t:'event',by:'rabbi'}],fam:[{nm:'David',rl:'spouse',bd:'Aug 14'},{nm:'Rina',rl:'child',bd:'Apr 2',ag:'age 5'},{nm:'Noam',rl:'child',bd:'Jan 30',ag:'age 2'}],donations:[],lc:'2025-01-18'},
-  {id:3,fn:'David',ln:'Berkowitz',em:'david.b@example.com',ph:'555-0103',st:'warm',cat:'board',imp:5,bd:'Jul 4',an:'',origin:'Board founding member',notes:'Board member. Influential lawyer. Responds best to texts, not calls. Sunday mornings only.',ints:[{d:'2024-12-01',n:'Board meeting. Offered to chair annual gala.',t:'meeting',by:'rabbi'},{d:'2024-10-15',n:'Sukkot celebration.',t:'event',by:'rabbi'}],fam:[{nm:'Sarah',rl:'spouse',bd:'Feb 11'}],donations:[{amt:10000,dt:'2024-01-01',note:'Board pledge'},{amt:10000,dt:'2023-01-01',note:'Board pledge'}],lc:'2024-12-01'},
-  {id:4,fn:'Tamar',ln:'Shapiro',em:'tamar@example.com',ph:'555-0104',st:'new',cat:'seeker',imp:3,bd:'Sep 10',an:'',origin:"Rachel's friend — first Shabbat Jan 2025",notes:"Rachel's friend. First visit. Stayed late asking questions about Shabbat observance. Very open and curious. Strike while warm — she's at a pivotal moment.",ints:[{d:'2025-01-18',n:'First visit. Stayed late asking questions about Shabbat.',t:'event',by:'rabbi'}],fam:[],donations:[],lc:'2025-01-18'},
-  {id:5,fn:'Yosef',ln:'Friedman',em:'yosef@example.com',ph:'555-0105',st:'cold',cat:'',imp:4,bd:'Dec 5',an:'Mar 14',origin:'High Holidays 2018',notes:'Used to come every week. Moved 20 min away. Wife Dina mentioned they might try a closer shul.',ints:[{d:'2023-08-20',n:'Shabbat dinner.',t:'event',by:'rabbi'},{d:'2023-05-01',n:'Brief call on birthday.',t:'call',by:'rebbet'}],fam:[{nm:'Dina',rl:'spouse',bd:'Nov 7'},{nm:'Avi',rl:'child',bd:'Jun 15',ag:'age 8'}],donations:[{amt:500,dt:'2023-09-01',note:'High Holidays'}],lc:'2023-08-20'},
-  {id:6,fn:'Miriam',ln:'Adler',em:'miriam@example.com',ph:'555-0106',st:'hot',cat:'',imp:4,bd:'Feb 28',an:'',origin:'Torah class — started 2 years ago',notes:'Attends Torah class every Tuesday without fail. Recently lost her mother — very fragile emotionally. Needs pastoral presence.',ints:[{d:'2025-02-01',n:'Torah class. Shared beautiful personal dvar Torah.',t:'class',by:'rabbi'},{d:'2025-01-10',n:'Shiva call after her mother passed away.',t:'pastoral',by:'rebbet'},{d:'2025-01-11',n:'Sent flowers and called to check in.',t:'call',by:'rebbet'}],fam:[],donations:[{amt:180,dt:'2024-09-01',note:'Rosh Hashana'}],lc:'2025-02-01'},
-  {id:7,fn:'Binyamin',ln:'Katz',em:'ben@example.com',ph:'555-0107',st:'warm',cat:'student',imp:3,bd:'May 19',an:'',origin:'Campus outreach event',notes:'University junior. Loves deep discussions. Best via WhatsApp. Shabbat tricky with his schedule.',ints:[{d:'2024-11-25',n:'Chanukah menorah lighting on campus.',t:'event',by:'rabbi'},{d:'2024-09-15',n:'High Holidays — first time at our shul.',t:'event',by:'rabbi'}],fam:[],donations:[],lc:'2024-11-25'},
-  {id:8,fn:'Leah',ln:'Stern',em:'leah@example.com',ph:'555-0108',st:'cold',cat:'donor',imp:5,bd:'Oct 3',an:'Jul 22',origin:'Original founding family',notes:'Long-time pillar. Gave very generously for years. No contact in 14+ months. Something changed — handle with extreme delicacy.',ints:[{d:'2023-10-10',n:'Sukkot event.',t:'event',by:'rabbi'},{d:'2023-06-01',n:'Called to thank for donation.',t:'call',by:'rabbi'}],fam:[{nm:'Avi',rl:'spouse',bd:'Dec 8'}],donations:[{amt:18000,dt:'2022-12-01',note:'Annual gala'},{amt:15000,dt:'2021-12-01',note:'Annual gala'}],lc:'2023-10-10'},
+const COLORS=['#3b82f6','#10b981','#f59e0b','#ef4444','#8b5cf6','#ec4899','#06b6d4','#84cc16'];
+const MO=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const SEED=[
+  {id:1,fn:'Moshe',ln:'Cohen',ph:'555-0101',em:'moshe@example.com',st:'lapsed',cat:'donor',imp:5,bd:'Nov 15',origin:'Founding member',notes:'Major donor. Very active before, drifted 2 years ago. Best time to call: Sunday morning.',ints:[{d:'2024-02-10',n:'Called for Purim. Warm, short.',t:'call',by:'rabbi'}],fam:[{nm:'Chana',rl:'spouse',bd:'Mar 3'},{nm:'Yitzchak',rl:'child',ag:'age 12'}],don:[{amt:5000,dt:'2023-12-01',note:'Annual campaign'}],lc:'2024-02-10'},
+  {id:2,fn:'Rachel',ln:'Levy',ph:'555-0102',em:'rachel@example.com',st:'active',cat:'',imp:4,bd:'Mar 22',origin:'Shabbat dinner 3 years ago',notes:'Attends weekly Torah class. Very engaged.',ints:[{d:'2025-01-18',n:'Shabbat dinner. Brought friend Tamar.',t:'event',by:'rabbi'},{d:'2025-01-05',n:'Check-in call — husband going through hard time.',t:'call',by:'rebbet'}],fam:[{nm:'David',rl:'spouse',bd:'Aug 14'},{nm:'Rina',rl:'child',ag:'age 5'}],don:[],lc:'2025-01-18'},
+  {id:3,fn:'David',ln:'Berkowitz',ph:'555-0103',em:'david.b@example.com',st:'warm',cat:'board',imp:5,bd:'Jul 4',origin:'Board founding member',notes:'Influential lawyer. Responds better to texts. Offered to chair annual gala.',ints:[{d:'2024-12-01',n:'Board meeting.',t:'meeting',by:'rabbi'}],fam:[{nm:'Sarah',rl:'spouse'}],don:[{amt:10000,dt:'2024-01-01',note:'Board pledge'}],lc:'2024-12-01'},
+  {id:4,fn:'Tamar',ln:'Shapiro',ph:'555-0104',em:'tamar@example.com',st:'new',cat:'',imp:3,bd:'Sep 10',origin:"Rachel's friend — first visit Jan 2025",notes:"First visit. Very curious, asked many questions about Shabbat. Pivotal moment.",ints:[{d:'2025-01-18',n:'First Shabbat visit.',t:'event',by:'rabbi'}],fam:[],don:[],lc:'2025-01-18'},
+  {id:5,fn:'Yosef',ln:'Friedman',ph:'555-0105',em:'yosef@example.com',st:'lapsed',cat:'',imp:4,bd:'Dec 5',origin:'High Holidays 2018',notes:'Used to come weekly. Wife mentioned trying a closer shul.',ints:[{d:'2023-08-20',n:'Shabbat dinner.',t:'event',by:'rabbi'}],fam:[{nm:'Dina',rl:'spouse'},{nm:'Avi',rl:'child',ag:'age 8'}],don:[{amt:500,dt:'2023-09-01',note:'High Holidays'}],lc:'2023-08-20'},
+  {id:6,fn:'Miriam',ln:'Adler',ph:'555-0106',em:'miriam@example.com',st:'active',cat:'',imp:4,bd:'Feb 28',origin:'Torah class 2 years ago',notes:'Weekly Torah class. Recently lost her mother.',ints:[{d:'2025-02-01',n:'Torah class — shared beautiful dvar Torah.',t:'class',by:'rabbi'},{d:'2025-01-10',n:'Shiva call after mother passed.',t:'pastoral',by:'rebbet'}],fam:[],don:[{amt:180,dt:'2024-09-01',note:'Rosh Hashana'}],lc:'2025-02-01'},
+  {id:7,fn:'Leah',ln:'Stern',ph:'555-0108',em:'leah@example.com',st:'lapsed',cat:'donor',imp:5,bd:'Oct 3',origin:'Founding family',notes:'Long-time pillar. Major donor for years. 14+ months no contact. Handle with care.',ints:[{d:'2023-10-10',n:'Sukkot event.',t:'event',by:'rabbi'}],fam:[{nm:'Avi',rl:'spouse'}],don:[{amt:18000,dt:'2022-12-01',note:'Annual gala'},{amt:15000,dt:'2021-12-01',note:'Annual gala'}],lc:'2023-10-10'},
 ];
 const SEED_E=[
-  {id:1,nm:"Rachel's Anniversary",pid:2,dt:'2025-03-08',ty:'anniversary',no:'6th anniversary. Great moment to reach out.'},
-  {id:2,nm:"Moshe Cohen's Birthday",pid:1,dt:'2025-03-15',ty:'birthday',no:'Major donor — personal call essential, not just a text.'},
-  {id:3,nm:"Miriam Adler's Birthday",pid:6,dt:'2025-02-28',ty:'birthday',no:'She just lost her mother. This birthday will be emotional.'},
-  {id:4,nm:'Purim',pid:null,dt:'2025-03-13',ty:'holiday',no:'Invite all lapsed members. Great re-entry moment.'},
-  {id:5,nm:'Pesach / Seder',pid:null,dt:'2025-04-12',ty:'holiday',no:'Reach out to new contacts especially.'},
-  {id:6,nm:"Leah Stern — Anniversary",pid:8,dt:'2025-04-22',ty:'anniversary',no:"14+ months no contact. This is an opening."},
+  {id:1,nm:"Rachel's Anniversary",pid:2,dt:'2025-03-08',ty:'anniversary',no:'6th anniversary'},
+  {id:2,nm:"Moshe Cohen's Birthday",pid:1,dt:'2025-03-15',ty:'birthday',no:'Major donor — essential to call'},
+  {id:3,nm:'Purim',pid:null,dt:'2025-03-13',ty:'holiday',no:'Invite lapsed members'},
+  {id:4,nm:'Pesach',pid:null,dt:'2025-04-12',ty:'holiday',no:'Reach out to new contacts'},
 ];
 
-let P=JSON.parse(localStorage.getItem('k4_p')||'null')||SEED_P;
-let E=JSON.parse(localStorage.getItem('k4_e')||'null')||SEED_E;
-let filt='all', cpid=null, ctab='ov', nst=3, famPid=null, donPid=null, who='rabbi';
-let impRows=[];
+let P=JSON.parse(localStorage.getItem('k6_p')||'null')||SEED;
+let E=JSON.parse(localStorage.getItem('k6_e')||'null')||SEED_E;
+let who=localStorage.getItem('k_who')||'rabbi';
+let filt='all',activePid=null,activeTab='info',starVal=3,logPid=null,donPid=null,famPid=null;
 
-function sv(){localStorage.setItem('k4_p',JSON.stringify(P));localStorage.setItem('k4_e',JSON.stringify(E));}
-
-// ── HELPERS ──────────────────────────────
-function ini(p){return(p.fn[0]+(p.ln?.[0]||'')).toUpperCase();}
-function abg(p){return PAL[(p.fn.charCodeAt(0)+(p.ln?.charCodeAt(0)||0))%PAL.length];}
-function ds(d){if(!d)return 9999;const m=Date.now()-new Date(d).getTime();return isNaN(m)?9999:Math.floor(m/86400000);}
-function du(d){if(!d)return 999;const nd=new Date(d);if(isNaN(nd))return 999;nd.setFullYear(new Date().getFullYear());if(nd<new Date())nd.setFullYear(nd.getFullYear()+1);return Math.floor((nd-Date.now())/86400000);}
-function fd(d){try{return new Date(d).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});}catch{return d||'—';}}
-function ls(d){if(d>=9999)return'Never contacted';if(d===0)return'Today';if(d===1)return'Yesterday';if(d<7)return d+'d ago';if(d<30)return Math.floor(d/7)+'w ago';if(d<365)return Math.floor(d/30)+'mo ago';return Math.floor(d/365)+'yr+ ago';}
-function hp(d){return Math.max(0,Math.min(100,100-(d/365)*100));}
-function hc(d){return d<30?'g':d<90?'a':'r';}
-function urg(d){return d>=90?'crit':d>=45?'warn':'';}
-function sbadge(s){if(s==='hot')return'<span class="badge g">Active</span>';if(s==='cold')return'<span class="badge r">Lapsed</span>';if(s==='new')return'<span class="badge b">New</span>';return'<span class="badge n">Warm</span>';}
-function cbadge(c){if(!c)return'';const l={donor:'Donor',student:'Student',board:'Board',seeker:'Seeker',family:'Family',elderly:'Elderly'};return`<span class="badge a">${l[c]||c}</span>`;}
-function stTxt(n){return'★'.repeat(n)+'☆'.repeat(5-n);}
-function totDon(p){return(p.donations||[]).reduce((s,d)=>s+Number(d.amt||0),0);}
+function sv(){localStorage.setItem('k6_p',JSON.stringify(P));localStorage.setItem('k6_e',JSON.stringify(E));}
 function tod(){return new Date().toISOString().split('T')[0];}
+function ini(p){return(p.fn[0]+(p.ln?.[0]||'')).toUpperCase();}
+function abg(p){return COLORS[(p.fn.charCodeAt(0)+p.ln.charCodeAt(0))%COLORS.length];}
+function ago(d){if(!d)return'Never';const n=Math.floor((Date.now()-new Date(d))/86400000);if(n<0)return'Never';if(n===0)return'Today';if(n===1)return'Yesterday';if(n<7)return n+'d ago';if(n<30)return Math.floor(n/7)+'w ago';if(n<365)return Math.floor(n/30)+'mo ago';return Math.floor(n/365)+'yr+ ago';}
+function days(d){if(!d)return 999;const n=Math.floor((Date.now()-new Date(d))/86400000);return isNaN(n)?999:n;}
+function nextDu(d){if(!d)return 999;const nd=new Date(d);nd.setFullYear(new Date().getFullYear());if(nd<new Date())nd.setFullYear(nd.getFullYear()+1);return Math.floor((nd-Date.now())/86400000);}
+function totDon(p){return(p.don||[]).reduce((s,d)=>s+Number(d.amt||0),0);}
+function fd(d){try{const x=new Date(d);return isNaN(x)?d:MO[x.getMonth()]+' '+x.getDate()+', '+x.getFullYear();}catch{return d;}}
+function hp(d){return Math.max(0,Math.min(100,100-(d/365)*100));}
+function hcl(d){return d<45?'hf-g':d<90?'hf-a':'hf-r';}
 
-// ── WHO TOGGLE ────────────────────────────
-function setWho(w){
-  who=w;
-  document.getElementById('who-r').classList.toggle('on',w==='rabbi');
-  document.getElementById('who-rb').classList.toggle('on',w==='rebbet');
-  const av=document.getElementById('sb-av');
-  av.className='sb-av'+(w==='rebbet'?' rb':'');
-  document.getElementById('sb-nm').textContent=w==='rabbi'?'Rabbi Levi Goldstein':'Rebbetzin Goldstein';
-  toast('Logging as '+(w==='rabbi'?'Rabbi Levi':'Rebbetzin'));
-}
+// who
+function setWho(w){who=w;localStorage.setItem('k_who',w);document.getElementById('wb-r').classList.toggle('on',w==='rabbi');document.getElementById('wb-rb').classList.toggle('on',w==='rebbet');toast('Logging as '+(w==='rabbi'?'Rabbi':'Rebbetzin'));}
 
-// ── MOBILE ────────────────────────────────
-function toggleSB(){document.getElementById('sb').classList.toggle('mob');document.getElementById('mob-bg').classList.toggle('on');}
-function closeSB(){document.getElementById('sb').classList.remove('mob');document.getElementById('mob-bg').classList.remove('on');}
-
-// ── NAV ───────────────────────────────────
+// nav
 function go(page,el){
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
   document.getElementById('p-'+page).classList.add('on');
-  document.querySelectorAll('.ni').forEach(n=>n.classList.remove('on'));
+  document.querySelectorAll('.sni').forEach(n=>n.classList.remove('on'));
   if(el)el.classList.add('on');
-  else document.querySelectorAll('.ni').forEach(n=>{if(n.getAttribute('onclick')?.includes("'"+page+"'"))n.classList.add('on');});
-  const T={brief:'Daily Brief',people:'People',events:'Calendar',remind:'Reminders',compose:'AI Compose',paste:'Smart Paste',import:'Import Contacts',insights:'Insights'};
-  document.getElementById('pttl').textContent=T[page]||page;
+  else{const hits=document.querySelectorAll('.sni');hits.forEach(n=>{if(n.getAttribute('onclick')?.includes("'"+page+"'"))n.classList.add('on');});}
+  const T={home:'Home',people:'People',calendar:'Calendar',reminders:'Reminders',insights:'Insights'};
+  document.getElementById('page-title').textContent=T[page]||page;
   closeSB();
-  if(page==='brief')renderBrief();
+  if(page==='home')renderHome();
   if(page==='people')renderPeople();
-  if(page==='events'){renderEvents();fillEvSel();}
-  if(page==='remind')renderRemind();
+  if(page==='calendar')renderCalendar();
+  if(page==='reminders')renderReminders();
   if(page==='insights')renderInsights();
-  if(page==='compose')fillCpSel();
   upBadges();
 }
-
+function setBN(p){document.querySelectorAll('.bni').forEach(b=>b.classList.remove('on'));const el=document.getElementById('bn-'+p);if(el)el.classList.add('on');}
+function toggleSB(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('mob-bg').classList.toggle('on');}
+function closeSB(){document.getElementById('sidebar').classList.remove('open');document.getElementById('mob-bg').classList.remove('on');}
 function upBadges(){
-  const rem=P.filter(p=>ds(p.lc)>=60).length;
-  const ev=E.filter(e=>du(e.dt)<=14).length;
-  document.getElementById('nb-ppl').textContent=P.length;
-  const rEl=document.getElementById('nb-rem'); rEl.textContent=rem||''; rEl.style.display=rem?'':'none';
-  const eEl=document.getElementById('nb-ev'); eEl.textContent=ev||''; eEl.style.display=ev?'':'none';
-  const b=rem+E.filter(e=>du(e.dt)<=3).length;
-  const bEl=document.getElementById('nb-brief'); bEl.textContent=b||''; bEl.style.display=b?'':'none';
+  const n=P.filter(p=>days(p.lc)>=60).length;
+  document.getElementById('ppl-cnt').textContent=P.length;
+  const rb=document.getElementById('rem-badge');rb.textContent=n||'';rb.style.display=n?'':'none';
+  const bnb=document.getElementById('bn-rem-b');if(bnb){bnb.textContent=n||'';bnb.style.display=n?'':'none';}
 }
 
-// ══════════════════════════════════════
-// DAILY BRIEF
-// ══════════════════════════════════════
-function renderBrief(){
-  upBadges(); fillQlSel();
-  const now=new Date();
-  const days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-  document.getElementById('g-date').textContent=`${days[now.getDay()]}, ${MOS[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`;
+// ── HOME ──
+function renderHome(){
+  const hr=new Date().getHours();
+  const greet=hr<12?'Good morning':hr<17?'Good afternoon':'Good evening';
   const name=who==='rabbi'?'Rabbi Levi':'Rebbetzin';
-  const h=now.getHours();
-  const overdue=P.filter(p=>ds(p.lc)>=90).length;
-  const soon=E.filter(e=>du(e.dt)<=7).length;
-  document.getElementById('g-head').innerHTML=`<em>Good ${h<12?'morning':'afternoon'}, ${name}.</em>`;
-  const bits=[];
-  if(overdue)bits.push(`${overdue} relationship${overdue>1?'s':''} need attention`);
-  if(soon)bits.push(`${soon} event${soon>1?'s':''} this week`);
-  document.getElementById('g-sub').textContent=bits.length?bits.join(' · '):'Your community looks healthy. Here\'s who could use a hello today.';
-  const cold=P.filter(p=>p.st==='cold').length;
-  document.getElementById('stats').innerHTML=`
-    <div class="sc"><div class="sc-v">${P.length}</div><div class="sc-l">Community</div></div>
-    <div class="sc"><div class="sc-v ${cold?'warn':''}">${cold}</div><div class="sc-l">Lapsed</div></div>
-    <div class="sc"><div class="sc-v ${overdue?'crit':''}">${overdue}</div><div class="sc-l">Overdue</div></div>
-    <div class="sc"><div class="sc-v">${E.filter(e=>du(e.dt)<=14).length}</div><div class="sc-l">Events soon</div></div>`;
-  const actions=buildActions();
-  document.getElementById('acards').innerHTML=actions.length
-    ?actions.slice(0,7).map((a,i)=>`
-      <div class="acard p-${a.p}" id="ac${i}" onclick="openD(${a.pid})">
-        <div class="pav acard-av" style="width:34px;height:34px;font-size:13px;background:${a.bg}">${a.ini}</div>
-        <div class="acard-body"><div class="acard-title">${a.title}</div><div class="acard-sub">${a.sub}</div></div>
-        <div class="acard-right">
-          <span class="pill ${a.p}">${a.tag}</span>
-          <div class="ck" id="ck${i}" onclick="event.stopPropagation();doCk(${i})" title="Mark done"><svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-        </div>
-      </div>`).join('')
-    :'<div class="empty" style="padding:24px">All caught up ✓</div>';
-  buildDigest();
-  renderAsideEvs();
-  loadHebcal();
-}
+  document.getElementById('h-greet').textContent=`${greet}, ${name}.`;
+  const lapsed=P.filter(p=>days(p.lc)>=90).length;
+  const soon=E.filter(e=>nextDu(e.dt)<=7).length;
+  const msgs=[];
+  if(lapsed)msgs.push(`${lapsed} relationship${lapsed>1?'s':''} overdue`);
+  if(soon)msgs.push(`${soon} event${soon>1?'s':''} this week`);
+  document.getElementById('h-sub').textContent=msgs.join(' · ')||'Your community is in good shape.';
 
-function buildActions(){
-  const items=[];
-  P.forEach(p=>{
-    if(!p.bd)return;
-    const dv=du(p.bd);
-    if(dv===0)items.push({pid:p.id,title:`Today is ${p.fn} ${p.ln}'s birthday`,sub:'Send a personal message right now',p:'g',tag:'Birthday today',bg:abg(p),ini:ini(p)});
-    else if(dv>0&&dv<=5)items.push({pid:p.id,title:`${p.fn}'s birthday in ${dv} day${dv>1?'s':''}`,sub:'Prepare a warm personal message',p:'a',tag:'Birthday soon',bg:abg(p),ini:ini(p)});
-  });
-  P.forEach(p=>{
-    if(!p.an)return;
-    const dv=du(p.an);
-    if(dv>=0&&dv<=3){
-      const sp=p.fam?.find(f=>f.rl==='spouse')?.nm||'spouse';
-      items.push({pid:p.id,title:`${p.fn} & ${sp}'s anniversary ${dv===0?'is today':`in ${dv}d`}`,sub:'A warm message goes a long way',p:dv===0?'g':'a',tag:'Anniversary',bg:abg(p),ini:ini(p)});
-    }
-  });
-  E.filter(e=>e.pid&&du(e.dt)<=7&&du(e.dt)>=0).forEach(ev=>{
-    const p=P.find(x=>x.id===ev.pid);if(!p)return;
-    const dv=du(ev.dt);
-    items.push({pid:p.id,title:`${ev.nm} ${dv===0?'— today':dv===1?'— tomorrow':`in ${dv}d`}`,sub:ev.no||`Reach out to ${p.fn} before this event`,p:'b',tag:ev.ty,bg:abg(p),ini:ini(p)});
-  });
-  P.filter(p=>ds(p.lc)>=90).sort((a,b)=>b.imp-a.imp).slice(0,4).forEach(p=>{
-    const d=ds(p.lc);
-    items.push({pid:p.id,title:`Reconnect with ${p.fn} ${p.ln}`,sub:`${ls(d)} — ${p.st==='cold'?'relationship is cold':'needs attention'}`,p:'r',tag:`${Math.floor(d/30)}mo silent`,bg:abg(p),ini:ini(p)});
-  });
-  P.filter(p=>ds(p.lc)>=45&&ds(p.lc)<90&&p.imp>=4).slice(0,3).forEach(p=>{
-    items.push({pid:p.id,title:`Check in with ${p.fn} ${p.ln}`,sub:`${ls(ds(p.lc))} — relationship cooling`,p:'a',tag:'Fading',bg:abg(p),ini:ini(p)});
-  });
-  P.filter(p=>p.st==='new'&&ds(p.lc)<=21).forEach(p=>{
-    items.push({pid:p.id,title:`Follow up with ${p.fn} ${p.ln}`,sub:`New contact — ${p.origin||'recently added'}`,p:'b',tag:'New',bg:abg(p),ini:ini(p)});
-  });
-  return items.sort((a,b)=>['r','a','g','b'].indexOf(a.p)-['r','a','g','b'].indexOf(b.p));
-}
+  const cold=P.filter(p=>p.st==='lapsed').length;
+  const overdue=P.filter(p=>days(p.lc)>=90).length;
+  document.getElementById('h-stats').innerHTML=`
+    <div class="stat-card"><div class="stat-n">${P.length}</div><div class="stat-l">Members</div></div>
+    <div class="stat-card"><div class="stat-n ${cold?'warn':''}">${cold}</div><div class="stat-l">Lapsed</div></div>
+    <div class="stat-card"><div class="stat-n ${overdue?'bad':''}">${overdue}</div><div class="stat-l">Overdue</div></div>
+    <div class="stat-card"><div class="stat-n">${E.filter(e=>nextDu(e.dt)<=14).length}</div><div class="stat-l">Events soon</div></div>`;
 
-function doCk(i){
-  document.getElementById('ac'+i)?.classList.add('done');
-  document.getElementById('ck'+i)?.classList.add('done');
-}
-
-function buildDigest(){
-  const top=[...P].sort((a,b)=>{
-    const sa=a.imp*4-Math.min(ds(a.lc)/30,12);
-    const sb=b.imp*4-Math.min(ds(b.lc)/30,12);
-    return sb-sa;
-  }).slice(0,8);
-  document.getElementById('digest').innerHTML=`
-    <div class="digest-title">This week — who to call, text, or visit</div>
-    ${top.map(p=>{
-      const d=ds(p.lc);
-      const why=d>=90?`${ls(d)} — urgent`:d>=45?`${ls(d)} — follow up`:du(p.bd)<=7?`Birthday in ${du(p.bd)}d`:p.st==='new'?'New contact — stay warm':`★${p.imp} priority`;
-      return`<div class="drow" onclick="openD(${p.id})" style="cursor:pointer">
-        <div class="pav drow-av" style="width:28px;height:28px;font-size:11px;background:${abg(p)}">${ini(p)}</div>
-        <div class="drow-info"><div class="drow-name">${p.fn} ${p.ln}</div><div class="drow-why">${why}</div></div>
-        <div class="drow-acts">
-          <div class="ib" onclick="event.stopPropagation();qMsg(${p.id})" title="Compose message"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
-          <div class="ib" onclick="event.stopPropagation();qlFor(${p.id})" title="Quick log"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div>
-        </div>
-      </div>`;
-    }).join('')}`;
-}
-
-function renderAsideEvs(){
-  const evs=[...E].filter(e=>du(e.dt)<=30&&du(e.dt)>=0).sort((a,b)=>du(a.dt)-du(b.dt)).slice(0,7);
-  document.getElementById('aside-evs').innerHTML=evs.length?evs.map(ev=>{
-    const d=new Date(ev.dt),dv=du(ev.dt);
-    const per=ev.pid?P.find(p=>p.id===ev.pid):null;
-    return`<div class="ev-mini" style="cursor:${per?'pointer':'default'}" onclick="${per?'openD('+per.id+')':''}">
-      <div class="ev-cal"><div class="em">${isNaN(d)?'':MOS[d.getMonth()]}</div><div class="ed">${isNaN(d)?'?':d.getDate()}</div></div>
-      <div style="flex:1;min-width:0"><div class="ev-nm">${ev.nm}</div><div class="ev-wh">${per?per.fn+' '+per.ln:'Community'}</div></div>
-      <div class="ev-soon ${dv<=5?'hot':''}">${dv===0?'Today':dv===1?'Tmrw':dv+'d'}</div>
+  document.getElementById('h-navbtns').innerHTML=`
+    <div class="nav-btn" onclick="go('people',null);setBN('people')">
+      <div class="nav-btn-icon" style="background:var(--blue-l)"><svg width="18" height="18" fill="none" stroke="var(--blue)" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+      <div><div class="nav-btn-title">People</div><div class="nav-btn-sub">${P.length} members</div></div>
+    </div>
+    <div class="nav-btn" onclick="go('calendar',null);setBN('calendar')">
+      <div class="nav-btn-icon" style="background:#f0fdf4"><svg width="18" height="18" fill="none" stroke="#22c55e" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+      <div><div class="nav-btn-title">Calendar</div><div class="nav-btn-sub">${E.length} events</div></div>
+    </div>
+    <div class="nav-btn" onclick="go('reminders',null);setBN('reminders')">
+      <div class="nav-btn-icon" style="background:${overdue?'var(--red-l)':'var(--amber-l)'}"><svg width="18" height="18" fill="none" stroke="${overdue?'var(--red)':'var(--amber)'}" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg></div>
+      <div><div class="nav-btn-title">Reminders</div><div class="nav-btn-sub">${overdue?overdue+' overdue':'All caught up'}</div></div>
+    </div>
+    <div class="nav-btn" onclick="go('insights',null);setBN('insights')">
+      <div class="nav-btn-icon" style="background:#f5f3ff"><svg width="18" height="18" fill="none" stroke="#8b5cf6" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+      <div><div class="nav-btn-title">Insights</div><div class="nav-btn-sub">Community health</div></div>
     </div>`;
-  }).join(''):'<div style="font-size:12px;color:var(--ink4)">No events in the next 30 days</div>';
+
+  // highlights: urgent first
+  const hi=[];
+  P.filter(p=>days(p.lc)>=90).sort((a,b)=>b.imp-a.imp).slice(0,3).forEach(p=>hi.push({pid:p.id,name:p.fn+' '+p.ln,why:`${ago(p.lc)} · reconnect`,tag:'overdue'}));
+  E.filter(e=>nextDu(e.dt)<=7).slice(0,3).forEach(ev=>{const p=ev.pid?P.find(x=>x.id===ev.pid):null;hi.push({pid:p?.id,name:ev.nm,why:`In ${nextDu(ev.dt)} day${nextDu(ev.dt)!==1?'s':''}${p?' · '+p.fn+' '+p.ln:''}`,tag:'soon'});});
+  P.filter(p=>p.st==='new'&&days(p.lc)<=21).slice(0,2).forEach(p=>hi.push({pid:p.id,name:p.fn+' '+p.ln,why:'New contact · follow up',tag:'new'}));
+  const tagMap={overdue:'tag-red',soon:'tag-blue',new:'tag-green'};
+  document.getElementById('h-hi-title').style.display=hi.length?'':'none';
+  document.getElementById('h-highlights').innerHTML=hi.map(h=>`
+    <div class="hi-item" onclick="${h.pid?'openDP('+h.pid+')':''}">
+      <div class="hi-info"><div class="hi-name">${h.name}</div><div class="hi-why">${h.why}</div></div>
+      <div class="hi-tag"><span class="tag ${tagMap[h.tag]||'tag-gray'}">${h.tag}</span></div>
+    </div>`).join('')||'';
 }
 
-// ── HEBCAL ────────────────────────────────
-async function loadHebcal(){
-  const el=document.getElementById('heb-info');
-  try{
-    const now=new Date();
-    const url=`https://www.hebcal.com/shabbat?cfg=json&geo=city&city=New+York&m=50&b=18&d=on`;
-    const r=await fetch(url);const d=await r.json();
-    const items=d.items||[];
-    let html='';
-    const candles=items.find(i=>i.category==='candles');
-    const havdalah=items.find(i=>i.category==='havdalah');
-    const holidays=items.filter(i=>i.category==='holiday').slice(0,3);
-    if(candles){
-      const cd=new Date(candles.date);
-      html+=`<div class="heb-box"><div class="hb-title">🕯️ Shabbat Candles</div>${MOS[cd.getMonth()]} ${cd.getDate()} at ${candles.title.match(/\d+:\d+\s*[AP]M/i)?.[0]||'sunset'}</div>`;
-    }
-    holidays.forEach(h=>{
-      const hd=new Date(h.date);
-      html+=`<div style="font-size:12px;color:var(--ink3);padding:4px 0;border-bottom:1px solid var(--s2)">✡️ <strong style="color:var(--ink)">${h.title}</strong> · ${MOS[hd.getMonth()]} ${hd.getDate()}</div>`;
-    });
-    el.innerHTML=html||'<div style="font-size:12px;color:var(--ink4)">No upcoming holidays found</div>';
-  }catch{
-    el.innerHTML='<div style="font-size:12px;color:var(--ink4)">Jewish calendar unavailable offline</div>';
-  }
-}
-
-// ── QUICK LOG ─────────────────────────────
-function fillQlSel(){
-  const s=document.getElementById('ql-pid');
-  if(!s)return;
-  s.innerHTML='<option value="">Select person…</option>'+[...P].sort((a,b)=>a.fn.localeCompare(b.fn)).map(p=>`<option value="${p.id}">${p.fn} ${p.ln}</option>`).join('');
-}
-function qlFor(id){
-  fillQlSel();
-  document.getElementById('ql-pid').value=id;
-  document.getElementById('ql-note').focus();
-}
-function quickLog(){
-  const pid=parseInt(document.getElementById('ql-pid').value);
-  const note=document.getElementById('ql-note').value.trim();
-  const type=document.getElementById('ql-type').value;
-  if(!pid){toast('Select a person first');return;}
-  if(!note){toast('Add a note');return;}
-  const p=P.find(x=>x.id===pid);if(!p)return;
-  p.ints.unshift({d:tod(),n:note,t:type,by:who});
-  p.lc=tod();
-  if(p.st==='cold')p.st='warm';
-  sv(); upBadges();
-  document.getElementById('ql-note').value='';
-  toast(`Logged for ${p.fn} ${p.ln}`);
-  buildDigest();
-}
-
-// ══════════════════════════════════════
-// PEOPLE TABLE
-// ══════════════════════════════════════
-function renderPeople(q=''){
+// ── PEOPLE ──
+function renderPeople(){
   let list=[...P];
-  if(filt==='hot')list=list.filter(p=>p.st==='hot');
-  else if(filt==='cold')list=list.filter(p=>p.st==='cold');
-  else if(filt==='donor')list=list.filter(p=>p.cat==='donor');
+  if(filt==='active')list=list.filter(p=>p.st==='active');
+  else if(filt==='lapsed')list=list.filter(p=>p.st==='lapsed');
   else if(filt==='new')list=list.filter(p=>p.st==='new');
-  else if(filt==='seeker')list=list.filter(p=>p.cat==='seeker');
-  if(q)list=list.filter(p=>(p.fn+' '+p.ln+' '+(p.em||'')+' '+(p.notes||'')).toLowerCase().includes(q.toLowerCase()));
-  list.sort((a,b)=>b.imp-a.imp||ds(a.lc)-ds(b.lc));
-  document.getElementById('pf-ct').textContent=list.length+' people';
-  document.getElementById('ptable').innerHTML=list.length?list.map(trow).join(''):'<div class="empty">No people match this filter</div>';
-}
-function trow(p){
-  const d=ds(p.lc),pct=hp(d),cl=hc(d),uc=urg(d);
-  return`<div class="trow" onclick="openD(${p.id})">
-    <div class="tnm"><div class="pav" style="width:28px;height:28px;font-size:11px;background:${abg(p)}">${ini(p)}</div>
-      <div><div class="tnm-t">${p.fn} ${p.ln}</div><div class="tnm-s">${p.em||p.ph||'—'}</div></div>
-    </div>
-    <div class="td ${uc}">${ls(d)}</div>
-    <div class="td">${sbadge(p.st)}${cbadge(p.cat)}</div>
-    <div class="td"><div class="hbar"><div class="hfill ${cl}" style="width:${pct}%"></div></div></div>
-    <div class="td" style="font-size:10px;color:var(--amber);letter-spacing:.5px">${stTxt(p.imp)}</div>
-    <div class="td tact">
-      <div class="ib" onclick="event.stopPropagation();qMsg(${p.id})" title="Message"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
-      <div class="ib" onclick="event.stopPropagation();qlFor(${p.id})" title="Log"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div>
-    </div>
-  </div>`;
-}
-function sf(f,el){filt=f;document.querySelectorAll('.fb').forEach(b=>b.classList.remove('on'));el.classList.add('on');renderPeople();}
-function doSearch(){go('people',null);renderPeople(document.getElementById('si').value);}
-
-// ══════════════════════════════════════
-// EVENTS
-// ══════════════════════════════════════
-function fillEvSel(){
-  const s=document.getElementById('ev-pid');if(!s)return;
-  s.innerHTML='<option value="">Community (no specific person)</option>'+P.map(p=>`<option value="${p.id}">${p.fn} ${p.ln}</option>`).join('');
-}
-function renderEvents(){
-  fillEvSel();
-  const sorted=[...E].sort((a,b)=>du(a.dt)-du(b.dt));
-  document.getElementById('evlist').innerHTML=sorted.length?sorted.map(ev=>{
-    const d=new Date(ev.dt),dv=du(ev.dt);
-    const per=ev.pid?P.find(p=>p.id===ev.pid):null;
-    return`<div class="ev-full" onclick="${per?'openD('+per.id+')':''}">
-      <div class="ev-cal" style="width:38px;height:38px"><div class="em">${isNaN(d)?'':MOS[d.getMonth()]}</div><div class="ed" style="font-size:16px">${isNaN(d)?'?':d.getDate()}</div></div>
-      <div style="flex:1;min-width:0">
-        <div style="font-size:13.5px;font-weight:500">${ev.nm}</div>
-        <div style="font-size:11.5px;color:var(--ink4);margin-top:2px">${per?per.fn+' '+per.ln:'Community'}${ev.no?' · '+ev.no.substring(0,55):''}</div>
+  else if(filt==='donor')list=list.filter(p=>p.cat==='donor');
+  list.sort((a,b)=>b.imp-a.imp||days(a.lc)-days(b.lc));
+  document.getElementById('p-ct').textContent=list.length;
+  document.getElementById('plist').innerHTML=list.length?list.map(p=>{
+    const d=days(p.lc),pct=hp(d);
+    const stTag={active:'tag-green',lapsed:'tag-red',new:'tag-blue',warm:'tag-gray'};
+    return`<div class="prow" onclick="openDP(${p.id})">
+      <div class="av" style="width:38px;height:38px;font-size:14px;background:${abg(p)}">${ini(p)}</div>
+      <div class="prow-info">
+        <div class="prow-name">${p.fn} ${p.ln}</div>
+        <div class="prow-meta">
+          <span class="tag ${stTag[p.st]||'tag-gray'}" style="font-size:10.5px">${p.st}</span>
+          <span>${ago(p.lc)}</span>
+          <div class="hbar"><div class="hfill ${hcl(d)}" style="width:${pct}%"></div></div>
+        </div>
       </div>
-      <div style="display:flex;align-items:center;gap:9px;flex-shrink:0">
-        <span style="font-size:12px;color:var(--ink4)">${dv===0?'Today':dv===1?'Tomorrow':dv+'d away'}</span>
-        ${per?`<button class="btn btn-s" style="font-size:11.5px;padding:5px 10px" onclick="event.stopPropagation();qMsg(${per.id})">Message</button>`:''}
-      </div>
+      <button class="ib" onclick="event.stopPropagation();logPid=${p.id};openM('logm')"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
     </div>`;
-  }).join(''):'<div class="empty">No events yet. Add birthdays, anniversaries, holidays, and milestones.</div>';
+  }).join(''):'<div class="empty"><span>👥</span>No people match this filter.</div>';
 }
+function pFilt(f,el){filt=f;document.querySelectorAll('.fb').forEach(b=>b.classList.remove('on'));el.classList.add('on');renderPeople();}
+
+// ── CALENDAR ──
+function renderCalendar(){
+  const sorted=[...E].sort((a,b)=>nextDu(a.dt)-nextDu(b.dt));
+  document.getElementById('evlist').innerHTML=sorted.length?sorted.map(ev=>{
+    const dv=nextDu(ev.dt),d=new Date(ev.dt);
+    const per=ev.pid?P.find(p=>p.id===ev.pid):null;
+    return`<div class="ev-item" onclick="${per?'openDP('+per.id+')':''}">
+      <div class="ev-cal"><div class="ev-em">${isNaN(d)?'':MO[d.getMonth()]}</div><div class="ev-ed">${isNaN(d)?'?':d.getDate()}</div></div>
+      <div class="ev-info"><div class="ev-nm">${ev.nm}</div><div class="ev-meta">${per?per.fn+' '+per.ln:'Community'}${ev.no?' · '+ev.no:''}</div></div>
+      <span class="ev-days ${dv<=5?'hot':''}">${dv===0?'Today':dv===1?'Tmrw':dv+'d'}</span>
+    </div>`;
+  }).join(''):'<div class="empty"><span>📅</span>No events. Add birthdays and milestones.</div>';
+}
+function fillEvSel(){const s=document.getElementById('ev-pid');if(!s)return;s.innerHTML='<option value="">Community</option>'+P.map(p=>`<option value="${p.id}">${p.fn} ${p.ln}</option>`).join('');}
 function addEvent(){
-  const nm=document.getElementById('ev-nm').value.trim();
-  const dt=document.getElementById('ev-dt').value;
+  const nm=document.getElementById('ev-nm').value.trim(),dt=document.getElementById('ev-dt').value;
   if(!nm||!dt){toast('Name and date required');return;}
   const pid=document.getElementById('ev-pid').value;
   E.push({id:Date.now(),nm,pid:pid?parseInt(pid):null,dt,ty:document.getElementById('ev-ty').value,no:document.getElementById('ev-no').value.trim()});
-  sv();closeM('evm');renderEvents();renderAsideEvs();upBadges();toast('Event saved');
+  sv();closeM('evm');renderCalendar();upBadges();toast('Event saved');
+  ['ev-nm','ev-no'].forEach(id=>document.getElementById(id).value='');
 }
 
-// ══════════════════════════════════════
-// REMINDERS
-// ══════════════════════════════════════
-function renderRemind(){
-  const gs=[
-    {l:'Critical — 90+ days silent',cls:'r',list:P.filter(p=>ds(p.lc)>=90).sort((a,b)=>ds(b.lc)-ds(a.lc))},
-    {l:'Fading — 60 to 90 days',cls:'a',list:P.filter(p=>{const d=ds(p.lc);return d>=60&&d<90;})},
-    {l:'Cooling — 30 to 60 days',cls:'',list:P.filter(p=>{const d=ds(p.lc);return d>=30&&d<60;})},
-    {l:'New contacts to nurture',cls:'',list:P.filter(p=>p.st==='new')},
+// ── REMINDERS ──
+function renderReminders(){
+  const groups=[
+    {label:'Critical — 90+ days silent',cls:'red',list:P.filter(p=>days(p.lc)>=90).sort((a,b)=>b.imp-a.imp)},
+    {label:'Fading — 60–90 days',cls:'amber',list:P.filter(p=>{const d=days(p.lc);return d>=60&&d<90;})},
+    {label:'Warming up — 30–60 days',cls:'',list:P.filter(p=>{const d=days(p.lc);return d>=30&&d<60;})},
+    {label:'New contacts',cls:'',list:P.filter(p=>p.st==='new')},
   ];
   let h='';
-  gs.forEach(g=>{
+  groups.forEach(g=>{
     if(!g.list.length)return;
-    h+=`<div class="rem-grp"><div class="rem-gt ${g.cls}">${g.l} · ${g.list.length} people</div>
-    ${g.list.map(p=>`
-      <div class="drow" onclick="openD(${p.id})" style="cursor:pointer">
-        <div class="pav drow-av" style="width:30px;height:30px;font-size:11px;background:${abg(p)}">${ini(p)}</div>
-        <div class="drow-info"><div class="drow-name">${p.fn} ${p.ln}</div><div class="drow-why">${ls(ds(p.lc))} · ${p.cat||p.st} · ★${p.imp}</div></div>
-        <div class="drow-acts">
-          <div class="ib" onclick="event.stopPropagation();qMsg(${p.id})"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
-          <div class="ib" onclick="event.stopPropagation();qlFor(${p.id})"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div>
-        </div>
-      </div>`).join('')}
-    </div>`;
+    h+=`<div class="rem-sec"><div class="rem-hd ${g.cls}">${g.label} · ${g.list.length}</div>
+    ${g.list.map(p=>`<div class="prow" onclick="openDP(${p.id})">
+      <div class="av" style="width:36px;height:36px;font-size:13px;background:${abg(p)}">${ini(p)}</div>
+      <div class="prow-info"><div class="prow-name">${p.fn} ${p.ln}</div><div class="prow-meta"><span>${ago(p.lc)}</span><span>★${p.imp}</span></div></div>
+      <button class="ib" onclick="event.stopPropagation();logPid=${p.id};openM('logm')"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+    </div>`).join('')}</div>`;
   });
-  document.getElementById('rembody').innerHTML=h||'<div class="empty">No overdue relationships ✓</div>';
+  document.getElementById('rem-body').innerHTML=h||'<div class="empty"><span>✅</span>No overdue relationships right now.</div>';
 }
 
-// ══════════════════════════════════════
-// DETAIL PANEL
-// ══════════════════════════════════════
-function openD(id){
-  cpid=id; ctab='ov';
+// ── INSIGHTS ──
+function renderInsights(){
+  const rec=[{l:'Active',n:P.filter(p=>days(p.lc)<30).length},{l:'Warm',n:P.filter(p=>{const d=days(p.lc);return d>=30&&d<90;}).length},{l:'Cold',n:P.filter(p=>{const d=days(p.lc);return d>=90&&d<180;}).length},{l:'Lost',n:P.filter(p=>days(p.lc)>=180).length}];
+  const totalDon=P.reduce((s,p)=>s+totDon(p),0);
+  const avgDays=Math.round(P.filter(p=>p.lc).reduce((s,p)=>s+days(p.lc),0)/Math.max(1,P.filter(p=>p.lc).length));
+  const top=[...P].sort((a,b)=>b.imp-a.imp||(b.don||[]).length-(a.don||[]).length).slice(0,5);
+  document.getElementById('ins-body').innerHTML=`
+    <div class="ic"><div class="ic-t">Contact recency</div>${rec.map(r=>`<div class="br"><div class="bl">${r.l}</div><div class="bt"><div class="bf" style="width:${P.length?Math.round(r.n/P.length*100):0}%"></div></div><div class="bv">${r.n}</div></div>`).join('')}</div>
+    <div class="ic"><div class="ic-t">By the numbers</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div><div class="big-n">${P.length}</div><div class="big-l">Members</div></div>
+        <div><div class="big-n">${avgDays}d</div><div class="big-l">Avg last contact</div></div>
+        <div><div class="big-n">$${Math.round(totalDon/1000)}k</div><div class="big-l">Total giving</div></div>
+        <div><div class="big-n">${P.filter(p=>p.st==='lapsed').length}</div><div class="big-l">Lapsed</div></div>
+      </div>
+    </div>
+    <div class="ic" style="grid-column:1/-1"><div class="ic-t">Priority members</div>
+      ${top.map(p=>`<div class="top-row" onclick="openDP(${p.id})">
+        <div class="av" style="width:28px;height:28px;font-size:11px;background:${abg(p)}">${ini(p)}</div>
+        <div style="flex:1;font-size:14px;font-weight:600;margin-left:2px">${p.fn} ${p.ln}</div>
+        <span style="font-size:12px;color:var(--gray-400)">${ago(p.lc)}</span>
+        <span style="font-size:12px;color:var(--gray-400);margin-left:8px">★${p.imp}</span>
+      </div>`).join('')}
+    </div>`;
+}
+
+// ── DETAIL PANEL ──
+function openDP(id){
+  activePid=id;activeTab='info';
   const p=P.find(x=>x.id===id);if(!p)return;
   document.getElementById('d-av').style.background=abg(p);
   document.getElementById('d-av').textContent=ini(p);
   document.getElementById('d-name').textContent=p.fn+' '+p.ln;
-  document.getElementById('d-role').textContent=(p.cat?p.cat.charAt(0).toUpperCase()+p.cat.slice(1):'Member')+' · '+stTxt(p.imp)+(p.origin?' · '+p.origin:'');
-  document.getElementById('d-tags').innerHTML=sbadge(p.st)+cbadge(p.cat)+(p.fam?.length?`<span class="badge n">${p.fam.length} family</span>`:'');
-  document.querySelectorAll('.dt').forEach(t=>t.classList.toggle('on',t.textContent==='Overview'));
+  document.getElementById('d-sub').textContent=(p.cat||'Member')+' · ★'+p.imp+(p.origin?' · '+p.origin:'');
+  document.querySelectorAll('.dpt').forEach(t=>t.classList.toggle('on',t.textContent==='Info'));
+  document.getElementById('df-log').onclick=()=>{logPid=id;openM('logm');};
+  document.getElementById('df-don').onclick=()=>{donPid=id;openM('donm');};
+  document.getElementById('df-fam').onclick=()=>{famPid=id;openM('famm');};
+  document.getElementById('df-del').onclick=()=>delPerson(id);
   renderDTab(p);
-  document.getElementById('d-foot').innerHTML=`
-    <button class="btn btn-p" onclick="qMsg(${p.id})">Compose message</button>
-    <button class="btn btn-s" onclick="qlFor(${p.id});document.getElementById('ov').style.pointerEvents='none';setTimeout(()=>document.getElementById('ov').style.pointerEvents='',100)">Quick log</button>
-    <button class="btn btn-s" onclick="openEvFor(${p.id})">Add event</button>
-    <button class="btn btn-s" onclick="donPid=${p.id};openM('donm')">Log donation</button>
-    <button class="btn btn-s" style="color:var(--red);margin-left:auto" onclick="delP(${p.id})">Remove</button>`;
   document.getElementById('ov').classList.add('on');
 }
-function closeD(){document.getElementById('ov').classList.remove('on');}
-function mayCloseD(e){if(e.target.id==='ov')closeD();}
-function dtab(n,el){ctab=n;document.querySelectorAll('.dt').forEach(t=>t.classList.remove('on'));el.classList.add('on');const p=P.find(x=>x.id===cpid);if(p)renderDTab(p);}
-function openEvFor(pid){fillEvSel();document.getElementById('ev-pid').value=pid;openM('evm');}
-
+function closeDP(){document.getElementById('ov').classList.remove('on');}
+function mayCloseDP(e){if(e.target.id==='ov')closeDP();}
+function dTab(t,el){activeTab=t;document.querySelectorAll('.dpt').forEach(x=>x.classList.remove('on'));el.classList.add('on');const p=P.find(x=>x.id===activePid);if(p)renderDTab(p);}
 function renderDTab(p){
-  const d=ds(p.lc),pct=hp(d),cl=hc(d);
-  if(ctab==='ov'){
+  const d=days(p.lc),pct=hp(d);
+  if(activeTab==='info'){
     document.getElementById('d-body').innerHTML=`
-      <div class="ds"><div class="ds-t">Contact info</div>
-        <div class="ir"><div class="irl">Email</div><div class="irv">${p.em?`<a href="mailto:${p.em}" style="color:var(--blue);text-decoration:none">${p.em}</a>`:'—'}</div></div>
-        <div class="ir"><div class="irl">Phone / WhatsApp</div><div class="irv">${p.ph||'—'}</div></div>
+      <div class="ds"><div class="ds-t">Contact</div>
+        <div class="ir"><div class="irl">Phone</div><div class="irv">${p.ph||'—'}</div></div>
+        <div class="ir"><div class="irl">Email</div><div class="irv">${p.em?`<a href="mailto:${p.em}" style="color:var(--blue)">${p.em}</a>`:'—'}</div></div>
         <div class="ir"><div class="irl">Birthday</div><div class="irv">${p.bd||'—'}</div></div>
-        <div class="ir"><div class="irl">Anniversary</div><div class="irv">${p.an||'—'}</div></div>
         <div class="ir"><div class="irl">How we met</div><div class="irv">${p.origin||'—'}</div></div>
       </div>
-      <div class="ds"><div class="ds-t">Relationship health</div>
-        <div class="ir"><div class="irl">Last contact</div><div class="irv" style="${d>=90?'color:var(--red);font-weight:500':d>=45?'color:var(--amber);font-weight:500':''}">${ls(d)}</div></div>
-        <div class="ir"><div class="irl">Health</div><div class="irv"><div class="hbar" style="width:100px"><div class="hfill ${cl}" style="width:${pct}%"></div></div></div></div>
-        <div class="ir"><div class="irl">Total giving</div><div class="irv" style="color:var(--amber);font-weight:500">${totDon(p)>0?'$'+totDon(p).toLocaleString():'Not tracked'}</div></div>
+      <div class="ds"><div class="ds-t">Relationship</div>
+        <div class="ir"><div class="irl">Last contact</div><div class="irv" style="${d>=90?'color:var(--red);font-weight:700':d>=45?'color:var(--amber);font-weight:600':''}">${ago(p.lc)}</div></div>
+        <div class="ir"><div class="irl">Health</div><div class="irv"><div class="hbar" style="width:72px;height:5px"><div class="hfill ${hcl(d)}" style="width:${pct}%"></div></div></div></div>
+        <div class="ir"><div class="irl">Status</div><div class="irv">${p.st}</div></div>
+        <div class="ir"><div class="irl">Total giving</div><div class="irv" style="font-weight:600;color:var(--amber)">${totDon(p)>0?'$'+totDon(p).toLocaleString():'—'}</div></div>
       </div>
-      <div class="ds"><div class="ds-t">Notes & context</div>
-        <textarea class="nf" id="d-notes" onblur="svNotes(${p.id})">${p.notes||''}</textarea>
-        <div style="font-size:11px;color:var(--ink4);margin-top:5px">Notes auto-save when you click away</div>
+      <div class="ds"><div class="ds-t">Notes</div>
+        <textarea class="nf" id="d-notes" onblur="saveNotes(${p.id})">${p.notes||''}</textarea>
+        <div style="font-size:11px;color:var(--gray-400);margin-top:4px">Auto-saves when you tap away</div>
       </div>`;
-  } else if(ctab==='fam'){
-    document.getElementById('d-body').innerHTML=`
-      <div class="ds">
-        <div class="ds-t" style="display:flex;align-items:center;justify-content:space-between">Family <button class="btn btn-s" style="font-size:11px;padding:3px 9px" onclick="famPid=${p.id};openM('fmm')">+ Add</button></div>
-        ${p.fam?.length?p.fam.map((f,i)=>`
-          <div class="fam-item">
-            <div class="pav" style="width:28px;height:28px;font-size:11px;background:${PAL[i%PAL.length]}">${f.nm[0]}</div>
-            <div style="flex:1"><div class="fam-name">${f.nm}</div>${f.ag?`<div class="fam-meta">${f.ag}</div>`:''}</div>
-            <div class="fam-meta">${f.rl}</div>
-            <div class="fam-meta" style="margin-left:8px">${f.bd||'—'}</div>
-          </div>`).join('')
-        :'<div style="font-size:12.5px;color:var(--ink4);padding:8px 0">No family members added yet.</div>'}
-      </div>`;
-  } else if(ctab==='hist'){
-    const evs=E.filter(e=>e.pid===p.id);
-    document.getElementById('d-body').innerHTML=`
-      <div class="ds"><div class="ds-t">Interaction log <span style="font-size:10px;color:var(--ink4);text-transform:none;font-weight:400">— <span style="color:var(--blue)">blue</span> = Rabbi, <span style="color:var(--rose)">rose</span> = Rebbetzin</span></div>
-        ${p.ints?.length?`<div class="tl">${[...p.ints].sort((a,b)=>new Date(b.d)-new Date(a.d)).map(it=>`
-          <div class="tli">
-            <div class="tld ${it.by||'rabbi'}"></div>
-            <div style="flex:1">
-              <div class="tl-meta">
-                <span class="tl-ty">${it.t||'note'}</span>
-                <span class="tl-by ${it.by||'rabbi'}">${it.by==='rebbet'?'Rebbetzin':'Rabbi'}</span>
-                <span class="tl-dt">${fd(it.d)}</span>
-              </div>
-              <div class="tl-tx">${it.n}</div>
-            </div>
-          </div>`).join('')}</div>`
-        :'<div style="font-size:12.5px;color:var(--ink4)">No interactions logged yet. Use Quick Log or Smart Paste to add.</div>'}
-      </div>
-      ${evs.length?`<div class="ds"><div class="ds-t">Linked events</div>
-        ${evs.map(ev=>{const d=new Date(ev.dt);return`<div class="ev-mini">
-          <div class="ev-cal" style="width:30px;height:30px"><div class="em" style="font-size:7.5px">${isNaN(d)?'':MOS[d.getMonth()]}</div><div class="ed" style="font-size:12px">${isNaN(d)?'?':d.getDate()}</div></div>
-          <div style="flex:1"><div class="ev-nm">${ev.nm}</div><div class="ev-wh">${du(ev.dt)===0?'Today':du(ev.dt)+'d away'} · ${ev.ty}</div></div>
-        </div>`;}).join('')}
-      </div>`:''}`;
-  } else if(ctab==='give'){
-    document.getElementById('d-body').innerHTML=`
-      <div class="ds">
-        <div class="ds-t" style="display:flex;align-items:center;justify-content:space-between">Donation history <button class="btn btn-s" style="font-size:11px;padding:3px 9px" onclick="donPid=${p.id};openM('donm')">+ Log</button></div>
-        ${p.donations?.length?`
-          <div class="don-total"><div class="don-total-v">$${totDon(p).toLocaleString()}</div><div class="don-total-l">Total giving</div></div>
-          ${[...p.donations].sort((a,b)=>new Date(b.dt)-new Date(a.dt)).map(d=>`
-            <div class="don-item">
-              <div><div class="don-amt">$${Number(d.amt).toLocaleString()}</div><div class="don-dt">${fd(d.dt)}</div></div>
-              <div class="don-note">${d.note||'—'}</div>
-            </div>`).join('')}`
-        :'<div style="font-size:12.5px;color:var(--ink4)">No donations logged yet.</div>'}
-      </div>`;
-  } else if(ctab==='out'){
-    document.getElementById('d-body').innerHTML=`
-      <div class="ds"><div class="ds-t">Quick AI outreach</div>
-        <div class="pg">
-          <div class="pc" onclick="dqp(${p.id},'reconnect')"><div class="pc-t">Reconnect</div><div class="pc-s">Warm check-in after a gap</div></div>
-          <div class="pc" onclick="dqp(${p.id},'checkin')"><div class="pc-t">Check in</div><div class="pc-s">Brief personal note</div></div>
-          <div class="pc" onclick="dqp(${p.id},'invite')"><div class="pc-t">Shabbat invite</div><div class="pc-s">Invite this Friday</div></div>
-          <div class="pc" onclick="dqp(${p.id},'birthday')"><div class="pc-t">Birthday</div><div class="pc-s">Heartfelt birthday message</div></div>
-          <div class="pc" onclick="dqp(${p.id},'yomtov')"><div class="pc-t">Yom Tov</div><div class="pc-s">Holiday greeting</div></div>
-          <div class="pc" onclick="dqp(${p.id},'pastoral')"><div class="pc-t">Pastoral care</div><div class="pc-s">Caring check-in</div></div>
-          <div class="pc" onclick="dqp(${p.id},'thankyou')"><div class="pc-t">Thank you</div><div class="pc-s">Genuine appreciation</div></div>
-          <div class="pc" onclick="dqp(${p.id},'donation')"><div class="pc-t">Donation ask</div><div class="pc-s">Warm campaign outreach</div></div>
-        </div>
-      </div>
-      <div id="dq-load" style="display:none;padding:16px;text-align:center"><div class="spin"></div></div>
-      <div class="cb" id="dq-res"></div>
-      <div class="cacts" id="dq-acts">
-        <button class="btn btn-p" onclick="copyTxt(document.getElementById('dq-res').textContent)">Copy</button>
-        <button class="btn btn-s" onclick="openWA(${p.id},'dq-res')">WhatsApp</button>
-        <button class="btn btn-s" onclick="openEmail(${p.id},'dq-res')">Email</button>
-      </div>`;
+  } else if(activeTab==='history'){
+    const ints=[...(p.ints||[])].sort((a,b)=>new Date(b.d)-new Date(a.d));
+    document.getElementById('d-body').innerHTML=`<div class="ds"><div class="ds-t">Interaction log</div>
+      ${ints.length?ints.map(it=>`<div class="tli"><div class="tld ${it.by||'rabbi'}"></div>
+        <div style="flex:1"><div class="tl-meta"><span class="tl-tag">${it.t||'note'}</span><span class="tl-who ${it.by||'rabbi'}">${it.by==='rebbet'?'Rebbetzin':'Rabbi'}</span><span class="tl-dt">${fd(it.d)}</span></div>
+        <div class="tl-tx">${it.n}</div></div></div>`).join('')
+      :'<div style="color:var(--gray-400);font-size:13px">No interactions yet. Use the Log button below.</div>'}
+    </div>`;
+  } else if(activeTab==='family'){
+    document.getElementById('d-body').innerHTML=`<div class="ds">
+      <div class="ds-t">Family members</div>
+      ${(p.fam||[]).length?(p.fam||[]).map((f,i)=>`<div class="fam-row"><div class="av" style="width:28px;height:28px;font-size:11px;background:${COLORS[i%COLORS.length]}">${f.nm[0]}</div><div class="fam-name">${f.nm}</div><div class="fam-meta">${f.rl}${f.bd?' · '+f.bd:''}${f.ag?' · '+f.ag:''}</div></div>`).join('')
+      :'<div style="color:var(--gray-400);font-size:13px">No family members yet.</div>'}
+    </div>`;
+  } else if(activeTab==='giving'){
+    document.getElementById('d-body').innerHTML=`<div class="ds">
+      ${totDon(p)>0?`<div class="don-total"><div class="don-v">$${totDon(p).toLocaleString()}</div><div class="don-l">Total giving</div></div>`:''}
+      <div class="ds-t">Donations</div>
+      ${(p.don||[]).length?[...p.don].sort((a,b)=>new Date(b.dt)-new Date(a.dt)).map(d=>`<div class="don-row"><div><div class="don-amt">$${Number(d.amt).toLocaleString()}</div><div class="don-dt">${fd(d.dt)}</div></div><div class="don-note">${d.note||'—'}</div></div>`).join('')
+      :'<div style="color:var(--gray-400);font-size:13px">No donations logged.</div>'}
+    </div>`;
   }
 }
+function saveNotes(id){const p=P.find(x=>x.id===id);const el=document.getElementById('d-notes');if(p&&el){p.notes=el.value;sv();toast('Saved');}}
+function delPerson(id){if(!confirm('Remove this person?'))return;P=P.filter(p=>p.id!==id);sv();closeDP();upBadges();renderPeople();toast('Removed');}
 
-function svNotes(id){const p=P.find(x=>x.id===id);const el=document.getElementById('d-notes');if(p&&el){p.notes=el.value;sv();toast('Notes saved');}}
-function delP(id){if(!confirm('Remove this person?'))return;P=P.filter(p=>p.id!==id);sv();closeD();renderBrief();upBadges();toast('Removed');}
+// ── LOG ──
+function saveLog(){
+  const note=document.getElementById('l-note').value.trim();
+  if(!note){toast('Add a note first');return;}
+  const p=P.find(x=>x.id===logPid);if(!p)return;
+  const dt=document.getElementById('l-date').value||tod();
+  if(!p.ints)p.ints=[];
+  p.ints.unshift({d:dt,n:note,t:document.getElementById('l-type').value,by:who});
+  p.lc=dt;if(p.st==='lapsed')p.st='warm';
+  sv();closeM('logm');upBadges();
+  document.getElementById('l-note').value='';
+  toast(`Logged for ${p.fn}`);
+  if(activeTab==='history'&&activePid===logPid)renderDTab(p);
+  renderHome();
+}
 
-// ══════════════════════════════════════
-// ADD PERSON
-// ══════════════════════════════════════
-function setSt(n){nst=n;document.querySelectorAll('#a-str .sb2').forEach(s=>s.classList.toggle('on',+s.dataset.v<=n));}
+// ── ADD PERSON ──
+function setStar(n){starVal=n;document.querySelectorAll('#a-stars .star').forEach(s=>s.classList.toggle('on',+s.dataset.v<=n));}
 function addPerson(){
-  const fn=document.getElementById('a-fn').value.trim();
-  const ln=document.getElementById('a-ln').value.trim();
+  const fn=document.getElementById('a-fn').value.trim(),ln=document.getElementById('a-ln').value.trim();
   if(!fn||!ln){toast('First and last name required');return;}
-  const p={id:Date.now(),fn,ln,em:document.getElementById('a-em').value.trim(),ph:document.getElementById('a-ph').value.trim(),
-    st:document.getElementById('a-st').value,cat:document.getElementById('a-cat').value,imp:nst,
-    bd:document.getElementById('a-bd').value.trim(),an:document.getElementById('a-an').value.trim(),
-    origin:document.getElementById('a-ori').value.trim(),notes:document.getElementById('a-no').value.trim(),
-    ints:[],fam:[],donations:[],lc:null};
-  P.push(p);sv();closeM('am');
-  ['a-fn','a-ln','a-em','a-ph','a-bd','a-an','a-ori','a-no'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
-  nst=3; setSt(3);
-  upBadges(); fillQlSel(); fillCpSel();
-  toast(`${fn} ${ln} added`);
+  P.push({id:Date.now(),fn,ln,ph:document.getElementById('a-ph').value.trim(),em:document.getElementById('a-em').value.trim(),st:document.getElementById('a-st').value,cat:'',imp:starVal,bd:document.getElementById('a-bd').value.trim(),origin:document.getElementById('a-ori').value.trim(),notes:document.getElementById('a-no').value.trim(),ints:[],fam:[],don:[],lc:null});
+  sv();closeM('addm');upBadges();
+  ['a-fn','a-ln','a-ph','a-em','a-bd','a-ori','a-no'].forEach(id=>document.getElementById(id).value='');
+  setStar(3);toast(`${fn} ${ln} added`);renderPeople();
 }
-function addFam(){
-  const p=P.find(x=>x.id===famPid);if(!p)return;
-  const nm=document.getElementById('fm-nm').value.trim();if(!nm){toast('Name required');return;}
-  if(!p.fam)p.fam=[];
-  p.fam.push({nm,rl:document.getElementById('fm-rl').value,bd:document.getElementById('fm-bd').value.trim(),ag:document.getElementById('fm-ag').value.trim()});
-  sv();closeM('fmm');['fm-nm','fm-bd','fm-ag'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
-  renderDTab(p); toast('Family member added');
-}
-function addDon(){
+
+// ── DONATION ──
+function saveDon(){
+  const amt=document.getElementById('d-amt').value;if(!amt){toast('Amount required');return;}
   const p=P.find(x=>x.id===donPid);if(!p)return;
-  const amt=document.getElementById('don-amt').value;if(!amt){toast('Amount required');return;}
-  if(!p.donations)p.donations=[];
-  p.donations.push({amt:parseFloat(amt),dt:document.getElementById('don-dt').value||tod(),note:document.getElementById('don-note').value.trim()});
-  sv();closeM('donm');['don-amt','don-note'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
-  renderDTab(p); toast('Donation logged');
+  if(!p.don)p.don=[];
+  p.don.push({amt:parseFloat(amt),dt:document.getElementById('d-dt').value||tod(),note:document.getElementById('d-note').value.trim()});
+  sv();closeM('donm');toast('Logged');
+  ['d-amt','d-note'].forEach(id=>document.getElementById(id).value='');
+  if(activeTab==='giving'&&activePid===donPid)renderDTab(p);
 }
 
-// ══════════════════════════════════════
-// SMART PASTE
-// ══════════════════════════════════════
-async function doPaste(){
-  const txt=document.getElementById('paste-in').value.trim();
-  if(!txt){toast('Paste some text first');return;}
-  const btn=document.getElementById('paste-btn'),ld=document.getElementById('paste-load');
-  const res=document.getElementById('paste-result'),items=document.getElementById('paste-items'),conf=document.getElementById('paste-confirm');
-  btn.style.display='none';ld.style.display='block';res.style.display='none';
-  const names=P.map(p=>p.fn+' '+p.ln).join(', ');
-  const prompt=`You are a data extraction assistant for a rabbi's community CRM. Extract structured information from the following text.
-
-Known community members: ${names}
-
-Text to analyze:
-"""
-${txt}
-"""
-
-Respond ONLY with valid JSON (no markdown, no backticks) in this exact format:
-{
-  "people_mentioned": [
-    {"name": "Full Name", "matched_id": null, "is_new": false, "notes": "any relevant details"}
-  ],
-  "interactions": [
-    {"person_name": "Full Name", "type": "call|visit|whatsapp|email|event|pastoral|donation", "note": "summary of what happened", "date": "YYYY-MM-DD or today"}
-  ],
-  "life_events": [
-    {"person_name": "Full Name", "event_type": "engagement|marriage|birth|illness|loss|bar_mitzvah|divorce|other", "description": "brief description", "date": "YYYY-MM-DD or approximate"}
-  ],
-  "follow_ups": [
-    {"person_name": "Full Name", "action": "what to do", "urgency": "high|medium|low"}
-  ],
-  "new_contacts": [
-    {"first_name": "", "last_name": "", "phone": "", "email": "", "notes": "how they know the community"}
-  ],
-  "summary": "one sentence summary of what this text is about"
+// ── FAMILY ──
+function saveFam(){
+  const nm=document.getElementById('f-nm').value.trim();if(!nm){toast('Name required');return;}
+  const p=P.find(x=>x.id===famPid);if(!p)return;
+  if(!p.fam)p.fam=[];
+  p.fam.push({nm,rl:document.getElementById('f-rl').value,bd:document.getElementById('f-bd').value.trim(),ag:document.getElementById('f-ag').value.trim()});
+  sv();closeM('famm');toast('Added');
+  ['f-nm','f-bd','f-ag'].forEach(id=>document.getElementById(id).value='');
+  if(activeTab==='family'&&activePid===famPid)renderDTab(p);
 }
 
-Match people to known community members by name. Set matched_id to null (the system will match by name). For dates, use today (${tod()}) if not specified.`;
-  try{
-    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1200,messages:[{role:'user',content:prompt}]})});
-    const d=await r.json();
-    const raw=d.content?.map(c=>c.text||'').join('')||'{}';
-    let ex;
-    try{ex=JSON.parse(raw.replace(/```json|```/g,'').trim());}catch{ex={summary:'Could not parse response. Try again.',interactions:[],life_events:[],follow_ups:[],new_contacts:[]};}
-    window._pasteExtracted=ex;
-    // Match people by name
-    if(ex.people_mentioned){ex.people_mentioned.forEach(pm=>{const match=P.find(p=>(p.fn+' '+p.ln).toLowerCase()===pm.name?.toLowerCase());if(match)pm.matched_id=match.id;});}
-    let html='';
-    if(ex.summary)html+=`<div class="pr-item"><div class="pr-icon" style="background:var(--s2)">📋</div><div class="pr-body"><div class="pr-label">Summary</div><div class="pr-val">${ex.summary}</div></div></div>`;
-    (ex.interactions||[]).forEach((it,i)=>{
-      const match=P.find(p=>(p.fn+' '+p.ln).toLowerCase()===it.person_name?.toLowerCase());
-      html+=`<div class="pr-item"><div class="pr-icon" style="background:var(--bl)">💬</div><div class="pr-body"><div class="pr-label">Log interaction — ${it.person_name}${match?' ✓':' (new?)'}</div><div class="pr-val">${it.type} · ${it.note}</div></div></div>`;
-    });
-    (ex.life_events||[]).forEach(le=>{html+=`<div class="pr-item"><div class="pr-icon" style="background:var(--al)">⭐</div><div class="pr-body"><div class="pr-label">Life event — ${le.person_name}</div><div class="pr-val">${le.event_type} · ${le.description}</div></div></div>`;});
-    (ex.follow_ups||[]).forEach(fu=>{html+=`<div class="pr-item"><div class="pr-icon" style="background:var(--rl)">⚠️</div><div class="pr-body"><div class="pr-label">Follow-up — ${fu.person_name}</div><div class="pr-val">${fu.action} · ${fu.urgency} urgency</div></div></div>`;});
-    (ex.new_contacts||[]).forEach(nc=>{if(nc.first_name)html+=`<div class="pr-item"><div class="pr-icon" style="background:var(--gl)">👤</div><div class="pr-body"><div class="pr-label">New contact — ${nc.first_name} ${nc.last_name}</div><div class="pr-val">${nc.notes||'Add to community?'}</div></div></div>`;});
-    if(!html)html='<div style="font-size:13px;color:var(--ink3);padding:8px 0">Nothing specific extracted. Try pasting more context.</div>';
-    items.innerHTML=html;
-    conf.innerHTML=`<button class="btn btn-p" onclick="confirmPaste()">Save all to community</button><button class="btn btn-s" onclick="document.getElementById('paste-result').style.display='none'">Discard</button>`;
-    res.style.display='block';
-  }catch(e){items.innerHTML='<div style="font-size:13px;color:var(--red)">Connection error. Check your internet and try again.</div>';res.style.display='block';}
-  btn.style.display='flex';ld.style.display='none';
-}
-
-function confirmPaste(){
-  const ex=window._pasteExtracted;if(!ex)return;
-  let saved=0;
-  (ex.interactions||[]).forEach(it=>{
-    const p=P.find(x=>(x.fn+' '+x.ln).toLowerCase()===it.person_name?.toLowerCase());
-    if(!p)return;
-    p.ints.unshift({d:it.date===tod()||!it.date?tod():it.date,n:it.note,t:it.type||'note',by:who});
-    p.lc=tod();if(p.st==='cold')p.st='warm';
-    saved++;
-  });
-  (ex.new_contacts||[]).forEach(nc=>{
-    if(!nc.first_name)return;
-    P.push({id:Date.now()+Math.random(),fn:nc.first_name,ln:nc.last_name||'—',em:nc.email||'',ph:nc.phone||'',st:'new',cat:'',imp:3,bd:'',an:'',origin:'Added via Smart Paste',notes:nc.notes||'',ints:[],fam:[],donations:[],lc:null});
-    saved++;
-  });
-  sv(); upBadges(); fillQlSel(); fillCpSel();
-  document.getElementById('paste-result').style.display='none';
-  document.getElementById('paste-in').value='';
-  toast(`Saved ${saved} item${saved!==1?'s':''} to your community`);
-  buildDigest();
-}
-
-// ══════════════════════════════════════
-// CSV IMPORT
-// ══════════════════════════════════════
-function handleFile(file){
-  if(!file)return;
-  const reader=new FileReader();
-  reader.onload=e=>parseCSV(e.target.result);
-  reader.readAsText(file);
-  document.getElementById('drop-zone').classList.remove('drag');
-}
-function handleDrop(e){e.preventDefault();handleFile(e.dataTransfer.files[0]);}
-function parseCSV(text){
-  const lines=text.split('\n').filter(l=>l.trim());
-  const head=lines[0].toLowerCase();
-  const hasHeader=head.includes('name')||head.includes('first')||head.includes('email');
-  const rows=hasHeader?lines.slice(1):lines;
-  impRows=[];
-  rows.forEach(line=>{
-    const cols=line.split(',').map(c=>c.replace(/^"|"$/g,'').trim());
-    if(!cols[0])return;
-    let fn='',ln='';
-    const nameCol=cols[0];
-    const sp=nameCol.split(' ');
-    fn=sp[0]||'';ln=sp.slice(1).join(' ')||'';
-    if(!fn)return;
-    const em=cols.find(c=>c.includes('@'))||'';
-    const ph=cols.find(c=>/[\d\-\+\(\) ]{7,}/.test(c)&&!c.includes('@'))||'';
-    impRows.push({fn,ln,em,ph,sel:true});
-  });
-  showImpPreview();
-}
-function parsePastedList(){
-  const txt=document.getElementById('paste-csv').value.trim();
-  if(!txt){toast('Paste a list first');return;}
-  parseCSV(txt);
-}
-function showImpPreview(){
-  if(!impRows.length){toast('No contacts found in this file');return;}
-  const prev=document.getElementById('imp-prev');
-  document.getElementById('imp-count').textContent=`${impRows.length} contacts found`;
-  document.getElementById('imp-rows').innerHTML=impRows.map((r,i)=>`
-    <div class="imp-row">
-      <input type="checkbox" checked id="imp-ck-${i}" onchange="impRows[${i}].sel=this.checked">
-      <span class="imp-cell nm">${r.fn} ${r.ln}</span>
-      <span class="imp-cell mt">${r.em||'—'}</span>
-      <span class="imp-cell mt">${r.ph||'—'}</span>
-    </div>`).join('');
-  prev.style.display='block';
-}
-function selAllImp(){impRows.forEach((_,i)=>{impRows[i].sel=true;const el=document.getElementById('imp-ck-'+i);if(el)el.checked=true;});}
-function confirmImp(){
-  const sel=impRows.filter(r=>r.sel);
-  let added=0;
-  sel.forEach(r=>{
-    if(!r.fn)return;
-    const exists=P.find(p=>p.fn.toLowerCase()===r.fn.toLowerCase()&&p.ln.toLowerCase()===r.ln.toLowerCase());
-    if(exists)return;
-    P.push({id:Date.now()+added,fn:r.fn,ln:r.ln,em:r.em,ph:r.ph,st:'new',cat:'',imp:3,bd:'',an:'',origin:'Imported from CSV',notes:'',ints:[],fam:[],donations:[],lc:null});
-    added++;
-  });
-  sv(); upBadges(); fillQlSel(); fillCpSel();
-  document.getElementById('imp-prev').style.display='none';
-  document.getElementById('paste-csv').value='';
-  impRows=[];
-  toast(`${added} contact${added!==1?'s':''} imported (${sel.length-added} already existed)`);
-}
-
-// ══════════════════════════════════════
-// AI COMPOSE
-// ══════════════════════════════════════
-function fillCpSel(){
-  const s=document.getElementById('cp-p');if(!s)return;
-  s.innerHTML='<option value="">Select person…</option>'+[...P].sort((a,b)=>a.fn.localeCompare(b.fn)).map(p=>`<option value="${p.id}">${p.fn} ${p.ln}</option>`).join('');
-}
-function qMsg(id){go('compose',null);fillCpSel();document.getElementById('cp-p').value=id;}
-
-function buildPersonCtx(p){
-  if(!p)return'General community message.';
-  return`Person: ${p.fn} ${p.ln}
-Status: ${p.st}, Category: ${p.cat||'member'}, Importance: ${p.imp}/5
-Last contact: ${ds(p.lc)} days ago
-Birthday: ${p.bd||'unknown'}, Anniversary: ${p.an||'n/a'}
-How we met: ${p.origin||'unknown'}
-Family: ${p.fam?.length?p.fam.map(f=>f.nm+' ('+f.rl+(f.bd?', bd '+f.bd:'')+')').join(', '):'unknown'}
-Total giving: $${totDon(p).toLocaleString()}
-Notes: ${p.notes||'none'}
-Recent interactions: ${(p.ints||[]).slice(0,3).map(i=>i.t+': '+i.n).join(' | ')||'none logged'}`;
-}
-
-async function doCompose(){
-  const pid=document.getElementById('cp-p').value;
-  const p=pid?P.find(x=>x.id===parseInt(pid)):null;
-  const ch=document.getElementById('cp-ch').value;
-  const pu=document.getElementById('cp-pu').value;
-  const to=document.getElementById('cp-to').value;
-  const cx=document.getElementById('cp-cx').value;
-  const btn=document.getElementById('cp-btn'),ld=document.getElementById('cp-load'),res=document.getElementById('cp-res'),act=document.getElementById('cp-acts');
-  btn.style.display='none';ld.style.display='block';res.style.display='none';act.style.display='none';
-  const chFmt={whatsapp:'WhatsApp message — 2-4 sentences, warm, personal, conversational. No formal salutation. Go straight in.',email:'Email with subject line on the very first line (format: Subject: ...). Then 2-3 paragraphs. Warm and personal.',sms:'SMS — 1-2 short sentences. Very personal.',call:'Brief call talking points — bullet format. Include an opening line and 2-3 things to ask or say.',shabbat:'Shabbat dinner invitation — warm, personal, make them feel truly wanted. Include [THIS FRIDAY] and [TIME].'};
-  const purTxt={reconnect:'reconnect warmly after time has passed',birthday:'wish a heartfelt personal birthday blessing',yomtov:'share warm holiday greetings with a brief Torah thought',lifecycle:'congratulate or offer condolences for a lifecycle event',pastoral:'offer genuine pastoral care and check in during a difficult time',thankyou:'express heartfelt sincere gratitude',invite:'invite to an upcoming event making them feel truly wanted',donation:'make a warm relational campaign ask that feels personal not transactional',followup:'follow up naturally after a recent conversation or visit'};
-  const sender=who==='rabbi'?'Rabbi Levi':'Rebbetzin Sarah';
-  const prompt=`You are ${sender} Goldstein of Chabad of Riverside writing to ${purTxt[pu]||pu}.
-
-${buildPersonCtx(p)}
-Additional context: ${cx||'none'}
-Channel format: ${chFmt[ch]}
-Tone: ${to}
-
-Important guidelines:
-- Sound like a real warm Chabad rabbi/rebbetzin — never generic or corporate
-- Reference personal details naturally and specifically
-- Include a brief Torah thought or blessing where natural and appropriate
-- Keep it human and real
-- Sign as "${sender}"
-- If WhatsApp or SMS, do NOT start with "Dear" — go straight in warmly
-- If email, the very first line must be "Subject: ..."`;
-  try{
-    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:900,messages:[{role:'user',content:prompt}]})});
-    const d=await r.json();
-    const txt=d.content?.map(c=>c.text||'').join('')||'Could not generate. Please try again.';
-    res.textContent=txt;res.style.display='block';act.style.display='flex';
-  }catch{res.textContent='Connection error. Check your internet.';res.style.display='block';}
-  btn.style.display='flex';ld.style.display='none';
-}
-function cpCopy(){copyTxt(document.getElementById('cp-res').textContent);}
-function cpWA(){const pid=document.getElementById('cp-p').value;const p=pid?P.find(x=>x.id===parseInt(pid)):null;openWA2(p?.ph||'',document.getElementById('cp-res').textContent);}
-function cpEmail(){const pid=document.getElementById('cp-p').value;const p=pid?P.find(x=>x.id===parseInt(pid)):null;openEmail2(p?.em||'',document.getElementById('cp-res').textContent);}
-function openWA(pid,elId){const p=P.find(x=>x.id===pid);openWA2(p?.ph||'',document.getElementById(elId)?.textContent||'');}
-function openEmail(pid,elId){const p=P.find(x=>x.id===pid);openEmail2(p?.em||'',document.getElementById(elId)?.textContent||'');}
-function openWA2(ph,txt){window.open('https://wa.me/'+ph.replace(/\D/g,'')+'?text='+encodeURIComponent(txt),'_blank');}
-function openEmail2(em,txt){const lines=txt.split('\n');const sl=lines.find(l=>l.toLowerCase().startsWith('subject:'));const sub=sl?sl.replace(/^subject:\s*/i,''):'Shalom';window.location.href='mailto:'+em+'?subject='+encodeURIComponent(sub)+'&body='+encodeURIComponent(txt.replace(/^subject:.*\n?/im,''));}
-function copyTxt(t){navigator.clipboard.writeText(t).then(()=>toast('Copied to clipboard'));}
-
-async function dqp(id,purpose){
-  const p=P.find(x=>x.id===id);if(!p)return;
-  const ld=document.getElementById('dq-load'),res=document.getElementById('dq-res'),act=document.getElementById('dq-acts');
-  if(!ld)return;
-  ld.style.display='block';res.style.display='none';if(act)act.style.display='none';
-  const purMap={
-    reconnect:`Write a warm WhatsApp from Rabbi Levi to ${p.fn} ${p.ln} reconnecting after ${ls(ds(p.lc))} of silence. Context: ${p.notes?.substring(0,100)||'none'}. Family: ${p.fam?.map(f=>f.nm).join(', ')||'none'}. 2-3 sentences. Personal. Sign as Rabbi Levi.`,
-    checkin:`Brief WhatsApp check-in from Rabbi Levi to ${p.fn}. Warm, personal, casual. 1-2 sentences max. Reference something personal if possible. Context: ${p.notes?.substring(0,80)||'none'}`,
-    invite:`WhatsApp Shabbat dinner invitation from Rabbi Levi to ${p.fn} ${p.ln}. This Friday. Make them feel genuinely wanted and that their presence matters. Personal touch. Context: ${p.origin||'community member'}.`,
-    birthday:`Birthday WhatsApp from Rabbi Levi to ${p.fn}. Include a beautiful brief blessing. Family: ${p.fam?.filter(f=>f.rl==='spouse').map(f=>f.nm).join(', ')||''}. 2-3 sentences. Warm.`,
-    yomtov:`Warm Yom Tov WhatsApp from Rabbi Levi to ${p.fn}. Include a brief relevant Torah thought. Personal and warm. 2-3 sentences.`,
-    pastoral:`Pastoral care WhatsApp from Rabbi Levi to ${p.fn}. Context: ${p.notes?.substring(0,100)||'going through a difficult time'}. Warm, caring, genuine. No platitudes. 2-3 sentences.`,
-    thankyou:`Heartfelt thank-you WhatsApp from Rabbi Levi to ${p.fn} ${p.ln} for their support. Genuine, specific, warm. Notes: ${p.notes?.substring(0,80)||'none'}.`,
-    donation:`Warm donation campaign WhatsApp from Rabbi Levi to ${p.fn} ${p.ln}. Prior giving: $${totDon(p).toLocaleString()}. Relational ask, not transactional — make them feel like a partner in the mission.`
-  };
-  try{
-    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:400,messages:[{role:'user',content:purMap[purpose]||purMap.checkin}]})});
-    const d=await r.json();
-    res.textContent=d.content?.map(c=>c.text||'').join('')||'Error generating message.';
-    res.style.display='block';if(act)act.style.display='flex';
-  }catch{res.textContent='Connection error.';res.style.display='block';}
-  ld.style.display='none';
-}
-
-// ══════════════════════════════════════
-// INSIGHTS
-// ══════════════════════════════════════
-function renderInsights(){
-  const rec=[
-    {l:'Active (<30d)',n:P.filter(p=>ds(p.lc)<30).length},
-    {l:'Warm (30–90d)',n:P.filter(p=>{const d=ds(p.lc);return d>=30&&d<90;}).length},
-    {l:'Cold (90–180d)',n:P.filter(p=>{const d=ds(p.lc);return d>=90&&d<180;}).length},
-    {l:'Lost (180d+)',n:P.filter(p=>ds(p.lc)>=180).length},
-  ];
-  const sts=[
-    {l:'Active',n:P.filter(p=>p.st==='hot').length},
-    {l:'Warm',n:P.filter(p=>p.st==='warm').length},
-    {l:'Lapsed',n:P.filter(p=>p.st==='cold').length},
-    {l:'New',n:P.filter(p=>p.st==='new').length},
-  ];
-  const top5=[...P].sort((a,b)=>b.ints.length-a.ints.length).slice(0,5);
-  const donors=[...P].filter(p=>totDon(p)>0).sort((a,b)=>totDon(b)-totDon(a)).slice(0,5);
-  const avg=Math.round(P.filter(p=>p.lc).reduce((s,p)=>s+ds(p.lc),0)/Math.max(1,P.filter(p=>p.lc).length));
-  const totalGiving=P.reduce((s,p)=>s+totDon(p),0);
-  const rabbiLogs=P.reduce((s,p)=>s+(p.ints||[]).filter(i=>i.by==='rabbi').length,0);
-  const rebLogs=P.reduce((s,p)=>s+(p.ints||[]).filter(i=>i.by==='rebbet').length,0);
-  document.getElementById('insbody').innerHTML=`<div class="ig">
-    <div class="ic"><div class="ic-t">Contact recency</div>${rec.map(r=>`<div class="br"><div class="bl">${r.l}</div><div class="bt"><div class="bf" style="width:${P.length?Math.round(r.n/P.length*100):0}%"></div></div><div class="bv">${r.n}</div></div>`).join('')}</div>
-    <div class="ic"><div class="ic-t">Relationship status</div>${sts.map(r=>`<div class="br"><div class="bl">${r.l}</div><div class="bt"><div class="bf" style="width:${P.length?Math.round(r.n/P.length*100):0}%"></div></div><div class="bv">${r.n}</div></div>`).join('')}</div>
-    <div class="ic"><div class="ic-t">Most engaged</div>${top5.map(p=>`<div class="drow" onclick="openD(${p.id})" style="cursor:pointer"><div class="pav drow-av" style="width:26px;height:26px;font-size:10px;background:${abg(p)}">${ini(p)}</div><div class="drow-info"><div class="drow-name">${p.fn} ${p.ln}</div><div class="drow-why">${p.ints.length} interactions</div></div></div>`).join('')}</div>
-    <div class="ic"><div class="ic-t">Top donors</div>${donors.length?donors.map(p=>`<div class="drow" onclick="openD(${p.id})" style="cursor:pointer"><div class="pav drow-av" style="width:26px;height:26px;font-size:10px;background:${abg(p)}">${ini(p)}</div><div class="drow-info"><div class="drow-name">${p.fn} ${p.ln}</div><div class="drow-why">$${totDon(p).toLocaleString()} total</div></div></div>`).join(''):'<div style="font-size:12px;color:var(--ink4)">No donations logged yet</div>'}</div>
-    <div class="ic" style="grid-column:1/-1">
-      <div class="ic-t">Community summary</div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:4px">
-        <div><div class="big-n">${P.length}</div><div class="big-l">Total community</div></div>
-        <div><div class="big-n">${avg}d</div><div class="big-l">Avg days since contact</div></div>
-        <div><div class="big-n">$${(totalGiving/1000).toFixed(0)}k</div><div class="big-l">Total giving logged</div></div>
-        <div><div class="big-n">${rabbiLogs}/${rebLogs}</div><div class="big-l">Rabbi / Rebbetzin logs</div></div>
-      </div>
-    </div>
-  </div>`;
-}
-
-// ══════════════════════════════════════
-// MODALS
-// ══════════════════════════════════════
-function openM(id){document.getElementById(id)?.classList.add('on');}
+// ── MODALS ──
+function openM(id){const m=document.getElementById(id);if(!m)return;m.classList.add('on');if(id==='evm')fillEvSel();if(id==='logm')document.getElementById('l-date').value=tod();}
 function closeM(id){document.getElementById(id)?.classList.remove('on');}
 document.querySelectorAll('.mo').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('on');}));
 
-// ── TOAST ─────────────────────────────
-function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('on');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('on'),2800);}
+// ── TOAST ──
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('on');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('on'),2400);}
 
-// ── INIT ──────────────────────────────
-renderBrief();
+// ── INIT ──
+setWho(who);renderHome();upBadges();
 </script>
 </body>
 </html>
